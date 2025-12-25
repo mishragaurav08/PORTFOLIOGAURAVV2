@@ -459,3 +459,28 @@
     height: 320px;
   }
 }
+
+.backIconBtn {
+  background: none;
+  border: 2px solid var(--neon);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 28px;
+  outline: none;
+  position: relative;
+  transition: background 0.18s, border-color 0.18s;
+}
+
+.backIconBtn svg {
+  display: block;
+}
+
+.backIconBtn:hover, .backIconBtn:focus {
+  background: rgba(200,255,0,0.08);
+  /* No glow or box-shadow */
+}

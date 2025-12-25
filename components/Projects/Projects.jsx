@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Projects.module.css';
 import projectsData from './projects.json';
 import CTAButton from './CTAButton';
+import { motion } from 'framer-motion';
 
 export default function Projects() {
   const projects = projectsData.slice(0, 3);
@@ -14,19 +15,36 @@ export default function Projects() {
 
   return (
     <section className={styles.wrapper} id="projects">
-<div className={styles.headerRow}>
-  <h2 className={styles.header}>PROJECTS</h2>
-  <div className={styles.ruleWrapper} aria-hidden>
-    <div className={styles.rule} />
-  </div>
-  <a href="/projects" className={styles.seeAll} aria-label="View all projects">
-    See All
-  </a>
-</div>
-      
+      <motion.div
+        className={styles.headerRow}
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+        viewport={{ once: true, amount: 0.5 }}
+      >
+        <h2 className={styles.header}>PROJECTS</h2>
+        <div className={styles.ruleWrapper} aria-hidden>
+          <div className={styles.rule} />
+        </div>
+        <a
+          href="/projects"
+          className={styles.seeAll}
+          aria-label="View all projects"
+        >
+          See All
+        </a>
+      </motion.div>
+
       <div className={styles.grid}>
         {projects.map((p, i) => (
-          <article key={p.id} className={styles.card}>
+          <motion.article
+            key={p.id}
+            className={styles.card}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1], delay: 0.08 + i * 0.08 }}
+            viewport={{ once: true, amount: 0.2 }}
+          >
             <div className={styles.media} aria-label={`${p.title} project preview`}>
               <img
                 src={images[i % images.length]}
@@ -57,7 +75,7 @@ export default function Projects() {
               </div>
               <p className={styles.desc}>{p.desc}</p>
             </div>
-          </article>
+          </motion.article>
         ))}
       </div>
     </section>

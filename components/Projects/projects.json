@@ -1,29 +1,83 @@
 [
   {
     "id": 1,
-    "title": "GetItDone",
-    "tag": "Full Stack",
-    "desc": "Currently developing a platform where clients select freelancers based on service categories with real-time project management.",
+    "title": "INTERACT",
+    "tag": "iOS Application",
+    "desc": "An all-in-one hackathon platform where students discover events and organizers manage registrations in one simple place.",
     "pill": "inprogress",
     "link": "",
     "type": "inprogress"
   },
   {
     "id": 2,
+    "title": "GetItDone",
+    "tag": "Full Stack",
+    "desc": "An anonymous freelancing platform where clients hire agents using skill categories and escrow based payments.",
+    "pill": "inprogress",
+    "link": "",
+    "type": "inprogress"
+  },
+  {
+    "id": 3,
     "title": "Studique",
     "tag": "Full Stack",
-    "desc": "Student community platform for SRM University with 15,000+ active users, featuring course materials, events, and campus networking.",
+    "desc": "A campus community platform used by over 15000 SRM students for resources events discussions and campus updates.",
     "pill": "demo",
     "link": "https://studique.in",
     "type": "demo"
   },
   {
-    "id": 3,
+    "id": 4,
+    "title": "SRM GPA",
+    "tag": "Frontend",
+    "desc": "A simple academic toolkit that helps SRM students calculate SGPA track CGPA and predict their grades.",
+    "pill": "demo",
+    "link": "https://srmgpa.netlify.app/",
+    "type": "demo"
+  },
+  {
+    "id": 5,
     "title": "IRCTC Redesign",
     "tag": "UI Design",
-    "desc": "Complete redesign of IRCTC's booking interface focusing on accessibility, modern aesthetics, and streamlined user workflow.",
+    "desc": "A complete UI redesign of the IRCTC booking site focused on easier and more accessible ticket booking.",
     "pill": "design",
     "link": "https://www.figma.com/community/file/1479238388963957664/irctc-website-redesign",
+    "type": "design"
+  },
+  {
+    "id": 6,
+    "title": "Morph",
+    "tag": "UI Design",
+    "desc": "A fintech style interface where users upload images to generate clean morph based face designs.",
+    "pill": "design",
+    "link": "https://www.figma.com/community/file/1478878332378006169/morph",
+    "type": "design"
+  },
+  {
+    "id": 7,
+    "title": "SRMConnect",
+    "tag": "Full Stack",
+    "desc": "A database management system for SRM clubs to manage members records and internal operations.",
+    "pill": "github",
+    "link": "https://github.com/gauravMishra08/SRMConnect",
+    "type": "github"
+  },
+  {
+    "id": 8,
+    "title": "InstaMG & Bluepicks",
+    "tag": "Product & App Design",
+    "desc": "Designed product stickers and Play Store screenshots focused on clean visuals and app presentation.",
+    "pill": "design",
+    "link": "",
+    "type": "design"
+  },
+  {
+    "id": 9,
+    "title": "Social Media",
+    "tag": "Graphic Design",
+    "desc": "Instagram stories posters and creatives designed for GitHub Community SRM and Studique.",
+    "pill": "design",
+    "link": "",
     "type": "design"
   }
 ]

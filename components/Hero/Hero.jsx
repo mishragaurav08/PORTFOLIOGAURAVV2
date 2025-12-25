@@ -5,30 +5,29 @@ import { motion, useReducedMotion } from 'framer-motion'
 export default function Hero() {
   const reduce = useReducedMotion()
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } }
-  }
-
-  const delays = [0.1, 0.2, 0.4]
-  const item = {
-    hidden: { opacity: 0, y: 18 },
-    show: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: delays[i] ?? 0.1 } })
+  // Minimal, smooth fade-in for hero content
+  const minimalFade = {
+    hidden: { opacity: 0, y: 16 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] }
+    }
   }
 
   return (
     <main className={styles.container}>
       <div className={styles.wrapper}>
-        <motion.section 
-          className={styles.center} 
-          variants={container} 
-          initial="hidden" 
-          whileInView="show" 
-          viewport={{ once: true, amount: 0.1 }}
+        <motion.section
+          className={styles.center}
+          variants={minimalFade}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
         >
-          <motion.p className={styles.topText} variants={item} custom={0}>Hey There I'm</motion.p>
-          <motion.h1 className={styles.huge} variants={item} custom={1}>GAURAV</motion.h1>
-          <motion.p className={styles.subtitle} variants={item} custom={2}>
+          <motion.p className={styles.topText} variants={minimalFade}>Hey There I'm</motion.p>
+          <motion.h1 className={styles.huge} variants={minimalFade}>GAURAV</motion.h1>
+          <motion.p className={styles.subtitle} variants={minimalFade}>
             Currently Studying Computer<br className={styles.lineBreak} />Science and Engineering
           </motion.p>
         </motion.section>
