@@ -1,319 +1,461 @@
-/* Animated moving border for project cards */
-.card {
-  position: relative;
-  z-index: 1;
+.wrapper {
+  padding: clamp(48px, 8vh, 96px) 32px;
+  max-width: 1400px;
+  margin: 0 auto clamp(48px, 8vh, 96px) auto;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2vw, 32px);
+  margin-bottom: clamp(32px, 4vh, 48px);
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.header {
+  font-weight: 900;
+  color: var(--neon);
+  margin: 0;
+  font-size: clamp(32px, 4vw, 48px);
+  font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ruleWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.rule {
+  height: 4px;
+  background: var(--muted);
+  flex: 1 1 auto;
+  min-width: 60px;
+}
+
+.seeAll {
+  font-size: clamp(16px, 1.6vw, 18px);
+  color: var(--black);
+  background: var(--neon);
+  text-decoration: none;
+  font-weight: 700;
+  padding: clamp(6px, 1vw, 10px) clamp(18px, 2vw, 24px);
+  border-radius: 8px;
+  border: 2px solid var(--neon);
+  transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  margin-left: clamp(16px, 2vw, 24px); /* Space between rule and button */
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.seeAll:hover {
+  background: var(--black);
+  color: var(--neon);
+}
+
+.seeAll:active {
+  transform: translateY(0);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 40px);
 }
 
 .card {
-  position: relative;
-  z-index: 1;
-  border: 3px solid #E4F141;
-  box-shadow: 0 0 12px 0 #e4f14133;
-  border-radius: 15px;
+  background: rgba(68, 68, 68, 0.3);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid var(--muted);
+  height: 100%;
+  min-height: 420px;
 }
 
-@keyframes borderMove {
-  0% {
-    background-position: 0% 0%;
-  }
-  100% {
-    background-position: 200% 0%;
-  }
+.card:hover {
+  border-color: var(--neon);
 }
-/* Card hover/focus/active: invert colors */
-.card:hover,
-.card:focus,
-.card:active {
-  background: #191919;
-  color: #e4f141;
+
+.media {
+  width: 100%;
+  height: clamp(200px, 30vh, 280px);
+  overflow: hidden;
+  background: rgba(68, 68, 68, 0.3);
 }
-.ctaBtn.demo:hover {
-  background: #191919;
-  color: #E4F141;
-  border-color: #E4F141;
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.ctaBtn.design:hover {
-  background: #E4F141;
-  color: #191919;
-  border-color: #E4F141;
+
+.cardBody {
+  background: rgba(68, 68, 68, 0.3);
+  color: var(--white);
+  padding: clamp(20px, 3vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.5vw, 20px);
+  flex: 1;
 }
-.ctaBtn.github:hover {
-  background: #fff;
-  color: #191919;
-  border-color: #191919;
+
+.cardHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
 }
-.ctaBtn.inprogress:hover {
-  background: #858585;
-  color: #191919;
-  border-color: #858585;
+
+.titleWrapper {
+  flex: 1;
+  min-width: 0;
 }
-/* CTA Button System */
+
+.title {
+  font-family: 'Big Shoulders Display', system-ui;
+  font-size: clamp(28px, 3vw, 36px);
+  color: var(--white);
+  font-weight: 800;
+  margin: 0 0 6px 0;
+  line-height: 1;
+}
+
+.tag {
+  color: var(--neon);
+  font-weight: 600;
+  font-size: clamp(14px, 1.4vw, 16px);
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  text-transform: uppercase;
+}
+
+.desc {
+  margin: 0;
+  color: var(--muted2);
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.6;
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-weight: 400;
+  flex: 1;
+}
+
 .ctaBtn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  height: 32px;
-  border-radius: 4px;
+  gap: 8px;
+  height: clamp(36px, 4vh, 44px);
+  border-radius: 8px;
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 0 18px;
-  border-width: 1px;
+  font-size: clamp(14px, 1.4vw, 16px);
+  font-weight: 700;
+  padding: 0 clamp(16px, 2vw, 24px);
+  border-width: 2px;
   border-style: solid;
-  transition: background 0.2s, color 0.2s, border 0.2s;
+  transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   text-decoration: none;
-  outline: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
+
 .ctaBtn.demo {
-  background: #E4F141;
-  border-color: #E4F141;
-  color: #191919;
+  background: var(--neon);
+  border-color: var(--neon);
+  color: var(--black);
 }
+
+.ctaBtn.demo:hover {
+  background: var(--black);
+  color: var(--neon);
+  border-color: var(--neon);
+}
+
 .ctaBtn.design {
-  background: #191919;
-  border-color: #858585;
-  color: #E4F141;
+  background: var(--black);
+  border-color: var(--neon);
+  color: var(--neon);
 }
+
+.ctaBtn.design:hover {
+  background: var(--neon);
+  color: var(--black);
+  border-color: var(--neon);
+}
+
 .ctaBtn.github {
-  background: #191919;
-  border-color: #FFFFFF;
-  color: #FFFFFF;
+  background: var(--black);
+  border-color: var(--muted2); 
+  color: var(--muted2);
 }
+
+.ctaBtn.github:hover {
+  background: var(--muted2);
+  color: var(--black);
+  border-color: var(--muted2);
+}
+
 .ctaBtn.inprogress {
-  background: #191919;
-  border-color: #858585;
-  color: #858585;
-  cursor: not-allowed;
-  opacity: 0.7;
+  background: var(--muted);
+  border-color: var(--muted2);
+  color: var(--muted2);
+  opacity: 0.9;
 }
+
 .ctaBtn:disabled,
 .ctaBtn[disabled] {
   pointer-events: none;
 }
+
 .icon {
   display: flex;
   align-items: center;
-  font-size: 16px;
+  font-size: clamp(16px, 1.6vw, 18px);
 }
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-@media (max-width:600px){
-  /* keep header and rule on same row like desktop, but tighter */
-  .headerRow{ flex-direction:row; align-items:center; gap:12px }
-  .header{ font-size:20px }
-  .ruleWrapper{ flex:1; display:flex; align-items:center; justify-content:flex-end }
-  .rule{ margin-right:8px; flex:1; min-width:0 }
-  .ruleAccent{ width:36px }
+
+.cogSpin {
+  animation: spin 3s linear infinite;
 }
 
-@media (max-width:420px){
-  .header{ font-size:18px }
-}
-/* Add rule and accent for header, matching About section */
-.ruleWrapper {
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-}
-.rule {
-  height:4px;
-  background:rgba(255,255,255,0.08);
-  flex:1 1 auto;
-  margin-right:12px;
-  border-radius:2px;
-}
-.wrapper{
-  padding:64px 28px;
-  max-width:1180px;
-  margin:0 auto 72px auto;
-  box-sizing:border-box;
-}
-
-.headerRow{
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  margin-bottom: 28px;
-}
-
-  .header {
-    font-weight: 900;
-    color: var(--neon);
-    margin: 0;
-    font-size: 32px;
-    letter-spacing: 0.06em;
-    font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    text-transform: uppercase;
+@media (prefers-reduced-motion: reduce) {
+  .card:hover,
+  .seeAll:hover,
+  .ctaBtn:hover,
+  .media img,
+  .cogSpin {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
   }
-
-  @media (max-width:600px){
-    .headerRow{ flex-direction:row; align-items:center; gap:12px }
-    .header{ font-size:20px }
-    .ruleWrapper{ flex:1; display:flex; align-items:center; justify-content:flex-end }
-    .rule{ margin-right:8px; flex:1; min-width:0 }
-    .ruleAccent{ width:36px }
-  }
-
-  @media (max-width:420px){
-    .header{ font-size:18px }
-  }
-
-/* Neon See All button styling */
-.seeAll {
-  font-size: 16px;
-  color: #222;
-  background: var(--neon);
-  text-decoration: none;
-  font-weight: 900;
-  padding: 8px 22px;
-  border-radius: 8px;
-  border: 2px solid var(--neon);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  letter-spacing: 0.04em;
-  transition: background 0.2s, color 0.2s;
-}
-.seeAll:hover {
-  background: #191919;
-  color: var(--neon);
-  border: 2px solid var(--neon);
 }
 
-.grid{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:28px;
-}
-
-/* Project Card Design Strictly as per Reference */
-.card {
-    aspect-ratio: 3 / 3.5;
-    height: auto;
-    min-height: 0;
-  background: #444444;
-    border-radius: 15px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: none;
-  border: none;
-  transition: border 0.2s;
-}
-
-.media{
-  width: 100%;
-  height: 57.14%; /* 2/3.5 = 0.5714, so 57.14% of card height */
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-}
-
-.cardBody{
-  background: #444444;
-  color: var(--white);
-  padding:20px 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1 1 auto;
-  min-height: 0;
-}
-
-.cardHead{
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-.title {
-  font-family: 'Big Shoulders Display', system-ui;
-  font-size: 36px;
-  color: #fff;
-  font-weight: 700;
-  margin-bottom: 0;
-}
-.tag {
-  color: var(--neon);
-  font-weight: 500;
-  font-size: 14px;
-  margin-top: 0;
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-}
-.pill {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 32px;
-  padding: 0 24px;
-  border-radius: 4px;
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-size: 14px;
-  font-weight: 600;
-  border-width: 1px;
-  border-style: solid;
-  transition: background 0.2s, color 0.2s, border 0.2s;
-  cursor: pointer;
-}
-
-/* Demo button */
-.pill.demo {
-  background: #e4f141;
-  border-color: #e4f141;
-  color: #191919;
-}
-
-/* Design button */
-.pill.design {
-  background: #191919;
-  border-color: #858585;
-  color: #e4f141;
-}
-
-/* Github button */
-.pill.github {
-  background: #191919;
-  border-color: #fff;
-  color: #fff;
-}
-
-/* In Progress button */
-.pill.inprogress {
-  background: #858585;
-  border-color: #191919;
-  color: #191919;
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-
-.desc {
-    word-break: break-word;
-    flex: 1 1 auto;
-  margin: 0;
-  color: #858585;
-  font-size: 14px;
-  line-height: 1.4;
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-weight: 500;
-}
-
-/* active card visual accent removed */
-
-@media (max-width:980px){
+/* Tablet/Laptop */
+@media (max-width: 1200px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    gap: clamp(20px, 3vw, 32px);
   }
-  .card {
-    font-size: 90%;
+  
+  .card:last-child {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 12px);
+    justify-self: center;
+  }
+}
+@media (max-width: 880px) {
+  .headerRow {
+    gap: clamp(12px, 2vw, 20px);
+    margin-bottom: clamp(24px, 3vh, 36px);
+  }
+  
+  .rule {
+    margin-right: 12px;
+  }
+  
+  /* Keep itemHeader as flex row (not column) */
+  .itemHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: clamp(16px, 2vw, 24px);
+  }
+  
+  /* Keep date at top right */
+  .dateWrapper {
+    flex-shrink: 0;
+    text-align: right;
+    width: auto; /* Not 100% */
+  }
+  
+  .itemDesc {
+    max-width: 100%;
   }
 }
 
-@media (max-width:600px){
-  .wrapper { padding: 32px 16px; margin-bottom: 48px; }
+/* Mobile Landscape & Small Tablets */
+@media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: clamp(20px, 4vh, 28px);
+    max-width: 600px;
+    margin: 0 auto;
   }
-  /* No card or media overrides: use desktop card style, just 1 per row */
-  .title { font-size: 18px; }
+  
+  .card:last-child {
+    max-width: 100%;
+  }
+  
+  .card {
+    min-height: 380px;
+  }
+  
+  .media {
+    height: clamp(180px, 25vh, 240px);
+  }
+  
+  .cardBody {
+    padding: 20px;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 32px 20px;
+    margin-bottom: 48px;
+  }
+  
+  /* KEEP SINGLE ROW LAYOUT - NO WRAPPING */
+  .headerRow {
+    flex-wrap: nowrap; /* Changed from wrap to nowrap */
+    gap: 12px;
+    margin-bottom: 28px;
+    align-items: center;
+  }
+  
+  .header {
+    font-size: clamp(20px, 6vw, 24px); /* Match About section size */
+  }
+  
+  /* KEEP RULE WRAPPER INLINE */
+  .ruleWrapper {
+    order: 0; /* Reset from 3 to 0 */
+    flex: 1; /* Reset from 1 0 100% to 1 */
+    display: flex;
+    align-items: center;
+    margin-top: 0; /* Remove margin-top */
+  }
+  
+  .rule {
+    margin-right: 0; /* Keep as is */
+    min-width: 40px;
+  }
+  
+  .seeAll {
+    padding: 6px 16px;
+    font-size: 14px;
+    margin-left: 12px;
+    white-space: nowrap;
+  }
+  
+  .card {
+    min-height: 340px;
+    border-radius: 16px;
+  }
+}
+
+/* Very Small Mobile */
+@media (max-width: 360px) {
+  .headerRow {
+    gap: 6px;
+  }
+  
+  .header {
+    font-size: 22px;
+  }
+  
+  .seeAll {
+    padding: 5px 12px;
+    font-size: 13px;
+    margin-left: 8px;
+  }
+}
+/* Also update the Mobile media query to prevent date wrapping: */
+@media (max-width: 640px) {
+  .wrapper {
+    padding: 32px 20px;
+    margin-bottom: 48px;
+  }
+  
+  .headerRow {
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  
+  .header {
+    font-size: clamp(28px, 7vw, 36px);
+  }
+  
+  .rule {
+    margin-right: 12px;
+    min-width: 40px;
+  }
+  
+  .ruleAccent {
+    width: clamp(36px, 8vw, 48px);
+  }
+  
+  .list {
+    gap: 24px;
+  }
+  
+  .item {
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  /* Add this to prevent long date wrapping on mobile */
+  .itemHeader {
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .dateWrapper {
+    flex-shrink: 0;
+    text-align: right;
+  }
+  
+  .itemDate {
+    font-size: clamp(15px, 4vw, 18px);
+    padding: 5px 12px;
+    white-space: nowrap;
+  }
+  
+  .itemTitle {
+    font-size: clamp(20px, 5vw, 26px);
+  }
+  
+  .itemOrg {
+    font-size: clamp(15px, 4vw, 18px);
+  }
+  
+  .itemDesc {
+    font-size: clamp(15px, 4vw, 17px);
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1600px) {
+  .wrapper {
+    max-width: 1500px;
+    padding: 96px 48px;
+  }
+  
+  .grid {
+    gap: 48px;
+  }
+  
+  .card {
+    min-height: 460px;
+  }
+  
+  .media {
+    height: 320px;
+  }
 }

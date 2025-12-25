@@ -3,7 +3,7 @@
     "id": 1,
     "title": "GetItDone",
     "tag": "Full Stack",
-    "desc": "Currently Developing a system where clients select freelancers based on service categories.",
+    "desc": "Currently developing a platform where clients select freelancers based on service categories with real-time project management.",
     "pill": "inprogress",
     "link": "",
     "type": "inprogress"
@@ -12,7 +12,7 @@
     "id": 2,
     "title": "Studique",
     "tag": "Full Stack",
-    "desc": "An student community platform for SRM University, enhancing student engagement through a user-friendly interface.",
+    "desc": "Student community platform for SRM University with 15,000+ active users, featuring course materials, events, and campus networking.",
     "pill": "demo",
     "link": "https://studique.in",
     "type": "demo"
@@ -21,7 +21,7 @@
     "id": 3,
     "title": "IRCTC Redesign",
     "tag": "UI Design",
-    "desc": "Redesigned the IRCTC website with a modern, user-friendly interface focusing on accessibility and streamlined navigation.",
+    "desc": "Complete redesign of IRCTC's booking interface focusing on accessibility, modern aesthetics, and streamlined user workflow.",
     "pill": "design",
     "link": "https://www.figma.com/community/file/1479238388963957664/irctc-website-redesign",
     "type": "design"

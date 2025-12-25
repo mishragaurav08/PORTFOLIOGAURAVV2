@@ -1,172 +1,277 @@
-.container{
-  min-height:100vh;
-  background:var(--bg);
-  color:var(--neon);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-}
-.container{
-  /* Use 100dvh to avoid mobile address-bar cropping and add safe-area padding */
-  min-height:100dvh;
-  padding-top: env(safe-area-inset-top, 16px);
-  padding-bottom: env(safe-area-inset-bottom, 16px);
-  background:var(--bg);
-  color:var(--neon);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
+.wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
 }
 
-.center{
-  text-align:center;
-  padding:48px 20px;
-}
-.center{
-  text-align:center;
-  padding:48px 20px;
-  /* Optical centering: visually lower content slightly */
-  transform: translateY(5%);
-  will-change: transform;
+.container {
+  min-height: 100dvh;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--neon);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: max(env(safe-area-inset-top, 24px), 24px) 0 max(env(safe-area-inset-bottom, 24px), 24px);
 }
 
-.topText{
-  color:var(--neon);
-  font-weight:700;
-  margin:0 0 8px 0;
-  font-size:22px;
-  
+.center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  width: 100%;
+  gap: min(3.5vw, 48px);
+  padding: 0 20px;
 }
-.topText{
-  color:var(--neon);
-  font-weight:700;
-  margin:0 0 8px 0;
-  font-size:22px;
+
+.topText {
+  color: var(--neon);
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-weight: 700;
+  margin: 0;
+  font-size: clamp(20px, 2.5vw, 28px);
   will-change: opacity, transform;
 }
 
-.huge{
-  margin:0;
-  color:var(--neon);
-  font-weight:900;
-  line-height:0.9;
-  font-size:clamp(130px, 26vw, 260px);
-  margin-bottom:18px;
-  font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-}
-.huge{
-  margin:0;
-  color:var(--neon);
-  font-weight:900;
-  line-height:0.9;
-  font-size:clamp(130px, 26vw, 260px);
-  margin-bottom:18px;
-  font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  /* Improve all-caps optical spacing */
-  word-spacing: -0.02em;
-  will-change: opacity, transform;
-  /* subtle layered shadow for micro-contrast */
-  text-shadow: 0 2px 0 rgba(0,0,0,0.28), 0 0 6px rgba(var(--neon-rgb),0.06);
-}
-
-.subtitle{
-  color:var(--neon);
-  font-weight:700;
-  margin:0 auto;
-  font-size:22px;
-}
-.subtitle{
-  color:var(--neon);
-  font-weight:700;
-  margin:0 auto;
-  font-size:22px;
-  will-change: opacity, transform;
-}
-
-.scrollWrapper{
-  position:absolute;
-  bottom:48px;
-  left:50%;
-  transform:translateX(-50%);
-  text-align:center;
-  color:var(--muted2);
-}
-
-/* Track (sea color) with a moving neon-green fill */
-.scrollIndicator{
-  width:4px;
-  height:36px;
-  background: var(--muted2); /* use site palette for track */
-  margin:0 auto 8px auto;
-  position:relative;
-  overflow:hidden;
-}
-.scrollIndicator{
-  width:4px;
-  height:36px;
-  background: var(--muted2); /* use site palette for track */
-  margin:0 auto 8px auto;
-  position:relative;
-  overflow:hidden;
+.huge {
+  margin: 0;
+  color: var(--neon);
+  font-family: 'Big Shoulders Display', system-ui;
+  font-weight: 900;
+  line-height: 0.85;
+  font-size: clamp(72px, 22vw, 280px);
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: visible;
   will-change: transform, opacity;
-  /* subtle pulsing track to feel alive (disabled for reduced-motion) */
+  padding: 0 4px;
+  max-width: 100%;
+}
+
+.subtitle {
+  color: var(--muted2);
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-weight: 700;
+  margin: 0;
+  font-size: clamp(18px, 1.8vw, 26px);
+  line-height: 1.4;
+  will-change: opacity, transform;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.lineBreak {
+  display: inline;
+}
+
+@media (max-width: 640px) {
+  .lineBreak {
+    display: block;
+  }
+}
+
+.scrollWrapper {
+  position: absolute;
+  bottom: max(40px, 5vh);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: var(--muted2);
+  z-index: 10;
+}
+
+.scrollIndicator {
+  width: 3px;
+  height: 36px;
+  background: var(--muted);
+  margin: 0 auto 12px auto;
+  position: relative;
+  overflow: hidden;
+  will-change: transform, opacity;
   animation: trackPulse 2.4s infinite cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.indicatorFill{
-  position:absolute;
-  left:0;
-  width:100%;
-  height:40%;
-  top:0%;
+.indicatorFill {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  top: 0%;
   background: var(--neon);
   will-change: transform;
-  transform: translateY(0%);
-}
-.indicatorFill{
-  position:absolute;
-  left:0;
-  width:100%;
-  height:40%;
-  top:0%;
-  background: var(--neon);
-  will-change: transform;
-  /* No static transform here — Framer Motion will drive translateY inline */
-  /* make movement slightly bouncier via spring tuning in JS (see component) */
 }
 
-@keyframes trackPulse{
-  0%{ transform: scaleY(1); opacity:1 }
-  50%{ transform: scaleY(0.96); opacity:0.94 }
-  100%{ transform: scaleY(1); opacity:1 }
+@keyframes trackPulse {
+  0% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.96); opacity: 0.94; }
+  100% { transform: scaleY(1); opacity: 1; }
 }
 
-/* Respect reduced-motion preferences */
-@media (prefers-reduced-motion: reduce){
-  .scrollIndicator{ animation: none !important }
-  .indicatorFill{ transition: none !important }
+.scrollText {
+  color: var(--muted2);
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-weight: 700;
+  font-size: clamp(14px, 1.2vw, 18px);
+  text-transform: uppercase;
+}
+@media (max-width: 1024px) {
+  .wrapper {
+    padding: 0 24px;
+  }
+  
+  .center {
+    gap: min(4vw, 40px);
+    padding: 0 16px;
+  }
+  
+  .huge {
+    font-size: clamp(64px, 20vw, 240px);
+    line-height: 0.82;
+  }
+  
+  .subtitle {
+    font-size: clamp(17px, 2vw, 22px);
+    max-width: 90%;
+  }
 }
 
-/* Respect reduced-motion preferences */
-@media (prefers-reduced-motion: reduce){
-  .indicatorFill{ animation: none !important; transform: translateY(0%) !important }
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 0 20px;
+  }
+  
+  .center {
+    gap: min(5vw, 32px);
+    padding: 0 12px;
+  }
+  
+  .huge {
+    font-size: clamp(56px, 18vw, 200px);
+    line-height: 0.8;
+    padding: 0;
+  }
+  
+  .topText {
+    font-size: clamp(18px, 3vw, 22px);
+  }
+  
+  .subtitle {
+    font-size: clamp(16px, 2.5vw, 20px);
+    max-width: 95%;
+    line-height: 1.5;
+  }
+  
+  .scrollWrapper {
+    bottom: max(32px, 4vh);
+  }
+  
+  .scrollIndicator {
+    height: 36px;
+  }
 }
 
-.scrollText{
-  color:var(--muted2);
-  font-weight:700;
+/* Mobile Portrait - Show line break here */
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 0 16px;
+  }
+  
+  .center {
+    gap: min(6vw, 28px);
+    padding: 0 8px;
+  }
+  
+  .huge {
+    font-size: clamp(48px, 22vw, 160px);
+    line-height: 0.78;
+    white-space: nowrap;
+    overflow: visible;
+    padding: 0;
+  }
+  
+  .topText {
+    font-size: clamp(16px, 4vw, 20px);
+  }
+  
+  .subtitle {
+    font-size: clamp(14px, 3.5vw, 18px);
+    max-width: 100%;
+    line-height: 1.6;
+  }
+  
+  .lineBreak {
+    display: block;
+  }
+  
+  .scrollWrapper {
+    bottom: max(24px, 3vh);
+  }
+  
+  .scrollIndicator {
+    height: 36px;
+    width: 2.5px;
+  }
+  
+  .scrollText {
+    font-size: clamp(12px, 2.8vw, 14px);
+  }
 }
 
-@media (max-width:640px){
-  .huge{ font-size:clamp(72px, 34vw, 120px); letter-spacing:2px }
-  .subtitle{ font-size:16px }
-  .scrollIndicator{ width:3px; height:28px }
-  /* stronger optical offset on very small screens */
-  .center{ transform: translateY(8%) }
+@media (min-width: 1920px) {
+  .wrapper {
+    max-width: 1600px;
+    padding: 0 48px;
+  }
+  
+  .center {
+    gap: 56px;
+  }
+  
+  .huge {
+    font-size: min(24vw, 320px);
+  }
+  
+  .subtitle {
+    font-size: 28px;
+  }
+}
+
+@media (max-height: 600px) and (max-width: 480px) {
+  .center {
+    gap: min(4vw, 20px);
+    justify-content: flex-start;
+    padding-top: 20vh;
+  }
+  
+  .huge {
+    font-size: clamp(40px, 20vw, 120px);
+  }
+  
+  .scrollWrapper {
+    position: relative;
+    bottom: auto;
+    margin-top: auto;
+    padding-bottom: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollIndicator,
+  .scrollIndicator * {
+    animation: none !important;
+  }
+  
+  .indicatorFill {
+    animation: none !important;
+    transform: translateY(0%) !important;
+  }
 }

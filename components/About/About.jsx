@@ -17,16 +17,20 @@ export default function About() {
         </p>
 
         <div className={styles.actions}>
-              <a className={styles.resume} href="https://drive.google.com/file/d/1owe5QFBcN31WJJM4txaOtS4iFAbXHYKW/preview" aria-label="Open resume">
-                    <span className={styles.resumeIcon} aria-hidden>
-                      <i className="fas fa-file-pdf" aria-hidden></i>
-                    </span>
-                    <span>View Resume</span>
-                  </a>
+          <a 
+            className={styles.resume} 
+            href="https://drive.google.com/file/d/1owe5QFBcN31WJJM4txaOtS4iFAbXHYKW/preview" 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open resume in new tab"
+          >
+            <span className={styles.resumeIcon} aria-hidden>
+              <i className="fas fa-file-pdf" aria-hidden></i>
+            </span>
+            <span>View Resume</span>
+          </a>
         </div>
       </div>
-
-      {/* Skills and social links section removed */}
     </section>
   )
 }

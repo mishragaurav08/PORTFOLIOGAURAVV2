@@ -9,7 +9,6 @@ const ICONS = {
   inprogress: <FaCog className={styles.cogSpin} />,
 };
 
-// Ensure .cogSpin is always applied for inprogress type
 function getIcon(type) {
   if (type === 'inprogress') {
     return <FaCog className={styles.cogSpin} />;
@@ -24,7 +23,7 @@ const CTAButton = ({ type, href, children }) => {
 
   if (isDisabled) {
     return (
-      <button className={baseClass} disabled tabIndex={-1}>
+      <button className={baseClass} disabled tabIndex={-1} aria-label={children}>
         <span className={styles.icon}>{icon}</span>
         {children}
       </button>
@@ -36,6 +35,7 @@ const CTAButton = ({ type, href, children }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={`View ${children}`}
     >
       <span className={styles.icon}>{icon}</span>
       {children}

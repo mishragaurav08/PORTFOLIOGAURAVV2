@@ -6,12 +6,11 @@ html,body,#__next{
 :root{
   /* Palette provided */
   --neon: #E4F141; /* bright accent */
-  /* neon as RGB for rgba usage */
   --neon-rgb: 228,241,65;
   --bg:   #191919; /* page background */
   --muted: #444444; /* mid-gray */
   --black: #000000;
-  --muted2: #858585; /* secondary muted */
+  --muted2: #B0B0B0; /* improved for subtitle contrast */
   --white: #FFFFFF;
 }
 
