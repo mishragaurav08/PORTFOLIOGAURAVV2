@@ -1,0 +1,172 @@
+.container{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--neon);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+.container{
+  /* Use 100dvh to avoid mobile address-bar cropping and add safe-area padding */
+  min-height:100dvh;
+  padding-top: env(safe-area-inset-top, 16px);
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+  background:var(--bg);
+  color:var(--neon);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.center{
+  text-align:center;
+  padding:48px 20px;
+}
+.center{
+  text-align:center;
+  padding:48px 20px;
+  /* Optical centering: visually lower content slightly */
+  transform: translateY(5%);
+  will-change: transform;
+}
+
+.topText{
+  color:var(--neon);
+  font-weight:700;
+  margin:0 0 8px 0;
+  font-size:22px;
+  
+}
+.topText{
+  color:var(--neon);
+  font-weight:700;
+  margin:0 0 8px 0;
+  font-size:22px;
+  will-change: opacity, transform;
+}
+
+.huge{
+  margin:0;
+  color:var(--neon);
+  font-weight:900;
+  line-height:0.9;
+  font-size:clamp(130px, 26vw, 260px);
+  margin-bottom:18px;
+  font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+.huge{
+  margin:0;
+  color:var(--neon);
+  font-weight:900;
+  line-height:0.9;
+  font-size:clamp(130px, 26vw, 260px);
+  margin-bottom:18px;
+  font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  /* Improve all-caps optical spacing */
+  word-spacing: -0.02em;
+  will-change: opacity, transform;
+  /* subtle layered shadow for micro-contrast */
+  text-shadow: 0 2px 0 rgba(0,0,0,0.28), 0 0 6px rgba(var(--neon-rgb),0.06);
+}
+
+.subtitle{
+  color:var(--neon);
+  font-weight:700;
+  margin:0 auto;
+  font-size:22px;
+}
+.subtitle{
+  color:var(--neon);
+  font-weight:700;
+  margin:0 auto;
+  font-size:22px;
+  will-change: opacity, transform;
+}
+
+.scrollWrapper{
+  position:absolute;
+  bottom:48px;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  color:var(--muted2);
+}
+
+/* Track (sea color) with a moving neon-green fill */
+.scrollIndicator{
+  width:4px;
+  height:36px;
+  background: var(--muted2); /* use site palette for track */
+  margin:0 auto 8px auto;
+  position:relative;
+  overflow:hidden;
+}
+.scrollIndicator{
+  width:4px;
+  height:36px;
+  background: var(--muted2); /* use site palette for track */
+  margin:0 auto 8px auto;
+  position:relative;
+  overflow:hidden;
+  will-change: transform, opacity;
+  /* subtle pulsing track to feel alive (disabled for reduced-motion) */
+  animation: trackPulse 2.4s infinite cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.indicatorFill{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:40%;
+  top:0%;
+  background: var(--neon);
+  will-change: transform;
+  transform: translateY(0%);
+}
+.indicatorFill{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:40%;
+  top:0%;
+  background: var(--neon);
+  will-change: transform;
+  /* No static transform here — Framer Motion will drive translateY inline */
+  /* make movement slightly bouncier via spring tuning in JS (see component) */
+}
+
+@keyframes trackPulse{
+  0%{ transform: scaleY(1); opacity:1 }
+  50%{ transform: scaleY(0.96); opacity:0.94 }
+  100%{ transform: scaleY(1); opacity:1 }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce){
+  .scrollIndicator{ animation: none !important }
+  .indicatorFill{ transition: none !important }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce){
+  .indicatorFill{ animation: none !important; transform: translateY(0%) !important }
+}
+
+.scrollText{
+  color:var(--muted2);
+  font-weight:700;
+}
+
+@media (max-width:640px){
+  .huge{ font-size:clamp(72px, 34vw, 120px); letter-spacing:2px }
+  .subtitle{ font-size:16px }
+  .scrollIndicator{ width:3px; height:28px }
+  /* stronger optical offset on very small screens */
+  .center{ transform: translateY(8%) }
+}

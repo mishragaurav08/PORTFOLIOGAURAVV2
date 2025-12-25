@@ -1,0 +1,121 @@
+.carousel-social-row {
+  width: 100%;
+  display: flex;
+  gap: 0; /* remove external gap so flex-basis widths line up with wrapper edges */
+  align-items: stretch; /* ensure children stretch to same height */
+  justify-content: flex-start;
+  /* vertical gap to match horizontal page padding */
+  margin-top: 28px;
+  flex-wrap: nowrap; /* keep side-by-side on all screens */
+}
+
+/* constrain the row to the same max-width as the About wrapper and center it */
+.carousel-social-row { box-sizing: border-box; width:100%; }
+
+/* Desktop: 70:30 split, same fixed height */
+.carousel-social-row .skills-container {
+  /* skills area takes remaining space while allowing proper shrinking */
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  height: 140px;
+  min-height: 140px;
+  min-width: 0;
+}
+.carousel-social-row .spacer { flex: 0 0 28px; }
+
+.carousel-social-row .sociallinks-container {
+  /* fixed desktop width to visually match expected size */
+  flex: 0 0 340px;
+  box-sizing: border-box;
+  height: 140px;
+  min-height: 140px;
+}
+
+.skills-container {
+  background: var(--neon);
+  color: var(--black);
+  border-radius: 15px; /* match About card radius */
+  padding: 12px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative; /* needed for end fade overlays */
+}
+
+/* carousel internals (track + tiles) */
+.ac-carousel { width: 100%; overflow: hidden; }
+.ac-track { display:flex; gap:12px; align-items:center; animation: ac-scroll 60s linear infinite; }
+.ac-track.paused { animation-play-state: paused }
+.ac-items { display:flex; gap:12px; padding:6px 8px; align-items:center; justify-content:center; width:100% }
+.skill-item { display:inline-flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:8px; background:var(--muted); transition: transform 180ms ease; }
+.skill-item.dark { background: rgba(var(--neon-rgb),0.06) }
+.skill-item img { width:28px; height:28px; object-fit:contain; display:block }
+
+@keyframes ac-scroll { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+.sociallinks-container { background: var(--neon); color: var(--black); border-radius:15px; padding:12px; display:flex; align-items:center; justify-content:center; height:140px; }
+.socials { display:flex; flex-direction:row; gap:8px; align-items:center; justify-content:center; width:100%; overflow-x:auto; }
+
+/* show icon glyphs only — no rectangular tile on each icon */
+.socials a {
+  background: transparent; /* removed rectangular background */
+  color: var(--black); /* icons black on neon */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 4px; /* clickable area */
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.socials svg{ width:2.5em; height:2.5em; display:block }
+
+/* Responsive: small screens stack and make socials a horizontal band */
+/* Mobile: stack boxes, single box per row */
+@media (max-width: 600px) {
+  /* stack vertically on small screens and keep spacing consistent */
+  .carousel-social-row { flex-direction: column; gap:28px }
+  .carousel-social-row .skills-container,
+  .carousel-social-row .sociallinks-container {
+    flex: 0 0 100%;
+    width: 100%;
+    height: auto; /* let content determine height on mobile */
+    min-height: 120px;
+    padding: 16px; /* increase internal padding for touch targets */
+  }
+  /* hide spacer on mobile so it doesn't double the vertical gap */
+  .carousel-social-row .spacer { display: none; }
+
+  .skill-item { width:40px; height:40px }
+  .skill-item img { width:20px; height:20px }
+  .socials a { padding: 8px; }
+}
+
+/* subtle left/right fade overlays to indicate scrollable carousel content */
+.skills-container::before,
+.skills-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  pointer-events: none;
+  z-index: 3;
+}
+.skills-container::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.12), transparent);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.skills-container::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(0,0,0,0.12), transparent);
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+@media (max-width: 600px) {
+  .skills-container::before,
+  .skills-container::after { display: none; }
+}
