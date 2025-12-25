@@ -3,6 +3,7 @@ import Hero from '../components/Hero/Hero'
 import About from '../components/About/About'
 // Tools carousel and social links are rendered inside the `About` section
 import Projects from '../components/Projects/Projects'
+import Experience from '../components/Experience/Experience'
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <About />
       <Projects />
+      <Experience />
     </>
   )
 }

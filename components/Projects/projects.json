@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "GetItDone",
+    "tag": "Full Stack",
+    "desc": "Currently Developing a system where clients select freelancers based on service categories.",
+    "pill": "inprogress",
+    "link": "",
+    "type": "inprogress"
+  },
+  {
+    "id": 2,
+    "title": "Studique",
+    "tag": "Full Stack",
+    "desc": "An student community platform for SRM University, enhancing student engagement through a user-friendly interface.",
+    "pill": "demo",
+    "link": "https://studique.in",
+    "type": "demo"
+  },
+  {
+    "id": 3,
+    "title": "IRCTC Redesign",
+    "tag": "UI Design",
+    "desc": "Redesigned the IRCTC website with a modern, user-friendly interface focusing on accessibility and streamlined navigation.",
+    "pill": "design",
+    "link": "https://www.figma.com/community/file/1479238388963957664/irctc-website-redesign",
+    "type": "design"
+  }
+]

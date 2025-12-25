@@ -1,7 +1,5 @@
 import React from 'react'
 import styles from './About.module.css'
-import SkillsAndSocialRow from './SkillsAndSocialRow'
-
 export default function About() {
   return (
     <section className={styles.wrapper} id="about">
@@ -28,8 +26,7 @@ export default function About() {
         </div>
       </div>
 
-      {/* Skills carousel and social links row placed below the about card */}
-      <SkillsAndSocialRow />
+      {/* Skills and social links section removed */}
     </section>
   )
 }

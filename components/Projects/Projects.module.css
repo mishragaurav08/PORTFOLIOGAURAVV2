@@ -1,3 +1,131 @@
+/* Animated moving border for project cards */
+.card {
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  border: 3px solid #E4F141;
+  box-shadow: 0 0 12px 0 #e4f14133;
+  border-radius: 15px;
+}
+
+@keyframes borderMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+/* Card hover/focus/active: invert colors */
+.card:hover,
+.card:focus,
+.card:active {
+  background: #191919;
+  color: #e4f141;
+}
+.ctaBtn.demo:hover {
+  background: #191919;
+  color: #E4F141;
+  border-color: #E4F141;
+}
+.ctaBtn.design:hover {
+  background: #E4F141;
+  color: #191919;
+  border-color: #E4F141;
+}
+.ctaBtn.github:hover {
+  background: #fff;
+  color: #191919;
+  border-color: #191919;
+}
+.ctaBtn.inprogress:hover {
+  background: #858585;
+  color: #191919;
+  border-color: #858585;
+}
+/* CTA Button System */
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  border-radius: 4px;
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0 18px;
+  border-width: 1px;
+  border-style: solid;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+}
+.ctaBtn.demo {
+  background: #E4F141;
+  border-color: #E4F141;
+  color: #191919;
+}
+.ctaBtn.design {
+  background: #191919;
+  border-color: #858585;
+  color: #E4F141;
+}
+.ctaBtn.github {
+  background: #191919;
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+}
+.ctaBtn.inprogress {
+  background: #191919;
+  border-color: #858585;
+  color: #858585;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.ctaBtn:disabled,
+.ctaBtn[disabled] {
+  pointer-events: none;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@media (max-width:600px){
+  /* keep header and rule on same row like desktop, but tighter */
+  .headerRow{ flex-direction:row; align-items:center; gap:12px }
+  .header{ font-size:20px }
+  .ruleWrapper{ flex:1; display:flex; align-items:center; justify-content:flex-end }
+  .rule{ margin-right:8px; flex:1; min-width:0 }
+  .ruleAccent{ width:36px }
+}
+
+@media (max-width:420px){
+  .header{ font-size:18px }
+}
+/* Add rule and accent for header, matching About section */
+.ruleWrapper {
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+}
+.rule {
+  height:4px;
+  background:rgba(255,255,255,0.08);
+  flex:1 1 auto;
+  margin-right:12px;
+  border-radius:2px;
+}
 .wrapper{
   padding:64px 28px;
   max-width:1180px;
@@ -6,21 +134,33 @@
 }
 
 .headerRow{
-  display:flex;
-  align-items:center;
-  gap:24px;
-  margin-bottom:28px;
-  justify-content:space-between;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
 }
 
-.header{
-  font-weight:900;
-  color:var(--neon);
-  margin:0;
-  font-size:32px;
-  letter-spacing:0.06em;
-  font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-}
+  .header {
+    font-weight: 900;
+    color: var(--neon);
+    margin: 0;
+    font-size: 32px;
+    letter-spacing: 0.06em;
+    font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    text-transform: uppercase;
+  }
+
+  @media (max-width:600px){
+    .headerRow{ flex-direction:row; align-items:center; gap:12px }
+    .header{ font-size:20px }
+    .ruleWrapper{ flex:1; display:flex; align-items:center; justify-content:flex-end }
+    .rule{ margin-right:8px; flex:1; min-width:0 }
+    .ruleAccent{ width:36px }
+  }
+
+  @media (max-width:420px){
+    .header{ font-size:18px }
+  }
 
 /* Neon See All button styling */
 .seeAll {
@@ -31,14 +171,15 @@
   font-weight: 900;
   padding: 8px 22px;
   border-radius: 8px;
-  border: none;
+  border: 2px solid var(--neon);
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   letter-spacing: 0.04em;
   transition: background 0.2s, color 0.2s;
 }
 .seeAll:hover {
-  background: #fff200;
-  color: #222;
+  background: #191919;
+  color: var(--neon);
+  border: 2px solid var(--neon);
 }
 
 .grid{
@@ -47,48 +188,132 @@
   gap:28px;
 }
 
-.card{
-  background:transparent;
-  border-radius:12px;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
+/* Project Card Design Strictly as per Reference */
+.card {
+    aspect-ratio: 3 / 3.5;
+    height: auto;
+    min-height: 0;
+  background: #444444;
+    border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+  border: none;
+  transition: border 0.2s;
 }
 
 .media{
-  height:220px;
+  width: 100%;
+  height: 57.14%; /* 2/3.5 = 0.5714, so 57.14% of card height */
   background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
 }
 
 .cardBody{
-  background: rgba(0,0,0,0.45);
+  background: #444444;
   color: var(--white);
-  padding:18px 20px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+  padding:20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
-.cardHead{ display:flex; align-items:center; justify-content:space-between }
-.title{ font-family: 'Big Shoulders Display', system-ui; font-size:20px; color:var(--white); font-weight:800 }
-.tag{ color:var(--neon); font-weight:700; font-size:13px; margin-top:6px }
-.pill{ background: rgba(255,255,255,0.08); color:var(--white); padding:8px 12px; border-radius:8px; font-weight:700; font-size:13px }
+.cardHead{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.title {
+  font-family: 'Big Shoulders Display', system-ui;
+  font-size: 36px;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+.tag {
+  color: var(--neon);
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 0;
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 24px;
+  border-radius: 4px;
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-size: 14px;
+  font-weight: 600;
+  border-width: 1px;
+  border-style: solid;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  cursor: pointer;
+}
 
-.desc{ margin:0; color: rgba(255,255,255,0.65); font-size:14px; line-height:1.5 }
+/* Demo button */
+.pill.demo {
+  background: #e4f141;
+  border-color: #e4f141;
+  color: #191919;
+}
 
-/* active card visual accent */
-.active{ border:2px solid var(--neon); border-radius:12px }
-.active .media{ border-bottom: 2px solid rgba(0,0,0,0.2) }
+/* Design button */
+.pill.design {
+  background: #191919;
+  border-color: #858585;
+  color: #e4f141;
+}
+
+/* Github button */
+.pill.github {
+  background: #191919;
+  border-color: #fff;
+  color: #fff;
+}
+
+/* In Progress button */
+.pill.inprogress {
+  background: #858585;
+  border-color: #191919;
+  color: #191919;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.desc {
+    word-break: break-word;
+    flex: 1 1 auto;
+  margin: 0;
+  color: #858585;
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-weight: 500;
+}
+
+/* active card visual accent removed */
 
 @media (max-width:980px){
-  .grid{ grid-template-columns: repeat(2, 1fr) }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .card {
+    font-size: 90%;
+  }
 }
 
 @media (max-width:600px){
-  .wrapper{ padding:36px 16px }
-  .grid{ grid-template-columns: 1fr; gap:18px }
-  .media{ height:180px }
-  .title{ font-size:18px }
-  .cardBody{ padding:14px }
+  .wrapper { padding: 32px 16px; margin-bottom: 48px; }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  /* No card or media overrides: use desktop card style, just 1 per row */
+  .title { font-size: 18px; }
 }
