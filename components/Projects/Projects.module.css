@@ -73,37 +73,64 @@
 }
 
 .card {
-  background: rgba(68, 68, 68, 0.3);
+  background: var(--bg);
   border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid var(--muted);
+  transition: border 500ms cubic-bezier(0.4, 0, 0.2, 1), background 500ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(68, 68, 68, 0.5);
+  position: relative;
+  z-index: 1;
   height: 100%;
-  min-height: 420px;
+  min-height: 480px;
 }
 
 .card:hover {
-  border-color: var(--neon);
+  border: 2px solid transparent;
+  background: 
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    linear-gradient(
+      90deg,
+      var(--bg),
+      #e4f141,
+      var(--bg)
+    ) border-box;
+  background-size: 200% 100%;
+  animation: borderFlow 1.5s linear infinite;
+}
+
+@keyframes borderFlow {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
 }
 
 .media {
   width: 100%;
-  height: clamp(200px, 30vh, 280px);
+  aspect-ratio: 4 / 3;
+  height: auto;
   overflow: hidden;
-  background: rgba(68, 68, 68, 0.3);
+  background: var(--muted);
 }
 
 .media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  background: var(--muted);
   transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cardBody {
-  background: rgba(68, 68, 68, 0.3);
+  background: var(--bg);
+  border-radius: 0 0 20px 20px;
+  /* border-top removed for cleaner look */
   color: var(--white);
   padding: clamp(20px, 3vw, 28px);
   display: flex;
@@ -143,7 +170,7 @@
 
 .desc {
   margin: 0;
-  color: var(--muted2);
+  color: var(--white);
   font-size: clamp(15px, 1.6vw, 17px);
   line-height: 1.6;
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
@@ -177,7 +204,7 @@
 }
 
 .ctaBtn.demo:hover {
-  background: var(--black);
+  background: var(--bg);
   color: var(--neon);
   border-color: var(--neon);
 }
@@ -195,22 +222,22 @@
 }
 
 .ctaBtn.github {
-  background: var(--black);
-  border-color: var(--muted2); 
-  color: var(--muted2);
+  background: var(--muted2);
+  border-color: var(--black);
+  color: var(--black);
 }
 
 .ctaBtn.github:hover {
-  background: var(--muted2);
-  color: var(--black);
+  background: var(--black);
+  color: var(--muted2);
   border-color: var(--muted2);
 }
 
 .ctaBtn.inprogress {
   background: var(--muted);
-  border-color: var(--muted2);
-  color: var(--muted2);
-  opacity: 0.9;
+  border-color: var(--neon);
+  color: var(--neon);
+  opacity: 0.85;
 }
 
 .ctaBtn:disabled,
@@ -243,6 +270,11 @@
     transform: none !important;
     transition: none !important;
   }
+  
+  .card:hover {
+    border: 2px solid #e4f141 !important;
+    background: var(--bg) !important;
+  }
 }
 
 /* Tablet/Laptop */
@@ -258,6 +290,7 @@
     justify-self: center;
   }
 }
+
 @media (max-width: 880px) {
   .headerRow {
     gap: clamp(12px, 2vw, 20px);
@@ -302,11 +335,11 @@
   }
   
   .card {
-    min-height: 380px;
+    min-height: 400px;
   }
-  
   .media {
-    height: clamp(180px, 25vh, 240px);
+    aspect-ratio: 4 / 3;
+    height: auto;
   }
   
   .cardBody {
@@ -355,8 +388,13 @@
   }
   
   .card {
-    min-height: 340px;
+    min-height: 280px;
     border-radius: 16px;
+  }
+  
+  .media {
+    aspect-ratio: 4 / 3;
+    height: auto;
   }
 }
 
@@ -376,6 +414,7 @@
     margin-left: 8px;
   }
 }
+
 /* Also update the Mobile media query to prevent date wrapping: */
 @media (max-width: 640px) {
   .wrapper {
@@ -462,10 +501,10 @@
 
 .backIconBtn {
   background: none;
-  border: 2px solid var(--neon);
+  border: none;
   border-radius: 50%;
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -474,13 +513,10 @@
   outline: none;
   position: relative;
   transition: background 0.18s, border-color 0.18s;
+  z-index: 1;
 }
 
-.backIconBtn svg {
+.backIconSvg {
   display: block;
-}
-
-.backIconBtn:hover, .backIconBtn:focus {
-  background: rgba(200,255,0,0.08);
-  /* No glow or box-shadow */
+  /* No filter, no shadow */
 }

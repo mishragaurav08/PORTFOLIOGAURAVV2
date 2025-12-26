@@ -2,82 +2,91 @@
   {
     "id": 1,
     "title": "INTERACT",
-    "tag": "iOS Application",
-    "desc": "An all-in-one hackathon platform where students discover events and organizers manage registrations in one simple place.",
+    "tag": "iOS PRODUCT",
+    "desc": "I’m building an all-in-one hackathon platform where students discover events and organizers manage registrations - all inside one clean, simple system.",
     "pill": "inprogress",
     "link": "",
-    "type": "inprogress"
+    "type": "inprogress",
+    "image": "/assets/interact.png"
   },
   {
     "id": 2,
     "title": "GetItDone",
     "tag": "Full Stack",
-    "desc": "An anonymous freelancing platform where clients hire agents using skill categories and escrow based payments.",
+    "desc": "An anonymous freelancing marketplace I’m building where clients hire skilled agents using secure escrow-based payments - designed to keep things private, fair, and transparent.",
     "pill": "inprogress",
     "link": "",
-    "type": "inprogress"
+    "type": "inprogress",
+    "image": "/assets/getitdone.png"
   },
   {
     "id": 3,
     "title": "Studique",
     "tag": "Full Stack",
-    "desc": "A campus community platform used by over 15000 SRM students for resources events discussions and campus updates.",
+    "desc": "A campus super-platform trusted by 15,000+ SRM students to access resources, track attendance, join discussions, and stay updated with everything happening on campus.",
     "pill": "demo",
     "link": "https://studique.in",
-    "type": "demo"
+    "type": "demo",
+    "image": "/assets/studique.png"
   },
   {
     "id": 4,
     "title": "SRM GPA",
-    "tag": "Frontend",
-    "desc": "A simple academic toolkit that helps SRM students calculate SGPA track CGPA and predict their grades.",
+    "tag": "WEB TOOL",
+    "desc": "A simple academic web tool I built to help SRM students calculate SGPA, track CGPA, and predict grades in one place.",
     "pill": "demo",
     "link": "https://srmgpa.netlify.app/",
-    "type": "demo"
+    "type": "demo",
+    "image": "/assets/gpa.png"
   },
   {
     "id": 5,
     "title": "IRCTC Redesign",
-    "tag": "UI Design",
-    "desc": "A complete UI redesign of the IRCTC booking site focused on easier and more accessible ticket booking.",
+    "tag": "DESIGN CONCEPT",
+    "desc": "A complete redesign concept of the IRCTC booking platform - focused on making ticket booking simpler, cleaner, and more accessible.",
     "pill": "design",
     "link": "https://www.figma.com/community/file/1479238388963957664/irctc-website-redesign",
-    "type": "design"
+    "type": "design",
+    "image": "/assets/irctc.png"
   },
   {
     "id": 6,
     "title": "Morph",
-    "tag": "UI Design",
-    "desc": "A fintech style interface where users upload images to generate clean morph based face designs.",
+    "tag": "DESIGN CONCEPT",
+    "desc": "A fintech-style interface concept where users upload images to generate clean, morph-based face designs with a modern, minimal feel.",
     "pill": "design",
     "link": "https://www.figma.com/community/file/1478878332378006169/morph",
-    "type": "design"
+    "type": "design",
+    "image": "/assets/morph.png"
   },
   {
     "id": 7,
     "title": "SRMConnect",
     "tag": "Full Stack",
-    "desc": "A database management system for SRM clubs to manage members records and internal operations.",
+    "desc": "A database system I built for SRM clubs to manage members, records, and internal operations smoothly.",
     "pill": "github",
     "link": "https://github.com/gauravMishra08/SRMConnect",
-    "type": "github"
+    "type": "github",
+    "image": "/assets/srmconnect.png"
   },
   {
-    "id": 8,
-    "title": "InstaMG & Bluepicks",
-    "tag": "Product & App Design",
-    "desc": "Designed product stickers and Play Store screenshots focused on clean visuals and app presentation.",
-    "pill": "design",
-    "link": "",
-    "type": "design"
-  },
+  "id": 8,
+  "title": "Play Store Visuals",
+  "tag": "PRESENTATION DESIGN",
+  "desc": "Designed Play Store visual screens for BluePicks - focused on brand clarity, product trust, and higher app conversion.",
+  "pill": "design",
+  "link": "",
+  "type": "design",
+  "image": "/assets/bluepicks.png"
+},
   {
     "id": 9,
-    "title": "Social Media",
-    "tag": "Graphic Design",
-    "desc": "Instagram stories posters and creatives designed for GitHub Community SRM and Studique.",
+    "title": "Brand Visuals",
+    "tag": "VISUAL DESIGN",
+    "desc": "Built complete visual systems for student communities - including posters, Instagram creatives, t-shirts, PPTs, and campaign assets for GitHub Community SRM, Studique and other groups.",
     "pill": "design",
     "link": "",
-    "type": "design"
+    "type": "design",
+    "image": "/assets/socialmedia.png"
   }
 ]

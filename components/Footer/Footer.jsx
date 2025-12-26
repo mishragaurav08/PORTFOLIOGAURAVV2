@@ -14,7 +14,7 @@ export default function Footer() {
       >
         <div className={styles.quote}>
           <span className={styles.secondary}>Thoughtfully </span> <span className={styles.primary}>designed</span><br />
-          <span className={styles.secondary}>Purposefully <span className={styles.primary}>built</span></span>
+          <span className={styles.secondary}>Purposefully </span><span className={styles.primary}>built</span>
         </div>
         <div className={styles.copyright}>
           <span className={styles.copyrightText}>© {new Date().getFullYear()} Gaurav Mishra</span>

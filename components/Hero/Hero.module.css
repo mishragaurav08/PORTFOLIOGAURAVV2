@@ -213,7 +213,7 @@
   }
   
   .scrollWrapper {
-    bottom: max(24px, 3vh);
+    bottom: max(64px, 10vh);
   }
   
   .scrollIndicator {

@@ -20,16 +20,37 @@ export default function ProjectsPage() {
           viewport={{ once: true, amount: 0.5 }}
           style={{ marginBottom: 'clamp(40px, 7vw, 72px)' }}
         >
-          <button
+          <motion.button
             onClick={() => router.back()}
             className={styles.backIconBtn}
             aria-label="Go back"
+            whileHover="hover"
+            whileTap="tap"
+            initial="rest"
+            animate="rest"
+            variants={{}}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.5 17L9.5 12L14.5 7" stroke="var(--neon)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <h2 className={styles.header}>PROJECTS</h2>
+            <motion.svg
+              width="32" height="32" viewBox="0 0 32 32" fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={styles.backIconSvg}
+            >
+              <motion.path
+                d="M19.5 23L12.5 16L19.5 9"
+                stroke="var(--neon)"
+                strokeWidth="2.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                initial={{ x: 0 }}
+                variants={{
+                  rest: { x: 0 },
+                  hover: { x: -3, transition: { type: 'spring', stiffness: 300, damping: 18 } },
+                  tap: { x: -1 }
+                }}
+              />
+            </motion.svg>
+          </motion.button>
+          <h2 className={styles.header}>My work</h2>
           <div className={styles.ruleWrapper} aria-hidden>
             <div className={styles.rule} />
           </div>
@@ -52,10 +73,10 @@ export default function ProjectsPage() {
                   </div>
                   <div className={styles.buttonWrapper}>
                     {p.type === 'inprogress' && (
-                      <CTAButton type="inprogress">In Progress</CTAButton>
+                      <CTAButton type="inprogress">Building</CTAButton>
                     )}
                     {p.type === 'demo' && p.link && (
-                      <CTAButton type="demo" href={p.link}>Demo</CTAButton>
+                      <CTAButton type="demo" href={p.link}>Live</CTAButton>
                     )}
                     {p.type === 'design' && p.link && (
                       <CTAButton type="design" href={p.link}>Design</CTAButton>

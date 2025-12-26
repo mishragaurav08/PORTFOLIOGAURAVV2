@@ -1,17 +1,18 @@
 import React from 'react';
-import { FaFigma, FaGlobe, FaCog, FaGithub } from 'react-icons/fa';
+import { HiCog, HiGlobeAlt } from 'react-icons/hi';
+import { AiFillHighlight, AiFillGithub } from 'react-icons/ai';
 import styles from './Projects.module.css';
 
 const ICONS = {
-  demo: <FaGlobe />,
-  design: <FaFigma />,
-  github: <FaGithub />,
-  inprogress: <FaCog className={styles.cogSpin} />,
+  demo: <HiGlobeAlt />, 
+  design: <AiFillHighlight />, 
+  github: <AiFillGithub />, 
+  inprogress: <HiCog className={styles.cogSpin} />, 
 };
 
 function getIcon(type) {
   if (type === 'inprogress') {
-    return <FaCog className={styles.cogSpin} />;
+    return <HiCog className={styles.cogSpin} />;
   }
   return ICONS[type] || null;
 }
