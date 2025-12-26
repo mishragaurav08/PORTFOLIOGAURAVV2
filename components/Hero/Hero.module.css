@@ -1,3 +1,26 @@
+.mascotIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  margin: 0 auto 12px auto;
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+.mascotImg {
+  width: 72px;
+  height: 72px;
+  display: block;
+  animation: mascotFloat 2.8s ease-in-out infinite;
+}
+
+@keyframes mascotFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-18px) scale(1.04); }
+  100% { transform: translateY(0); }
+}
+}
 .wrapper {
   width: 100%;
   max-width: 1400px;

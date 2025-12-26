@@ -85,15 +85,6 @@
   }
 }
 
-@keyframes borderFlow {
-  0% {
-    background-position: 100% 0;
-  }
-  100% {
-    background-position: -100% 0;
-  }
-}
-
 .itemHeader {
   display: flex;
   align-items: flex-start;
@@ -175,18 +166,23 @@
     margin-right: 12px;
   }
   
+  /* ONLY CHANGE: Remove flex-direction column to keep date on right */
   .itemHeader {
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: row; /* Changed from column to row */
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: clamp(16px, 2vw, 24px);
   }
   
+  /* ONLY CHANGE: Keep date at top right, not full width */
   .dateWrapper {
-    text-align: left;
-    width: 100%;
+    flex-shrink: 0;
+    text-align: right;
+    width: auto; /* Changed from 100% to auto */
   }
   
   .itemDate {
-    display: inline-block;
+    display: inline-block; /* Keep as is */
   }
   
   .itemDesc {
@@ -228,17 +224,30 @@
     border-radius: 12px;
   }
   
+  /* ONLY CHANGE: Keep date on right in mobile too */
+  .itemHeader {
+    flex-direction: row; /* Keep as row */
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .dateWrapper {
+    flex-shrink: 0;
+    text-align: right;
+  }
+  
+  .itemDate {
+    font-size: clamp(15px, 4vw, 18px);
+    padding: 5px 12px;
+    white-space: nowrap;
+  }
+  
   .itemTitle {
     font-size: clamp(20px, 5vw, 26px);
   }
   
   .itemOrg {
     font-size: clamp(15px, 4vw, 18px);
-  }
-  
-  .itemDate {
-    font-size: clamp(15px, 4vw, 18px);
-    padding: 5px 12px;
   }
   
   .itemDesc {
@@ -267,6 +276,16 @@
   
   .item {
     padding: 18px;
+  }
+  
+  /* ONLY CHANGE: Keep date on right in small mobile */
+  .itemHeader {
+    flex-direction: row; /* Keep as row */
+  }
+  
+  .dateWrapper {
+    flex-shrink: 0;
+    text-align: right;
   }
   
   .itemTitle {
@@ -298,6 +317,16 @@
   
   .item {
     padding: 16px;
+  }
+  
+  /* ONLY CHANGE: Keep date on right in very small mobile */
+  .itemHeader {
+    flex-direction: row; /* Keep as row */
+    gap: 8px;
+  }
+  
+  .dateWrapper {
+    flex-shrink: 0;
   }
   
   .itemTitle {

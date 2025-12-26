@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const experiences = [
   {
-    title: 'Samsung PRISM Intern',
+    title: 'Samsung PRISM',
     org: 'Samsung R&D Institute India',
     date: "Mar 2025 - Present",
     desc: 'I worked on applied machine learning systems for large-scale network traffic analysis, built pipelines to process and classify packet-level data, evaluated model performance, and contributed to Samsung’s internal research workflows.'
