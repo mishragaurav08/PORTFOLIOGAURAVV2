@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../components/Projects/Projects.module.css';
 import projectsData from '../components/Projects/projects.json';
 import CTAButton from '../components/Projects/CTAButton';
-// import Contact from '../components/Contact/Contact';
+import Contact from '../components/Contact/Contact';
 import Footer from '../components/Footer/Footer';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
@@ -92,7 +92,7 @@ export default function ProjectsPage() {
           ))}
         </div>
       </section>
-      {/* <Contact /> */}
+      <Contact />
       <Footer />
     </>
   );

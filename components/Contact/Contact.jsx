@@ -9,7 +9,7 @@ export default function Contact() {
         <div className={styles.left}>
           <h2 className={styles.heading}>Get in Touch</h2>
           <p className={styles.desc}>
-If you want to collaborate, discuss product ideas, startups, design systems, or just exchange thoughts - I’m always open to meaningful conversations.
+            If you’re building something meaningful or just want to talk product, startups, or design - I’d love to hear from you.
           </p>
         </div>
         <div className={styles.right}>

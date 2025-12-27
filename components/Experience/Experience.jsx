@@ -8,31 +8,31 @@ const experiences = [
     title: 'Samsung PRISM',
     org: 'Samsung R&D Institute India',
     date: "Mar 2025 - Present",
-    desc: 'I worked on applied machine learning systems for large-scale network traffic analysis, built pipelines to process and classify packet-level data, evaluated model performance, and contributed to Samsung’s internal research workflows.'
+    desc: 'Worked on applied machine learning systems for large-scale network traffic analysis, building packet-level pipelines and evaluating real-world model performance.'
   },
   {
     title: 'Frontend Architect',
     org: 'Studique',
     date: "Nov 2024 - Present",
-    desc: 'I co-founded Studique - a campus super-platform now trusted by 15,000+ students. I lead frontend architecture, design systems, UX strategy, and core product decisions.'
+    desc: 'Co-founded Studique and lead frontend architecture, design systems, and core product decisions - shaping how the platform looks, feels, and scales for 15,000+ students.'
   },
   {
     title: 'iOS Developer Program',
     org: 'Apple x Infosys',
     date: 'Participant',
-    desc: 'Selected for the Apple-Infosys iOS Developer Program, where I trained in Swift, Apple UI frameworks, and mobile-first product design.'
+    desc: 'Selected for the Apple × Infosys iOS Developer Program, where I build iOS interfaces, explore Swift-based workflows, and practice mobile-first product thinking.'
   },
   {
     title: 'Community Mentor',
     org: 'GitHub Community SRM',
     date: "Jun 2024 - Present",
-    desc: 'I lead branding and UX for community initiatives, mentored 60+ students, organized workshops and design sprints, and help grow the campus design ecosystem.'
+    desc: 'Lead branding and UX for community initiatives, mentor 60+ students, organize design sprints and workshops, and help grow the campus design ecosystem.'
   },
   {
     title: 'UX/UI Designer',
     org: 'Independent Work',
     date: 'Freelance / Contract',
-    desc: 'I deliver UX/UI and brand assets for apps and startups - including Play Store creatives, marketing visuals, packaging designs, and product presentation systems.'
+    desc: 'Deliver UX/UI and brand systems for apps and startups - covering Play Store creatives, marketing visuals, packaging designs, and product presentation systems.'
   }
 ];
 
