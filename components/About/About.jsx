@@ -22,7 +22,7 @@ export default function About() {
 
       <div className={styles.card}>
         <p className={styles.copy}>
-          I'm a <strong>Product-focused UX/UI designer and frontend developer</strong> who loves building things that real people actually use - not just prototypes that look good on Figma. I'm currently pursuing Computer Science (Cyber Security) at SRMIST, and also co-founded <strong>Studique</strong>, a campus super-platform trusted by over <strong>15,000+ students</strong>. I lead the frontend architecture, design systems, and core product decisions - shaping how the platform looks, feels, and scales as more users join every day. Along the way, I've interned with <strong>Samsung PRISM '25</strong> and I'm currently part of the <strong>Apple x Infosys iOS Developer Program</strong>, where I sharpen my engineering, mobile product thinking, and design skills.
+          I'm a <strong>product-focused UX/UI designer and frontend developer</strong>. I enjoy building things that real people actually use - not just things that look good on Figma. I'm currently pursuing Computer Science (Cyber Security) at SRMIST and co-founded <strong>Studique</strong>, a campus super-platform trusted by over <strong>15,000+ students</strong>. I lead frontend architecture, design systems, and core product decisions - shaping how the platform looks, feels, and scales. Along the way, I've interned with <strong>Samsung PRISM</strong> and currently part of the <strong>Apple x Infosys iOS Developer Program</strong>.
         </p>
 
         <div className={styles.actions}>

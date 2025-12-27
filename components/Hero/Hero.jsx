@@ -86,7 +86,7 @@ export default function Hero() {
             whileInView="show"
             animate="float"
           >
-            Currently part of the Apple<br className={styles.lineBreak} />Infosys iOS Developer Program
+            Currently building for iOS <br className={styles.lineBreak} />with Apple × Infosys
           </motion.p>
         </motion.section>
       </div>
