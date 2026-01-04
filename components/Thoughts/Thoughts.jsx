@@ -15,7 +15,7 @@ const thoughts = [
   },
   {
     id: 2,
-    slug: 'apple-infosys',
+    slug: 'ios-developer-program',
     title: 'iOS Developer Program',
     date: 'Dec 2024',
     excerpt: 'Selection, training, and what Apple actually teaches you.',
