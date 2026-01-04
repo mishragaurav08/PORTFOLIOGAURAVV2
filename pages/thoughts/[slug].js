@@ -12,6 +12,14 @@ export default function ThoughtPage() {
 
   const thought = thoughtsData.find((t) => t.slug === slug);
 
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      router.back();
+    } else {
+      router.push('/#thoughts');
+    }
+  };
+
   if (!thought) {
     return (
       <div className={styles.wrapper}>
@@ -37,7 +45,7 @@ export default function ThoughtPage() {
           style={{ marginBottom: 'clamp(40px, 7vw, 72px)' }}
         >
           <motion.button
-            onClick={() => router.back()}
+            onClick={handleBack}
             className={styles.backIconBtn}
             aria-label="Go back"
             whileHover="hover"
