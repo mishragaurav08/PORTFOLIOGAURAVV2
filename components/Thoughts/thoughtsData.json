@@ -1,0 +1,145 @@
+[
+{
+  "id": 1,
+  "slug": "samsung-prism",
+  "title": "Inside Samsung PRISM",
+  "date": "Mar 2025",
+  "excerpt": "How I got selected, what actually happens, and what nobody tells you.",
+  "content": [
+    {
+      "type": "paragraph",
+      "text": "How I Got Selected, What Actually Happens, and What Nobody Tells You"
+    },
+    {
+      "type": "paragraph",
+      "text": "I didn’t plan to be part of Samsung PRISM. There was no strategy. No checklist. No dream internship target. I found the Google Form in a random college group, glanced at it, and thought, “fill kar deta hoon, waise bhi kaunsa ho jana hai,” and then forgot about it completely."
+    },
+    {
+      "type": "paragraph",
+      "text": "A few days later, during a community meeting I was hosting, a batchmate casually asked, “Gaurav, did you fill the Samsung PRISM form?” I laughed. She said, “Aaj last day hai. Bhar de.” That careless form, filled with zero expectations, ended up changing the direction of my engineering journey."
+    },
+    {
+      "type": "heading",
+      "text": "Round 1 - The Elimination Gate"
+    },
+    {
+      "type": "paragraph",
+      "text": "The first round was conducted internally at SRM. It was a Google Form-based objective test, but with a twist. Every question required rough sheet submissions with detailed working, not just ticking options. After this round, nearly 60% of candidates were eliminated. Only about 40% moved forward."
+    },
+    {
+      "type": "heading",
+      "text": "Round 2 - The Real Filter"
+    },
+    {
+      "type": "paragraph",
+      "text": "The second round was conducted directly by Samsung. Three coding problems. Online. Timed. I was able to solve two properly. In my head, that was the end. I assumed I wouldn’t get any call. For 45 days nothing happened. No emails. No updates. No hope."
+    },
+    {
+      "type": "heading",
+      "text": "The Message That Changed Everything"
+    },
+    {
+      "type": "paragraph",
+      "text": "One random day, while I was organizing a hackathon, I was added to a WhatsApp group by an SRM faculty member. The group name was Samsung PRISM. I thought it was some seminar group. I messaged the faculty, “Ma’am, what is this group about?” She replied, “It’s for Samsung PRISM.” That’s how I found out I was selected."
+    },
+    {
+      "type": "heading",
+      "text": "Team Allocation & NDA Reality"
+    },
+    {
+      "type": "paragraph",
+      "text": "We were randomly assigned into teams of four students along with two SRM faculty mentors and Samsung industry mentors. Each team received a research problem statement directly from Samsung. We were required to sign NDAs, so I can’t share project details, but I can tell you how it actually feels. This is not a college internship. This is industry-grade research engineering"
+    },
+    {
+      "type": "heading",
+      "text": "What Working in PRISM Actually Feels Like"
+    },
+    {
+      "type": "paragraph",
+      "text": "At first we thought we would finish this in two months. We were completely wrong. Not because of workload, but because of expectation. Samsung does not want working projects. They want deployable, meaningful, industry-usable systems"
+    },
+    {
+      "type": "paragraph",
+      "text": "We had weekly meetings with SRM faculty mentors and monthly reviews with Samsung industry mentors. Here is something real nobody tells you. Most of the time our work went completely beyond what was asked. Even when a task was done, we kept refining, experimenting and rebuilding simply because we wanted it to be better."
+    },
+    {
+      "type": "paragraph",
+      "text": "Through every review our project consistently stayed in the green zone. Recently we completed the project along with a mandatory research paper submission. Publication is part of PRISM."
+    },
+    {
+      "type": "heading",
+      "text": "What You Actually Get (Perks)"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Participation Certificate + goodies on completion",
+        "Certificate of Excellence + around ₹15,000 stipend per student (only if your mentors are satisfied with your work)",   
+        "Eligibility for Samsung SRIB Magpie",
+        "Counts as an industry project",
+        "You can drop one professional elective after completion"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "But the biggest gain is not the stipend. It is the mindset shift."
+    },
+    {
+      "type": "paragraph",
+      "text": "PRISM teaches you patience, depth and responsibility."
+    },
+    {
+      "type": "heading",
+      "text": "Who Should Apply"
+    },
+    {
+      "type": "paragraph",
+      "text": "PRISM is for you if you enjoy long term projects, like solving real world system problems, want industry mentorship, are comfortable with ambiguity and care more about learning than quick certificates."
+    },
+    {
+      "type": "paragraph",
+      "text": "It is not for you if you want quick internships, avoid documentation and reviews, want spoon fed tasks or are only chasing stipends."
+    },
+    {
+      "type": "heading",
+      "text": "Why This Matters"
+    },
+    {
+      "type": "paragraph",
+      "text": "Samsung PRISM did not just teach me to build systems. It taught me to think like someone whose work will be used by real users, in real industries and with real consequences. Once you experience that, you do not look at engineering the same way again."
+    },
+    {
+      "type": "paragraph",
+      "text": "I wrote this because a lot of students kept asking me how to get into Samsung PRISM, what the selection looks like and what the program is actually like. If you still have doubts or want to know more, you can always reach out to me."
+    }
+  ]
+},
+  {
+    "id": 2,
+    "slug": "apple-infosys",
+    "title": "Apple × Infosys iOS Developer Program",
+    "date": "Dec 2024",
+    "excerpt": "Coming Soon",
+    "comingSoon": true,
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "This story is currently being written. Check back soon!"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "building-studique",
+    "title": "Building Studique: 15,000 Students & Counting",
+    "date": "Nov 2024",
+    "excerpt": "Coming Soon",
+    "comingSoon": true,
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "This story is currently being written. Check back soon!"
+      }
+    ]
+  }
+]

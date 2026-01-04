@@ -4,6 +4,7 @@ import About from '../components/About/About'
 // Tools carousel and social links are rendered inside the `About` section
 import Projects from '../components/Projects/Projects'
 import Experience from '../components/Experience/Experience'
+import Thoughts from '../components/Thoughts/Thoughts'
 import Contact from '../components/Contact/Contact'
 import Footer from '../components/Footer/Footer'
 
@@ -25,6 +26,9 @@ export default function Home() {
       </div>
       <div id="experience">
         <Experience limit={3} />
+      </div>
+      <div id="thoughts">
+        <Thoughts limit={3} />
       </div>
       <div id="contact">
         <Contact />
