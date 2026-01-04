@@ -59,7 +59,7 @@ export default function Experience({ limit, showHeader = true, wrap = true }) {
                  className={styles.seeAll}
                  aria-label="View all experiences"
                >
-                 <span className={styles.seeAllText}>View full timeline</span>
+                 <span className={styles.seeAllText}>Career overview</span>
                </a>
              )}
         </motion.div>
