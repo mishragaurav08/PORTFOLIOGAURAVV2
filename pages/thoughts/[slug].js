@@ -96,6 +96,15 @@ export default function ThoughtPage() {
                   </ul>
                 );
               }
+              if (block.type === 'images') {
+                return (
+                  <div key={index} className={styles.imageGrid}>
+                    {block.images.map((img, i) => (
+                      <img key={i} src={img} alt={`${thought.title} ${i + 1}`} className={styles.contentImage} />
+                    ))}
+                  </div>
+                );
+              }
               return null;
             })}
           </article>

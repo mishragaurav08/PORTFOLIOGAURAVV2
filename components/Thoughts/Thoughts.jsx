@@ -18,18 +18,9 @@ const thoughts = [
     slug: 'apple-infosys',
     title: 'iOS Developer Program',
     date: 'Dec 2024',
-    excerpt: 'Coming Soon',
+    excerpt: 'Selection, training, and what Apple actually teaches you.',
     link: '/thoughts/apple-infosys',
-    comingSoon: true
-  },
-  {
-    id: 3,
-    slug: 'building-studique',
-    title: 'Building Studique',
-    date: 'Nov 2024',
-    excerpt: 'Coming Soon',
-    link: '/thoughts/building-studique',
-    comingSoon: true
+    comingSoon: false
   }
 ];
 
