@@ -19,7 +19,7 @@ const thoughts = [
     title: 'iOS Developer Program',
     date: 'Dec 2024',
     excerpt: 'Selection, training, and what Apple actually teaches you.',
-    link: '/thoughts/apple-infosys',
+    link: '/thoughts/ios-developer-program',
     comingSoon: false
   }
 ];
@@ -39,6 +39,7 @@ export default function Thoughts({ limit }) {
         <h2 className={styles.header}>Thoughts & Builds</h2>
         <div className={styles.ruleWrapper} aria-hidden>
           <div className={styles.rule} />
+          <div className={styles.ruleAccent} />
         </div>
       </motion.div>
 
@@ -59,7 +60,7 @@ export default function Thoughts({ limit }) {
                 className={styles.readMore}
                 aria-label={`Read ${thought.title}`}
               >
-                <span className={styles.readText}>Read more</span>
+                <span className={styles.readText}>Read</span>
                 <ArrowUpRight size={18} strokeWidth={2} className={styles.arrow} />
               </a>
             )}

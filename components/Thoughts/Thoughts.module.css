@@ -29,15 +29,23 @@
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 0;
-  min-width: 0;
+  justify-content: flex-end;
+  min-width: 0; /* Allows shrinking on mobile */
 }
 
 .rule {
   height: 4px;
   background: var(--muted);
   flex: 1 1 auto;
+  margin-right: 16px;
+  min-width: 60px; /* Prevents it from disappearing on small screens */
+}
+
+.ruleAccent {
+  width: clamp(48px, 6vw, 64px);
+  height: 4px;
+  background: var(--neon);
+  flex-shrink: 0;
 }
 
 .grid {
@@ -59,11 +67,11 @@
   position: relative;
   z-index: 1;
   height: 100%;
-  min-height: 240px;
+  min-height: 180px;
 }
 
 .cardComingSoon {
-  min-height: 240px;
+  min-height: 180px;
 }
 
 .card:hover {
@@ -210,9 +218,39 @@
     gap: clamp(12px, 2vw, 20px);
     margin-bottom: clamp(24px, 3vh, 36px);
   }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .headerRow {
+    gap: 12px;
+    margin-bottom: 32px;
+  }
   
   .rule {
     margin-right: 12px;
+    min-width: 40px;
+  }
+  
+  .ruleAccent {
+    width: clamp(36px, 8vw, 48px);
+  }
+  
+  .grid {
+    gap: 24px;
+  }
+  
+  .card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  .title {
+    font-size: clamp(20px, 5vw, 26px);
+  }
+  
+  .excerpt {
+    font-size: clamp(15px, 4vw, 17px);
   }
 }
 
@@ -221,23 +259,11 @@
   .grid {
     grid-template-columns: 1fr;
     gap: clamp(20px, 4vh, 28px);
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .card:last-child {
-    max-width: 100%;
   }
   
   .card {
-    min-height: auto;
-    max-height: none;
     padding: 24px;
     gap: 16px;
-  }
-  
-  .cardContent {
-    gap: 12px;
   }
   
   .title {
@@ -251,58 +277,34 @@
   
   .readMore {
     font-size: 16px;
-    margin-top: 4px;
   }
 }
 
-/* Mobile Portrait */
+/* Small Mobile */
 @media (max-width: 480px) {
   .headerRow {
-    flex-wrap: nowrap;
-    gap: 12px;
-    margin-bottom: 28px;
+    flex-direction: row;
     align-items: center;
-  }
-  
-  .header {
-    font-size: clamp(20px, 6vw, 24px);
   }
   
   .ruleWrapper {
     flex: 1;
-    display: flex;
-    align-items: center;
-  }
-  
-  .rule {
-    margin-right: 0;
-    min-width: 40px;
   }
   
   .card {
-    padding: 20px;
-    min-height: auto;
-    max-height: none;
-    gap: 14px;
-  }
-  
-  .cardContent {
-    gap: 10px;
+    padding: 18px;
   }
   
   .title {
-    font-size: clamp(22px, 6vw, 28px);
-    line-height: 1.2;
+    font-size: clamp(20px, 6vw, 24px);
   }
   
   .excerpt {
     font-size: 15px;
-    line-height: 1.55;
   }
   
   .readMore {
     font-size: 15px;
-    margin-top: 2px;
   }
 }
 
