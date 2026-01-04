@@ -1,20 +1,26 @@
 import React from 'react';
-import { HiCog, HiGlobeAlt } from 'react-icons/hi';
-import { AiFillHighlight, AiFillGithub } from 'react-icons/ai';
+import { Globe, Figma, Github, Loader2 } from 'lucide-react';
 import styles from './Projects.module.css';
 
 const ICONS = {
-  demo: <HiGlobeAlt />, 
-  design: <AiFillHighlight />, 
-  github: <AiFillGithub />, 
-  inprogress: <HiCog className={styles.cogSpin} />, 
+  demo: Globe,
+  design: Figma,
+  github: Github,
+  inprogress: Loader2,
 };
 
 function getIcon(type) {
-  if (type === 'inprogress') {
-    return <HiCog className={styles.cogSpin} />;
+  const IconComponent = ICONS[type];
+  if (!IconComponent) {
+    return null;
   }
-  return ICONS[type] || null;
+
+  const iconProps = { size: 18 };
+  if (type === 'inprogress') {
+    iconProps.className = styles.cogSpin;
+  }
+
+  return <IconComponent {...iconProps} />;
 }
 
 const CTAButton = ({ type, href, children }) => {

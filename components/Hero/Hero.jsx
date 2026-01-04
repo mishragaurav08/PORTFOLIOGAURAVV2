@@ -99,7 +99,7 @@ export default function Hero() {
               className={styles.indicatorFill}
               aria-hidden="true"
               animate={{ y: ['0%', '150%'] }}
-              transition={{ duration: 1.6, repeat: Infinity, repeatType: 'reverse', ease: [0.76, 0, 0.24, 1] }}
+              transition={{ duration: 1.6, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
             />
           )}
         </div>

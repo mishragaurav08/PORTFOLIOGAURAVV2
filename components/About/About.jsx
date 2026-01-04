@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 export default function About() {
   return (
     <section className={styles.wrapper} id="about">
-
       <motion.div
         className={styles.headerRow}
         initial={{ opacity: 0, y: 18 }}
@@ -13,7 +12,7 @@ export default function About() {
         transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.5 }}
       >
-        <h2 className={styles.header}>A little about me</h2>
+        <h2 className={styles.header}>A LITTLE ABOUT ME</h2>
         <div className={styles.ruleWrapper} aria-hidden>
           <div className={styles.rule} />
           <div className={styles.ruleAccent} />
@@ -21,9 +20,23 @@ export default function About() {
       </motion.div>
 
       <div className={styles.card}>
-        <p className={styles.copy}>
-          I'm a <strong>product-focused UX/UI designer and frontend developer</strong>. I enjoy building things that real people actually use - not just things that look good on Figma. I'm currently pursuing Computer Science (Cyber Security) at SRMIST and co-founded <strong>Studique</strong>, a campus super-platform trusted by over <strong>15,000+ students</strong>. I lead frontend architecture, design systems, and core product decisions - shaping how the platform looks, feels, and scales. Along the way, I've interned with <strong>Samsung PRISM</strong> and currently part of the <strong>Apple x Infosys iOS Developer Program</strong>.
-        </p>
+        <div className={styles.copy}>
+          <p className={styles.paragraph}>
+            <strong>I design and build digital products that people actually use.</strong>{' '}
+            I'm a product-focused UX/UI designer and frontend developer currently pursuing Computer Science (Cyber Security) at SRMIST.
+          </p>
+          
+          <p className={styles.paragraph}>
+            I co-founded <strong>Studique</strong>, a campus super-platform trusted by over <strong>15,000+ students</strong>, 
+            where I lead frontend architecture, design systems, and core product decisions - shaping how the platform looks, feels, 
+            and scales as more students join.
+          </p>
+          
+          <p className={styles.paragraph}>
+            I've also interned with <strong>Samsung PRISM</strong> and am currently part of the{' '}
+            <strong>Apple × Infosys iOS Developer Program</strong>.
+          </p>
+        </div>
 
         <div className={styles.actions}>
           <a
@@ -33,11 +46,13 @@ export default function About() {
             rel="noopener noreferrer"
             aria-label="Open resume"
           >
-            <span>Here’s my resume →</span>
+            <span className={styles.resumeText}>Here’s my resume</span>
+            <span className={styles.ctaArrow} aria-hidden>
+              →
+            </span>
           </a>
         </div>
       </div>
-
     </section>
   )
 }

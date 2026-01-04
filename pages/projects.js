@@ -50,7 +50,7 @@ export default function ProjectsPage() {
               />
             </motion.svg>
           </motion.button>
-          <h2 className={styles.header}>My work</h2>
+          <h2 className={styles.header}>ALL WORKS</h2>
           <div className={styles.ruleWrapper} aria-hidden>
             <div className={styles.rule} />
           </div>

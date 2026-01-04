@@ -11,14 +11,24 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Gaurav - Portfolio</title>
+        <title>Gaurav</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Hero />
-      <About />
-      <Projects />
-      <Experience />
-      <Contact />
+      <div id="hero">
+        <Hero />
+      </div>
+      <div id="about">
+        <About />
+      </div>
+      <div id="projects">
+        <Projects />
+      </div>
+      <div id="experience">
+        <Experience limit={3} />
+      </div>
+      <div id="contact">
+        <Contact />
+      </div>
       <Footer />
     </>
   )

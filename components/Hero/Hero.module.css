@@ -24,8 +24,8 @@
 .wrapper {
   width: 100%;
   max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 32px;
+  margin: 0 auto var(--section-vertical) auto;
+  padding: var(--section-vertical) var(--section-horizontal);
   box-sizing: border-box;
 }
 
@@ -78,6 +78,7 @@
   will-change: transform, opacity;
   padding: 0 4px;
   max-width: 100%;
+  letter-spacing: -0.02em;
 }
 
 .subtitle {

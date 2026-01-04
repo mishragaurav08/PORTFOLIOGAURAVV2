@@ -26,6 +26,7 @@ export default function Footer() {
             role="button"
             tabIndex={0}
             aria-label="Scroll to top"
+            title="Back to top"
             onClick={handleMascotActivate}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
@@ -42,6 +43,14 @@ export default function Footer() {
             <span className={styles.primary}>designed</span><br />
             <span className={styles.secondary}>Purposefully </span>
             <span className={styles.primary}>built</span>
+          </div>
+
+          <div className={styles.quickLinks}>
+            <a href="/#projects" className={styles.quickLink}>Projects</a>
+            <span className={styles.linkDivider}>·</span>
+            <a href="/experience" className={styles.quickLink}>Experience</a>
+            <span className={styles.linkDivider}>·</span>
+            <a href="https://drive.google.com/file/d/1owe5QFBcN31WJJM4txaOtS4iFAbXHYKW/preview" target="_blank" rel="noopener noreferrer" className={styles.quickLink}>Resume</a>
           </div>
 
           <div className={styles.copyright}>

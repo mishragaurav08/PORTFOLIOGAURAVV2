@@ -1,13 +1,11 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import styles from './Projects.module.css';
 import projectsData from './projects.json';
 import CTAButton from './CTAButton';
 
-import { motion } from 'framer-motion';
-
 export default function Projects() {
   const projects = projectsData.slice(0, 3);
-  
 
   return (
     <section className={styles.wrapper} id="projects">
@@ -18,7 +16,7 @@ export default function Projects() {
         transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.5 }}
       >
-        <h2 className={styles.header}>My work</h2>
+        <h2 className={styles.header}>Selected work</h2>
         <div className={styles.ruleWrapper} aria-hidden>
           <div className={styles.rule} />
         </div>
@@ -27,12 +25,12 @@ export default function Projects() {
           className={styles.seeAll}
           aria-label="View all projects"
         >
-          See All
+          <span className={styles.seeAllText}>View all works</span>
         </a>
       </motion.div>
 
       <div className={styles.grid}>
-        {projects.map((p, i) => (
+        {projects.map((p) => (
           <article
             key={p.id}
             className={styles.card}
@@ -54,9 +52,9 @@ export default function Projects() {
                   {p.type === 'inprogress' && (
                     <CTAButton type="inprogress">Building</CTAButton>
                   )}
-                    {p.type === 'demo' && p.link && (
-                      <CTAButton type="demo" href={p.link}>Live</CTAButton>
-                    )}
+                  {p.type === 'demo' && p.link && (
+                    <CTAButton type="demo" href={p.link}>Live</CTAButton>
+                  )}
                   {p.type === 'design' && p.link && (
                     <CTAButton type="design" href={p.link}>Design</CTAButton>
                   )}
