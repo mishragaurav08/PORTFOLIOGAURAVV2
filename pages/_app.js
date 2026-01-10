@@ -1,7 +1,25 @@
 import '../styles/global.css'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import * as analytics from '../lib/analytics'
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter()
+
+  useEffect(() => {
+    // Track page views on route change
+    const handleRouteChange = (url) => {
+      analytics.pageview(url)
+    }
+    
+    router.events.on('routeChangeComplete', handleRouteChange)
+    
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
+
   return (
     <>
       <Head>

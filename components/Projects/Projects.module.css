@@ -12,12 +12,11 @@
   gap: clamp(16px, 2vw, 32px);
   margin-bottom: clamp(32px, 4vh, 48px);
   width: 100%;
-  flex-wrap: nowrap;
 }
 
 .header {
   font-weight: 900;
-  color: var(--neon);
+  color: var(--accent);
   margin: 0;
   font-size: clamp(24px, 5vw, 48px);
   font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
@@ -26,34 +25,19 @@
   flex-shrink: 0;
 }
 
-.ruleWrapper {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* let the rule span the available space */
-  padding: 0; /* use the full area between header and button */
-  min-width: 0;
-}
-
-.rule {
-  height: 4px;
-  background: var(--muted);
-  flex: 1 1 auto; /* expand to fill the wrapper */
-}
-
 .seeAll {
-  font-size: clamp(16px, 1.6vw, 18px);
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   color: var(--black);
-  background: var(--neon);
-  text-decoration: none;
   font-weight: 700;
+  font-size: clamp(16px, 1.6vw, 18px);
+  text-decoration: none;
+  white-space: nowrap;
+  margin-left: 0; /* no extra gap so the rule reaches the button */
+  transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
   padding: clamp(6px, 1vw, 10px) clamp(18px, 2vw, 24px);
   border-radius: 8px;
-  border: 2px solid var(--neon);
-  transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
-  white-space: nowrap;
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  margin-left: 0; /* no extra gap so the rule reaches the button */
+  background: var(--accent);
+  border: 2px solid var(--accent);
   flex-shrink: 0;
   line-height: 1;
   display: inline-flex;
@@ -63,12 +47,18 @@
 
 .seeAll:hover {
   background: var(--black);
-  color: var(--neon);
+  color: var(--accent);
 }
 
 .seeAllText {
   display: inline-flex;
   align-items: center;
+}
+
+.seeAllIcon {
+  margin-left: 8px;
+  display: inline-flex;
+  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ctaArrow {
@@ -80,6 +70,11 @@
 
 .seeAll:hover .ctaArrow,
 .seeAll:focus-visible .ctaArrow {
+  transform: translateX(6px);
+}
+
+.seeAll:hover .seeAllIcon,
+.seeAll:focus-visible .seeAllIcon {
   transform: translateX(6px);
 }
 
@@ -100,7 +95,7 @@
   display: flex;
   flex-direction: column;
   transition: border 500ms cubic-bezier(0.4, 0, 0.2, 1), background 500ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid rgba(68, 68, 68, 0.5);
+  border: 2px solid var(--border);
   position: relative;
   z-index: 1;
   height: 100%;
@@ -113,9 +108,9 @@
     linear-gradient(var(--bg), var(--bg)) padding-box,
     linear-gradient(
       90deg,
-      var(--bg),
-      #e4f141,
-      var(--bg)
+  var(--bg),
+  var(--accent),
+  var(--bg)
     ) border-box;
   background-size: 200% 100%;
   animation: borderFlow 1.5s linear infinite;
@@ -182,7 +177,7 @@
 }
 
 .tag {
-  color: var(--neon);
+  color: var(--accent);
   font-weight: 600;
   font-size: clamp(14px, 1.4vw, 16px);
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
@@ -219,45 +214,46 @@
 }
 
 .ctaBtn.demo {
-  background: var(--neon);
-  border-color: var(--neon);
+  background: var(--accent);
+  border-color: var(--accent);
   color: var(--black);
 }
 
 .ctaBtn.demo:hover {
   background: var(--bg);
-  color: var(--neon);
-  border-color: var(--neon);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 .ctaBtn.design {
-  background: var(--black);
-  border-color: var(--neon);
-  color: var(--neon);
+  /* Use global palette accent-alt for design CTAs (brighter, more on-brand than generic --info) */
+  background: var(--accent-alt);
+  border-color: var(--accent-alt);
+  color: var(--bg);
 }
 
 .ctaBtn.design:hover {
-  background: var(--neon);
-  color: var(--black);
-  border-color: var(--neon);
+  background: var(--bg);
+  color: var(--accent-alt);
+  border-color: var(--accent-alt);
 }
 
 .ctaBtn.github {
-  background: var(--muted2);
-  border-color: var(--black);
+  background: var(--white);
+  border-color: var(--white);
   color: var(--black);
 }
 
 .ctaBtn.github:hover {
   background: var(--black);
-  color: var(--muted2);
-  border-color: var(--muted2);
+  color: var(--white);
+  border-color: var(--white);
 }
 
 .ctaBtn.inprogress {
-  background: var(--muted);
-  border-color: var(--neon);
-  color: var(--neon);
+  background: var(--bg);
+  border-color: var(--accent);
+  color: var(--accent);
   opacity: 0.85;
 }
 
@@ -298,8 +294,12 @@
   }
   
   .card:hover {
-    border: 2px solid #e4f141 !important;
+    border: 2px solid var(--accent) !important;
     background: var(--bg) !important;
+  }
+  .seeAllIcon {
+    transition: none !important;
+    transform: none !important;
   }
 }
 
@@ -322,11 +322,18 @@
     gap: clamp(12px, 2vw, 20px);
     margin-bottom: clamp(24px, 3vh, 36px);
   }
-  
-  .rule {
-    margin-right: 12px;
+
+  .header {
+    font-weight: 900;
+    color: var(--accent);
+    margin: 0;
+    font-size: clamp(24px, 5vw, 48px);
+    font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    text-transform: uppercase;
+    white-space: normal;
+    flex-shrink: 0;
   }
-  
+
   /* Keep itemHeader as flex row (not column) */
   .itemHeader {
     display: flex;
@@ -377,30 +384,24 @@
 @media (max-width: 480px) {
   /* KEEP SINGLE ROW LAYOUT - NO WRAPPING */
   .headerRow {
-    flex-wrap: nowrap; /* Changed from wrap to nowrap */
+    display: flex;
+    align-items: center;
     gap: 12px;
     margin-bottom: 28px;
-    align-items: center;
+    width: 100%;
   }
   
   .header {
+    font-weight: 900;
+    color: var(--accent);
+    margin: 0;
     font-size: clamp(20px, 6vw, 24px); /* Match About section size */
+    font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    text-transform: uppercase;
+    white-space: normal;
+    flex-shrink: 0;
   }
-  
-  /* KEEP RULE WRAPPER INLINE */
-  .ruleWrapper {
-    order: 0; /* Reset from 3 to 0 */
-    flex: 1; /* Reset from 1 0 100% to 1 */
-    display: flex;
-    align-items: center;
-    margin-top: 0; /* Remove margin-top */
-  }
-  
-  .rule {
-    margin-right: 0; /* Keep as is */
-    min-width: 40px;
-  }
-  
+
   .seeAll {
     padding: 6px 16px;
     font-size: 14px;
@@ -435,17 +436,11 @@
 /* Also update the Mobile media query to prevent date wrapping: */
 @media (max-width: 640px) {
   .headerRow {
+    display: flex;
+    align-items: center;
     gap: 12px;
     margin-bottom: 32px;
-  }
-  
-  .rule {
-    margin-right: 12px;
-    min-width: 40px;
-  }
-  
-  .ruleAccent {
-    width: clamp(36px, 8vw, 48px);
+    width: 100%;
   }
   
   .list {

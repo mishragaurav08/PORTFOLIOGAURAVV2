@@ -1,26 +1,39 @@
-/* Global resets and base styles */
 html, body, #__next {
   height: 100%;
   min-height: 100%;
   background: var(--bg);
 }
-
 :root{
-  /* Palette provided */
-  --neon: #E4F141; /* bright accent */
-  --neon-rgb: 228,241,65;
-  --bg:   #191919; /* page background */
-  --muted: #444444; /* mid-gray */
+  --neon-lime: #E4FF1A;
+  --neon-rgb: 228,255,26;
+  --bg: #0B0F0C;
+  --bg-alt: #181F1A;
+  --muted: #2F3A32;
+  --muted2: #9BB3A4;
+  --white: #F3FFF9;
   --black: #000000;
-  --muted2: #B0B0B0; /* improved for subtitle contrast */
-  --white: #FFFFFF;
-
-  /* Layout tokens */
+  --text-main: #F3FFF9;
+  --text-muted: #9BB3A4;
+  --text-inverse: #0B0F0C;
+  --text-heading: #E4FF1A;
+  --accent: #E4FF1A;
+  --accent-alt: #B2FF59;
+  --accent-dark: #A3C900;
+  --border: #2F3A32;
+  --border-light: #9BB3A4;
+  --border-accent: #E4FF1A;
+  --success: #4CAF50;
+  --warning: #FFC107;
+  --error: #FF5252;
+  --info: #29B6F6;
+  --gradient-main: linear-gradient(90deg, #E4FF1A 0%, #B2FF59 100%);
+  --gradient-bg: linear-gradient(135deg, #0B0F0C 0%, #181F1A 100%);
+  --shadow-neon: 0 0 8px 2px rgba(228,255,26,0.5);
+  --shadow-soft: 0 2px 8px rgba(0,0,0,0.15);
   --section-vertical: clamp(48px, 8vh, 96px);
   --section-horizontal: clamp(24px, 5vw, 48px);
   --section-gap: clamp(24px, 4vh, 48px);
 }
-
 body{
   margin:0;
   padding:0;
@@ -29,10 +42,6 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
-
 *{ box-sizing: border-box }
-
 a{ color:inherit; text-decoration:none }
-
-/* Utility container width if needed later */
 .container{ max-width:1180px; margin:0 auto }

@@ -1,9 +1,11 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import Experience from '../components/Experience/Experience'
 import Contact from '../components/Contact/Contact'
 import Footer from '../components/Footer/Footer'
+import SEO from '../components/SEO'
 import styles from '../components/Experience/Experience.module.css'
 
 export default function ExperiencePage() {
@@ -11,10 +13,12 @@ export default function ExperiencePage() {
   
   return (
     <>
-      <Head>
-        <title>CAREER HIGHLIGHTS</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
+      <SEO 
+        title="Career Highlights - Gaurav | Professional Experience"
+        description="Explore my professional journey including internships at Samsung, Apple × Infosys iOS Developer Program, and co-founding Studique. Computer Science student at SRMIST."
+        keywords="career, professional experience, Samsung intern, Apple developer, Studique co-founder, SRMIST, work experience"
+        canonicalUrl="https://gauravmishra.dev/experience"
+      />
       <section className={styles.wrapper}>
         <motion.div
           className={styles.headerRow}
@@ -25,37 +29,30 @@ export default function ExperiencePage() {
           style={{ marginBottom: 'clamp(40px, 7vw, 72px)' }}
         >
           <motion.button
-            onClick={() => router.back()}
+            onClick={() => router.push('/#experience')}
             className={styles.backIconBtn}
             aria-label="Go back"
             whileHover="hover"
             whileTap="tap"
             initial="rest"
             animate="rest"
+            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
           >
-            <motion.svg
-              width="32" height="32" viewBox="0 0 32 32" fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <motion.span
+              className={styles.backIconSvg}
+              initial={{ x: 0 }}
+              variants={{
+                rest: { x: 0 },
+                hover: { x: -3, transition: { type: 'spring', stiffness: 300, damping: 18 } },
+                tap: { x: -1 }
+              }}
+              style={{ color: 'var(--accent)', display: 'inline-flex' }}
+              aria-hidden="true"
             >
-              <motion.path
-                d="M19.5 23L12.5 16L19.5 9"
-                stroke="var(--neon)"
-                strokeWidth="2.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ x: 0 }}
-                variants={{
-                  rest: { x: 0 },
-                  hover: { x: -3, transition: { type: 'spring', stiffness: 300, damping: 18 } },
-                  tap: { x: -1 }
-                }}
-              />
-            </motion.svg>
+              <FontAwesomeIcon icon={faChevronLeft} size="lg" />
+            </motion.span>
           </motion.button>
           <h2 className={styles.header}>CAREER HIGHLIGHTS</h2>
-          <div className={styles.ruleWrapper} aria-hidden>
-            <div className={styles.rule} />
-          </div>
         </motion.div>
         <Experience showHeader={false} wrap={false} />
       </section>

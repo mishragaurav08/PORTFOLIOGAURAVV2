@@ -1,11 +1,8 @@
 import React from 'react'
 import styles from './Hero.module.css'
 import { motion, useReducedMotion } from 'framer-motion'
-
 export default function Hero() {
   const reduce = useReducedMotion()
-
-  // Minimal, smooth fade-in for hero content
   const minimalFade = {
     hidden: { opacity: 0, y: 16 },
     show: {
@@ -15,9 +12,6 @@ export default function Hero() {
     }
   }
 
-
-
-  // Spring scale for main name (kept)
   const nameSpring = {
     hidden: { scale: 0.92, opacity: 0 },
     show: {
@@ -26,8 +20,6 @@ export default function Hero() {
       transition: { type: 'spring', stiffness: 120, damping: 12, delay: 0.2 },
     },
   }
-
-  // Floating subtitle/top text effect
   const floatText = {
     hidden: { opacity: 0, y: 24 },
     show: {
@@ -91,7 +83,17 @@ export default function Hero() {
         </motion.section>
       </div>
       <div className={styles.scrollWrapper}>
-        <div className={styles.scrollIndicator} aria-hidden="true">
+        <button
+          type="button"
+          className={styles.scrollIndicator}
+          aria-label="Scroll to next section"
+          onClick={() => {
+            if (typeof window !== 'undefined') {
+              const behavior = reduce ? 'auto' : 'smooth'
+              window.scrollTo({ top: window.scrollY + window.innerHeight, behavior })
+            }
+          }}
+        >
           {reduce ? (
             <motion.div className={styles.indicatorFill} aria-hidden="true" style={{ y: '0%' }} />
           ) : (
@@ -102,7 +104,7 @@ export default function Hero() {
               transition={{ duration: 1.6, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
             />
           )}
-        </div>
+        </button>
         <div className={styles.scrollText}>Start exploring</div>
       </div>
     </main>

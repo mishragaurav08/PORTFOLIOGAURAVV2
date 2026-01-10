@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './Thoughts.module.css';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 const thoughts = [
   {
@@ -55,14 +57,15 @@ export default function Thoughts({ limit }) {
                 <span>Coming Soon</span>
               </div>
             ) : (
-              <a
-                href={thought.link}
-                className={styles.readMore}
-                aria-label={`Read ${thought.title}`}
-              >
-                <span className={styles.readText}>Read</span>
-                <ArrowUpRight size={18} strokeWidth={2} className={styles.arrow} />
-              </a>
+              <Link href={`/thoughts/${thought.slug}`} legacyBehavior>
+                <a
+                  className={styles.readMore}
+                  aria-label={`Read ${thought.title}`}
+                >
+                  <span className={styles.readText}>Read</span>
+                  <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />
+                </a>
+              </Link>
             )}
           </article>
         ))}

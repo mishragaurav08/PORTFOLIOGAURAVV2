@@ -1,26 +1,3 @@
-.mascotIndicator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: auto;
-  height: auto;
-  margin: 0 auto 12px auto;
-  background: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-.mascotImg {
-  width: 72px;
-  height: 72px;
-  display: block;
-  animation: mascotFloat 2.8s ease-in-out infinite;
-}
-
-@keyframes mascotFloat {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-18px) scale(1.04); }
-  100% { transform: translateY(0); }
-}
-}
 .wrapper {
   width: 100%;
   max-width: 1400px;
@@ -33,7 +10,7 @@
   min-height: 100dvh;
   min-height: 100vh;
   background: var(--bg);
-  color: var(--neon);
+  color: var(--accent);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,7 +33,7 @@
 }
 
 .topText {
-  color: var(--neon);
+  color: var(--accent);
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   font-weight: 700;
   margin: 0;
@@ -66,7 +43,7 @@
 
 .huge {
   margin: 0;
-  color: var(--neon);
+  color: var(--accent);
   font-family: 'Big Shoulders Display', system-ui;
   font-weight: 900;
   line-height: 0.85;
@@ -121,6 +98,12 @@
   position: relative;
   overflow: hidden;
   will-change: transform, opacity;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   animation: trackPulse 2.4s infinite cubic-bezier(0.76, 0, 0.24, 1);
 }
 
@@ -130,8 +113,28 @@
   width: 100%;
   height: 40%;
   top: 0%;
-  background: var(--neon);
+  background: var(--accent);
   will-change: transform;
+}
+
+.scrollIndicator:focus {
+  outline: none;
+
+}
+
+.scrollIndicator:active {
+  transform: translateY(1px) scale(0.997);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollIndicator,
+  .scrollIndicator * {
+    animation: none !important;
+    transition: none !important;
+  }
+  .indicatorFill {
+    transform: translateY(0%);
+  }
 }
 
 @keyframes trackPulse {
@@ -147,6 +150,7 @@
   font-size: clamp(14px, 1.2vw, 18px);
   text-transform: uppercase;
 }
+
 @media (max-width: 1024px) {
   .wrapper {
     padding: 0 24px;

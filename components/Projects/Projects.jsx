@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './Projects.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import projectsData from './projects.json';
 import CTAButton from './CTAButton';
 
@@ -17,15 +19,15 @@ export default function Projects() {
         viewport={{ once: true, amount: 0.5 }}
       >
         <h2 className={styles.header}>Selected work</h2>
-        <div className={styles.ruleWrapper} aria-hidden>
-          <div className={styles.rule} />
-        </div>
         <a
           href="/projects"
           className={styles.seeAll}
           aria-label="View all projects"
         >
-          <span className={styles.seeAllText}>View all works</span>
+          <span className={styles.seeAllText}>
+            View all works
+            <FontAwesomeIcon icon={faChevronRight} className={styles.seeAllIcon} aria-hidden />
+          </span>
         </a>
       </motion.div>
 

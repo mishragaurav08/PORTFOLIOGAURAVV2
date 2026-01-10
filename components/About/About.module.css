@@ -16,7 +16,7 @@
 
 .header {
   font-weight: 900;
-  color: var(--neon);
+  color: var(--accent);
   margin: 0;
   font-size: clamp(24px, 5vw, 48px);
   font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
@@ -44,33 +44,33 @@
 .ruleAccent {
   width: clamp(48px, 6vw, 64px);
   height: 4px;
-  background: var(--neon);
+  background: var(--accent);
   flex-shrink: 0;
 }
 
 .card {
-  background: var(--neon);
+  background: var(--accent);
   color: var(--black);
   padding: clamp(32px, 4vw, 48px) clamp(28px, 4vw, 56px);
   border-radius: 20px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 40px;
-  position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "copy copy"
+    ". actions";
   width: 100%;
 }
 
+
 .copy {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(16px, 2vh, 24px);
+  grid-area: copy;
 }
 
 .paragraph {
-  margin: 0;
+  /* slightly reduced spacing between paragraphs for a denser layout */
+  margin: 0 0 0.5em 0;
   font-size: clamp(18px, 2.2vw, 24px);
   line-height: 1.7;
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
@@ -83,16 +83,16 @@
 }
 
 .actions {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  min-width: 180px;
-  position: absolute;
-  right: clamp(20px, 3vw, 32px);
-  bottom: clamp(20px, 3vh, 32px);
+  grid-area: actions;
+  position: static;       /* important */
+  /* center the actions vertically so the CTA sits closer to the copy */
+  align-self: center;
+  justify-self: end;
+  min-width: auto;
 }
 
-.resume {
+.resume,
+.resume[role="button"] {
   display: inline-flex;
   align-items: center;
   gap: clamp(8px, 1.5vw, 14px);
@@ -107,11 +107,21 @@
   font-size: clamp(16px, 1.6vw, 18px);
   transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  cursor: pointer;
+}
+
+/* reset native button styles when .resume used on a button element */
+.resume[type="button"] {
+  appearance: none;
+  -webkit-appearance: none;
+  /* keep border from the main .resume rule so visuals stay identical */
+  background: transparent;
+  padding: 12px 24px;
 }
 
 .resume:hover {
   background: var(--black);
-  color: var(--neon);
+  color: var(--accent);
   border-color: var(--black);
 }
 
@@ -140,16 +150,26 @@
   .resume:hover,
   .resume:active {
     transform: none !important;
-    box-shadow: none !important;
   }
+}
+
+.resume:focus-visible {
+  outline: none;
+  /* Visible focus ring for keyboard users that uses global palette */
+  box-shadow: 0 0 0 4px rgba(var(--neon-rgb), 0.12);
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--accent);
+
 }
 
 .resumeIcon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 1.15em; /* scales with text */
   line-height: 1;
+  color: inherit;
 }
 
 /* Tablet/Laptop */
@@ -160,7 +180,6 @@
   
   .card {
     padding: clamp(28px, 4vw, 40px) clamp(24px, 3vw, 40px);
-    gap: 32px;
   }
   
   .paragraph {
@@ -176,9 +195,12 @@
 /* Tablet */
 @media (max-width: 880px) {
   .card {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
+    /* switch to a single-column grid layout on narrower screens */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "copy"
+      "actions";
   }
   
   .actions {
@@ -221,7 +243,6 @@
   .card {
     padding: 24px 20px;
     border-radius: 16px;
-    gap: 20px;
   }
   
   .paragraph {
@@ -264,10 +285,7 @@
   .resume {
     padding: 16px;
   }
-  
-  .resumeIcon {
-    font-size: 22px;
-  }
+
 }
 
 /* Very Small Mobile */
@@ -281,9 +299,6 @@
     font-size: 16px;
   }
   
-  .resumeIcon {
-    font-size: 20px;
-  }
 }
 
 /* Ultra-wide screens */

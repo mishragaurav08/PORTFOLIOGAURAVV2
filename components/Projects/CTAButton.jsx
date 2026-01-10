@@ -1,26 +1,24 @@
 import React from 'react';
-import { Globe, Figma, Github, Loader2 } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faFigma, faGithub } from '@fortawesome/free-brands-svg-icons';
 import styles from './Projects.module.css';
 
 const ICONS = {
-  demo: Globe,
-  design: Figma,
-  github: Github,
-  inprogress: Loader2,
+  demo: faLink,
+  design: faFigma,
+  github: faGithub,
+  inprogress: faCog,
 };
 
 function getIcon(type) {
-  const IconComponent = ICONS[type];
-  if (!IconComponent) {
-    return null;
-  }
+  const icon = ICONS[type];
+  if (!icon) return null;
 
-  const iconProps = { size: 18 };
-  if (type === 'inprogress') {
-    iconProps.className = styles.cogSpin;
-  }
-
-  return <IconComponent {...iconProps} />;
+  // For consistency with existing CSS, keep the wrapper span's .icon styles
+  // and apply the spinning class for 'inprogress'.
+  const className = type === 'inprogress' ? styles.cogSpin : undefined;
+  return <FontAwesomeIcon icon={icon} className={className} />;
 }
 
 const CTAButton = ({ type, href, children }) => {
@@ -36,6 +34,7 @@ const CTAButton = ({ type, href, children }) => {
       </button>
     );
   }
+
   return (
     <a
       className={baseClass}

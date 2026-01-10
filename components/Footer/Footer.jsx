@@ -40,9 +40,9 @@ export default function Footer() {
         <div className={styles.content}>
           <div className={styles.quote}>
             <span className={styles.secondary}>Thoughtfully </span>
-            <span className={styles.primary}>designed</span><br />
+            <span className={styles.primary}>designed.</span><br />
             <span className={styles.secondary}>Purposefully </span>
-            <span className={styles.primary}>built</span>
+            <span className={styles.primary}>built.</span>
           </div>
 
           <div className={styles.quickLinks}>
@@ -59,7 +59,7 @@ export default function Footer() {
             </span>
             <span className={styles.copyrightDivider}>•</span>
             <span className={styles.copyrightText}>
-              Built with React & Framer Motion
+              Designing products that feel good to use.
             </span>
           </div>
         </div>

@@ -4,13 +4,22 @@ import projectsData from '../components/Projects/projects.json';
 import CTAButton from '../components/Projects/CTAButton';
 import Contact from '../components/Contact/Contact';
 import Footer from '../components/Footer/Footer';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 
 export default function ProjectsPage() {
   const router = useRouter();
   return (
     <>
+      <SEO 
+        title="Projects - Gaurav | UX/UI Design & Development Portfolio"
+        description="Explore my portfolio of UX/UI design and frontend development projects including Studique (15,000+ users), interactive web applications, and more."
+        keywords="UX projects, UI design portfolio, web development projects, React projects, Next.js projects, frontend portfolio"
+        canonicalUrl="https://gauravmishra.dev/projects"
+      />
       <section className={styles.wrapper} id="projects-page">
         <motion.div
           className={styles.headerRow}
@@ -21,7 +30,7 @@ export default function ProjectsPage() {
           style={{ marginBottom: 'clamp(40px, 7vw, 72px)' }}
         >
           <motion.button
-            onClick={() => router.back()}
+            onClick={() => router.push('/#projects')}
             className={styles.backIconBtn}
             aria-label="Go back"
             whileHover="hover"
@@ -30,28 +39,22 @@ export default function ProjectsPage() {
             animate="rest"
             variants={{}}
           >
-            <motion.svg
-              width="32" height="32" viewBox="0 0 32 32" fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className={styles.backIconSvg}
-            >
-              <motion.path
-                d="M19.5 23L12.5 16L19.5 9"
-                stroke="var(--neon)"
-                strokeWidth="2.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ x: 0 }}
-                variants={{
-                  rest: { x: 0 },
-                  hover: { x: -3, transition: { type: 'spring', stiffness: 300, damping: 18 } },
-                  tap: { x: -1 }
-                }}
-              />
-            </motion.svg>
+          <motion.span
+            className={styles.backIconSvg}
+            initial={{ x: 0 }}
+            variants={{
+              rest: { x: 0 },
+              hover: { x: -3, transition: { type: 'spring', stiffness: 300, damping: 18 } },
+              tap: { x: -1 }
+            }}
+            style={{ color: 'var(--accent)', display: 'inline-flex' }}
+            aria-hidden="true"
+          >
+            <FontAwesomeIcon icon={faChevronLeft} size="lg" />
+          </motion.span>
           </motion.button>
           <h2 className={styles.header}>ALL WORKS</h2>
-          <div className={styles.ruleWrapper} aria-hidden>
+          <div className={styles.ruleWrapper} aria-hidden="true">
             <div className={styles.rule} />
           </div>
         </motion.div>

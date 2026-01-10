@@ -1,10 +1,13 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../components/Thoughts/Thoughts.module.css';
 import thoughtsData from '../../components/Thoughts/thoughtsData.json';
 import Footer from '../../components/Footer/Footer';
+import SEO from '../../components/SEO';
 
 export default function ThoughtPage() {
   const router = useRouter();
@@ -13,11 +16,8 @@ export default function ThoughtPage() {
   const thought = thoughtsData.find((t) => t.slug === slug);
 
   const handleBack = () => {
-    if (window.history.length > 1) {
-      router.back();
-    } else {
-      router.push('/#thoughts');
-    }
+    // Always navigate to the Thoughts section to avoid unexpected history navigation
+    router.push('/#thoughts');
   };
 
   if (!thought) {
@@ -30,10 +30,13 @@ export default function ThoughtPage() {
 
   return (
     <>
-      <Head>
-        <title>{thought.title} - Gaurav</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
+      <SEO 
+        title={`${thought.title} - Gaurav's Thoughts`}
+        description={thought.excerpt || thought.title}
+        keywords={`${thought.title}, blog, thoughts, insights, UX design, frontend development`}
+        canonicalUrl={`https://gauravmishra.dev/thoughts/${slug}`}
+        ogType="article"
+      />
       
       <section className={styles.wrapper} id="thought-detail">
         <motion.div
@@ -52,26 +55,21 @@ export default function ThoughtPage() {
             whileTap="tap"
             initial="rest"
             animate="rest"
+            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
           >
-            <motion.svg
-              width="32" height="32" viewBox="0 0 32 32" fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <motion.span
               className={styles.backIconSvg}
+              initial={{ x: 0 }}
+              variants={{
+                rest: { x: 0 },
+                hover: { x: -3, transition: { type: 'spring', stiffness: 300, damping: 18 } },
+                tap: { x: -1 }
+              }}
+              style={{ color: 'var(--accent)', display: 'inline-flex' }}
+              aria-hidden="true"
             >
-              <motion.path
-                d="M19.5 23L12.5 16L19.5 9"
-                stroke="var(--neon)"
-                strokeWidth="2.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{ x: 0 }}
-                variants={{
-                  rest: { x: 0 },
-                  hover: { x: -3, transition: { type: 'spring', stiffness: 300, damping: 18 } },
-                  tap: { x: -1 }
-                }}
-              />
-            </motion.svg>
+              <FontAwesomeIcon icon={faChevronLeft} size="lg" />
+            </motion.span>
           </motion.button>
           <div className={styles.thoughtHeader}>
             <h1 className={styles.thoughtTitle}>{thought.title}</h1>
@@ -82,9 +80,13 @@ export default function ThoughtPage() {
           <article className={styles.thoughtContent}>
             {thought.content.map((block, index) => {
               if (block.type === 'paragraph') {
+                // Render **bold** markers inside paragraph text as <strong>
+                const parts = block.text.split(/\*\*(.*?)\*\*/g);
                 return (
                   <p key={index} className={styles.contentParagraph}>
-                    {block.text}
+                    {parts.map((part, i) =>
+                      i % 2 === 1 ? <strong key={i}>{part}</strong> : <span key={i}>{part}</span>
+                    )}
                   </p>
                 );
               }
@@ -117,6 +119,39 @@ export default function ThoughtPage() {
             })}
           </article>
         </div>
+
+        {/* Suggestions: show other thoughts at the end */}
+        {(() => {
+          const others = thoughtsData.filter((t) => t.slug !== slug);
+          if (!others || others.length === 0) return null;
+          return (
+            <section className={styles.moreWrapper} aria-label="More thoughts">
+              <h3 className={styles.moreHeading}>More from Thoughts</h3>
+              <div className={styles.grid}>
+                {others.map((o) => (
+                  <article key={o.id} className={styles.card}>
+                    <div className={styles.cardContent}>
+                      <h4 className={styles.title}>{o.title}</h4>
+                      {!o.comingSoon && <p className={styles.excerpt}>{o.excerpt}</p>}
+                    </div>
+                    {o.comingSoon ? (
+                      <div className={styles.comingSoonBadge}>
+                        <span>Coming Soon</span>
+                      </div>
+                    ) : (
+                      <Link href={`/thoughts/${o.slug}`} legacyBehavior>
+                        <a className={styles.readMore} aria-label={`Read ${o.title}`}>
+                          <span className={styles.readText}>Read</span>
+                          <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />
+                        </a>
+                      </Link>
+                    )}
+                  </article>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
       </section>
       
       <Footer />

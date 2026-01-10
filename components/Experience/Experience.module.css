@@ -33,28 +33,13 @@
 
 .header {
   font-weight: 900;
-  color: var(--neon);
+  color: var(--accent);
   margin: 0;
   font-size: clamp(24px, 5vw, 48px);
   font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   text-transform: uppercase;
   white-space: nowrap;
   flex-shrink: 0;
-}
-
-.ruleWrapper {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* let the rule span the available space */
-  padding: 0; /* use the full area between header and button */
-  min-width: 0;
-}
-
-.rule {
-  height: 4px;
-  background: var(--muted);
-  flex: 1 1 auto; /* expand to fill the wrapper */
 }
 
 .seeAll {
@@ -68,8 +53,8 @@
   transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
   padding: clamp(6px, 1vw, 10px) clamp(18px, 2vw, 24px);
   border-radius: 8px;
-  background: var(--neon);
-  border: 2px solid var(--neon);
+  background: var(--accent);
+  border: 2px solid var(--accent);
   flex-shrink: 0;
   line-height: 1;
   display: inline-flex;
@@ -79,12 +64,23 @@
 
 .seeAll:hover {
   background: var(--black);
-  color: var(--neon);
+  color: var(--accent);
 }
 
 .seeAllText {
   display: inline-flex;
   align-items: center;
+}
+
+.seeAllIcon {
+  margin-left: 8px;
+  display: inline-flex;
+  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.seeAll:hover .seeAllIcon,
+.seeAll:focus-visible .seeAllIcon {
+  transform: translateX(6px);
 }
 
 .ctaArrow {
@@ -112,7 +108,7 @@
   padding: clamp(20px, 3vh, 28px) clamp(24px, 3vw, 32px);
   background: var(--bg);
   border-radius: 16px;
-  border: 2px solid rgba(68, 68, 68, 0.5);
+  border: 2px solid var(--border);
   transition: border 500ms cubic-bezier(0.4, 0, 0.2, 1), background 500ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 400ms cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 1;
@@ -122,7 +118,7 @@
   border: 2px solid transparent;
   background:
     linear-gradient(var(--bg), var(--bg)) padding-box,
-    linear-gradient(90deg, var(--bg), #e4f141, var(--bg)) border-box;
+  linear-gradient(90deg, var(--bg), var(--accent), var(--bg)) border-box;
   background-size: 200% 100%;
   animation: borderFlow 1.5s linear infinite;
 }
@@ -151,7 +147,7 @@
 .itemTitle {
   font-size: clamp(22px, 2.8vw, 32px);
   font-weight: 800;
-  color: var(--neon);
+  color: var(--accent);
   font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   line-height: 1.1;
   margin: 0 0 6px 0;
@@ -171,15 +167,15 @@
 }
 
 .itemDate {
-  color: var(--neon);
+  color: var(--accent);
   font-size: clamp(16px, 1.8vw, 20px);
   font-weight: 700;
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   white-space: nowrap;
-  background: rgba(228, 241, 65, 0.1);
+  background: rgba(var(--neon-rgb), 0.1);
   padding: 6px 14px;
   border-radius: 8px;
-  border: 1px solid rgba(228, 241, 65, 0.2);
+  border: 1px solid rgba(var(--neon-rgb), 0.2);
 }
 
 .itemDesc {
@@ -213,10 +209,6 @@
     margin-bottom: clamp(24px, 3vh, 36px);
   }
   
-  .rule {
-    margin-right: 12px;
-  }
-  
   /* ONLY CHANGE: Remove flex-direction column to keep date on right */
   .itemHeader {
     flex-direction: row; /* Changed from column to row */
@@ -247,16 +239,7 @@
     gap: 12px;
     margin-bottom: 32px;
   }
-  
-  .rule {
-    margin-right: 12px;
-    min-width: 40px;
-  }
-  
-  .ruleAccent {
-    width: clamp(36px, 8vw, 48px);
-  }
-  
+
   .list {
     gap: 24px;
   }
@@ -310,17 +293,6 @@
     font-size: clamp(20px, 6vw, 24px);
   }
   
-  .ruleWrapper {
-    flex: 1;
-    display: flex;
-    align-items: center;
-  }
-  
-  .rule {
-    margin-right: 0;
-    min-width: 40px;
-  }
-  
   .seeAll {
     padding: 6px 16px;
     font-size: 14px;
@@ -361,9 +333,6 @@
 
 /* Very Small Mobile */
 @media (max-width: 360px) {
-  .rule {
-    margin-right: 8px;
-  }
   
   .item {
     padding: 16px;
