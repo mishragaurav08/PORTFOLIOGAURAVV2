@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import * as analytics from '../lib/analytics'
+import { Analytics } from "@vercel/analytics/next"
 
 export default function App({ Component, pageProps }) {
   const router = useRouter()
@@ -30,6 +31,7 @@ export default function App({ Component, pageProps }) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </Head>
       <Component {...pageProps} />
+      <Analytics />
     </>
   )
 }
