@@ -15,13 +15,13 @@ const experiences = [
   {
     title: 'Samsung PRISM',
     org: 'Samsung R&D Institute India',
-    date: "Mar 2025 - Present",
+    date: "Mar'25 - Present",
     desc: 'Building applied ML systems for large-scale network traffic analysis, developing packet-level pipelines and evaluating real-world model performance.'
   },
   {
     title: 'Frontend Architect',
     org: 'Studique',
-    date: "Nov 2024 - Present",
+    date: "Nov'24 - Present",
     desc: 'Co-founded Studique and lead frontend architecture, design systems, and core product decisions - shaping how the platform looks, feels, and scales for 15,000+ students.'
   },
   {
