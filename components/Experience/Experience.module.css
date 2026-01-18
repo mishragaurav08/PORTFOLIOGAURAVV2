@@ -9,49 +9,56 @@
 .backIconBtn {
   background: none;
   border: none;
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  display: flex;
+  padding: 0;
+  width: auto;
+  height: auto;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-right: 28px;
+  margin-right: 20px;
   outline: none;
   position: relative;
-  transition: background 0.18s, border-color 0.18s;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
+}
+
+.backIconSvg {
+  display: block;
+  color: var(--accent);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 24px;
 }
 
 .headerRow {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: clamp(16px, 2vw, 32px);
-  margin-bottom: clamp(32px, 4vh, 48px);
+  margin-bottom: clamp(40px, 5vh, 64px);
   width: 100%;
 }
 
 .header {
-  font-weight: 900;
+  font-weight: 800;
   color: var(--accent);
   margin: 0;
-  font-size: clamp(24px, 5vw, 48px);
+  font-size: clamp(32px, 5.5vw, 64px);
   font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  text-transform: uppercase;
-  white-space: nowrap;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   flex-shrink: 0;
 }
 
 .seeAll {
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  color: var(--black);
+  color: var(--bg);
   font-weight: 700;
-  font-size: clamp(16px, 1.6vw, 18px);
+  font-size: clamp(15px, 1.5vw, 17px);
   text-decoration: none;
   white-space: nowrap;
-  margin-left: 0; /* no extra gap so the rule reaches the button */
   transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
-  padding: clamp(6px, 1vw, 10px) clamp(18px, 2vw, 24px);
+  padding: clamp(10px, 1.2vw, 12px) clamp(20px, 2.2vw, 28px);
   border-radius: 8px;
   background: var(--accent);
   border: 2px solid var(--accent);
@@ -59,11 +66,11 @@
   line-height: 1;
   display: inline-flex;
   align-items: center;
-  gap: clamp(6px, 1vw, 12px);
+  gap: clamp(6px, 1vw, 10px);
 }
 
 .seeAll:hover {
-  background: var(--black);
+  background: var(--bg);
   color: var(--accent);
 }
 
@@ -78,21 +85,11 @@
   transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.seeAll:hover .seeAllIcon,
-.seeAll:focus-visible .seeAllIcon {
-  transform: translateX(6px);
-}
-
 .ctaArrow {
   display: inline-flex;
   align-items: center;
   font-size: 1.05em;
   transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.seeAll:hover .ctaArrow,
-.seeAll:focus-visible .ctaArrow {
-  transform: translateX(6px);
 }
 
 .list {
@@ -104,12 +101,12 @@
 .item {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.5vh, 12px);
-  padding: clamp(20px, 3vh, 28px) clamp(24px, 3vw, 32px);
+  gap: clamp(16px, 2vh, 20px);
+  padding: clamp(24px, 3.5vh, 32px) clamp(28px, 3.5vw, 36px);
   background: var(--bg);
   border-radius: 16px;
   border: 2px solid var(--border);
-  transition: border 500ms cubic-bezier(0.4, 0, 0.2, 1), background 500ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border 500ms cubic-bezier(0.4, 0, 0.2, 1), background 500ms cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 1;
 }
@@ -145,17 +142,18 @@
 }
 
 .itemTitle {
-  font-size: clamp(22px, 2.8vw, 32px);
+  font-size: clamp(20px, 2.5vw, 26px);
   font-weight: 800;
-  color: var(--accent);
+  color: var(--white);
   font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   line-height: 1.1;
-  margin: 0 0 6px 0;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.01em;
 }
 
 .itemOrg {
-  color: var(--muted2);
-  font-size: clamp(16px, 1.8vw, 20px);
+  color: var(--accent);
+  font-size: clamp(14px, 1.6vw, 17px);
   font-weight: 600;
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   line-height: 1.4;
@@ -168,7 +166,7 @@
 
 .itemDate {
   color: var(--accent);
-  font-size: clamp(16px, 1.8vw, 20px);
+  font-size: clamp(13px, 1.5vw, 16px);
   font-weight: 700;
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   white-space: nowrap;
@@ -179,10 +177,10 @@
 }
 
 .itemDesc {
-  color: var(--muted2);
-  font-size: clamp(16px, 1.8vw, 18px);
+  color: var(--text-muted);
+  font-size: clamp(14px, 1.6vw, 16px);
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  line-height: 1.6;
+  line-height: 1.65;
   margin: 0;
   max-width: 90%;
 }
@@ -286,18 +284,17 @@
     flex-direction: row;
     align-items: center;
     flex-wrap: nowrap;
-    gap: 12px;
+    gap: 10px;
+    margin-bottom: 32px;
   }
   
   .header {
-    font-size: clamp(20px, 6vw, 24px);
+    font-size: clamp(24px, 7vw, 32px);
   }
   
   .seeAll {
-    padding: 6px 16px;
+    padding: 8px 16px;
     font-size: 14px;
-    margin-left: 12px;
-    white-space: nowrap;
   }
   
   .item {

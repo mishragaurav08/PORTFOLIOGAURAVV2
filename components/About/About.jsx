@@ -7,33 +7,22 @@ import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
 export default function About() {
   return (
     <section className={styles.wrapper} id="about">
-      <motion.div
-        className={styles.headerRow}
+      <motion.div 
+        className={styles.card}
         initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.5 }}
       >
-        <h2 className={styles.header}>A LITTLE ABOUT ME</h2>
-  <div className={styles.ruleWrapper} aria-hidden="true">
-          <div className={styles.rule} />
-          <div className={styles.ruleAccent} />
-        </div>
-      </motion.div>
-
-      <div className={styles.card}>
+        <h2 className={styles.header}>Who I Am</h2>
 <div className={styles.copy}>
   <p className={styles.paragraph}>
     <strong>I design and build digital products people actually use.</strong>{' '}
-    I’m a UX/UI designer and frontend developer currently studying Computer Science (Cyber Security) at SRMIST.
-  </p>
-
-  <p className={styles.paragraph}>
-    I co-founded <strong>Studique</strong>, a campus platform used by over <strong>15,000+ students</strong>, 
-    where I work on frontend architecture, design systems, and core product decisions - shaping how the platform grows.
-  </p>
-
-  <p className={styles.paragraph}>
+    Right now, that means building for iOS - but at its core, my focus has always been
+    on creating thoughtful, usable experiences that scale beyond a single screen. I’m a UX/UI designer and frontend developer, currently studying Computer Science (Cyber Security) at SRMIST.
+    I enjoy working at the intersection of design, engineering, and product thinking.
+    I co-founded <strong>Studique</strong>, a campus platform used by <strong>15,000+ students</strong>, 
+    where I lead frontend architecture, design systems, and core product decisions.
     I’ve interned with <strong>Samsung</strong> and am currently part of the{' '}
     <strong>Apple × Infosys iOS Developer Program</strong>.
   </p>
@@ -89,7 +78,7 @@ export default function About() {
             )
           })()}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

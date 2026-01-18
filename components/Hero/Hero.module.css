@@ -122,10 +122,6 @@
 
 }
 
-.scrollIndicator:active {
-  transform: translateY(1px) scale(0.997);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .scrollIndicator,
   .scrollIndicator * {
@@ -135,12 +131,6 @@
   .indicatorFill {
     transform: translateY(0%);
   }
-}
-
-@keyframes trackPulse {
-  0% { transform: scaleY(1); opacity: 1; }
-  50% { transform: scaleY(0.96); opacity: 0.94; }
-  100% { transform: scaleY(1); opacity: 1; }
 }
 
 .scrollText {

@@ -1,0 +1,45 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 5px;
+  z-index: 2147483647;
+  pointer-events: none;
+  background: transparent;
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(134, 239, 172, 0.12);
+}
+
+.bar {
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+
+  background: linear-gradient(90deg, #86EFAC, #BBF7D0);
+
+  transition: transform 0.12s cubic-bezier(0.1, 0.7, 0.1, 1);
+
+  will-change: transform;
+}
+
+/* Mobile: thinner bar */
+@media (max-width: 768px) {
+  .container {
+    height: 3px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    transition: none;
+  }
+}

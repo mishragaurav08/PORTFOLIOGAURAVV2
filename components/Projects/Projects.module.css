@@ -9,32 +9,32 @@
 .headerRow {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: clamp(16px, 2vw, 32px);
-  margin-bottom: clamp(32px, 4vh, 48px);
+  margin-bottom: clamp(40px, 5vh, 64px);
   width: 100%;
 }
 
 .header {
-  font-weight: 900;
+  font-weight: 800;
   color: var(--accent);
   margin: 0;
-  font-size: clamp(24px, 5vw, 48px);
+  font-size: clamp(32px, 5.5vw, 64px);
   font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  text-transform: uppercase;
-  white-space: nowrap;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   flex-shrink: 0;
 }
 
 .seeAll {
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  color: var(--black);
+  color: var(--bg);
   font-weight: 700;
-  font-size: clamp(16px, 1.6vw, 18px);
+  font-size: clamp(15px, 1.5vw, 17px);
   text-decoration: none;
   white-space: nowrap;
-  margin-left: 0; /* no extra gap so the rule reaches the button */
   transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
-  padding: clamp(6px, 1vw, 10px) clamp(18px, 2vw, 24px);
+  padding: clamp(10px, 1.2vw, 12px) clamp(20px, 2.2vw, 28px);
   border-radius: 8px;
   background: var(--accent);
   border: 2px solid var(--accent);
@@ -42,11 +42,11 @@
   line-height: 1;
   display: inline-flex;
   align-items: center;
-  gap: clamp(6px, 1vw, 12px);
+  gap: clamp(6px, 1vw, 10px);
 }
 
 .seeAll:hover {
-  background: var(--black);
+  background: var(--bg);
   color: var(--accent);
 }
 
@@ -68,16 +68,6 @@
   transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.seeAll:hover .ctaArrow,
-.seeAll:focus-visible .ctaArrow {
-  transform: translateX(6px);
-}
-
-.seeAll:hover .seeAllIcon,
-.seeAll:focus-visible .seeAllIcon {
-  transform: translateX(6px);
-}
-
 .seeAll:active {
   transform: translateY(0);
 }
@@ -94,7 +84,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: border 500ms cubic-bezier(0.4, 0, 0.2, 1), background 500ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border 500ms cubic-bezier(0.4, 0, 0.2, 1), background 500ms cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid var(--border);
   position: relative;
   z-index: 1;
@@ -131,6 +121,24 @@
   height: auto;
   overflow: hidden;
   background: var(--muted);
+  position: relative;
+}
+
+.media::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+  transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.card:hover .media::before {
+  opacity: 0;
 }
 
 .media img {
@@ -146,12 +154,11 @@
 .cardBody {
   background: var(--bg);
   border-radius: 0 0 20px 20px;
-  /* border-top removed for cleaner look */
   color: var(--white);
-  padding: clamp(20px, 3vw, 28px);
+  padding: clamp(24px, 3.5vw, 32px);
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.5vw, 20px);
+  gap: clamp(16px, 2vw, 24px);
   flex: 1;
 }
 
@@ -159,7 +166,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
+  gap: 20px;
 }
 
 .titleWrapper {
@@ -169,26 +176,28 @@
 
 .title {
   font-family: 'Big Shoulders Display', system-ui;
-  font-size: clamp(28px, 3vw, 36px);
+  font-size: clamp(22px, 2.5vw, 28px);
   color: var(--white);
   font-weight: 800;
-  margin: 0 0 6px 0;
-  line-height: 1;
+  margin: 0 0 8px 0;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
 .tag {
   color: var(--accent);
   font-weight: 600;
-  font-size: clamp(14px, 1.4vw, 16px);
+  font-size: clamp(12px, 1.2vw, 14px);
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .desc {
   margin: 0;
-  color: var(--white);
-  font-size: clamp(15px, 1.6vw, 17px);
-  line-height: 1.6;
+  color: var(--text-muted);
+  font-size: clamp(14px, 1.5vw, 16px);
+  line-height: 1.65;
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   font-weight: 400;
   flex: 1;
@@ -216,7 +225,7 @@
 .ctaBtn.demo {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--black);
+  color: var(--bg);
 }
 
 .ctaBtn.demo:hover {
@@ -320,18 +329,16 @@
 @media (max-width: 880px) {
   .headerRow {
     gap: clamp(12px, 2vw, 20px);
-    margin-bottom: clamp(24px, 3vh, 36px);
+    margin-bottom: clamp(32px, 4vh, 40px);
   }
 
   .header {
-    font-weight: 900;
-    color: var(--accent);
-    margin: 0;
-    font-size: clamp(24px, 5vw, 48px);
-    font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    text-transform: uppercase;
-    white-space: normal;
-    flex-shrink: 0;
+    font-size: clamp(28px, 6vw, 48px);
+  }
+
+  .seeAll {
+    padding: 10px 20px;
+    font-size: 15px;
   }
 
   /* Keep itemHeader as flex row (not column) */
@@ -386,27 +393,18 @@
   .headerRow {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 28px;
     width: 100%;
   }
   
   .header {
-    font-weight: 900;
-    color: var(--accent);
-    margin: 0;
-    font-size: clamp(20px, 6vw, 24px); /* Match About section size */
-    font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    text-transform: uppercase;
-    white-space: normal;
-    flex-shrink: 0;
+    font-size: clamp(24px, 7vw, 32px);
   }
 
   .seeAll {
-    padding: 6px 16px;
+    padding: 8px 16px;
     font-size: 14px;
-    margin-left: 12px;
-    white-space: nowrap;
   }
   
   .card {
@@ -423,13 +421,16 @@
 /* Very Small Mobile */
 @media (max-width: 360px) {
   .headerRow {
-    gap: 6px;
+    gap: 8px;
+  }
+  
+  .header {
+    font-size: clamp(22px, 8vw, 28px);
   }
   
   .seeAll {
-    padding: 5px 12px;
-    font-size: 13px;
-    margin-left: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
   }
 }
 
@@ -504,21 +505,23 @@
 .backIconBtn {
   background: none;
   border: none;
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  display: flex;
+  padding: 0;
+  width: auto;
+  height: auto;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-right: 28px;
+  margin-right: 20px;
   outline: none;
   position: relative;
-  transition: background 0.18s, border-color 0.18s;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
 }
 
 .backIconSvg {
   display: block;
-  /* No filter, no shadow */
+  color: var(--accent);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 24px;
 }

@@ -40,27 +40,17 @@ export default function Footer() {
         <div className={styles.content}>
           <div className={styles.quote}>
             <span className={styles.secondary}>Thoughtfully </span>
-            <span className={styles.primary}>designed.</span><br />
+            <span className={styles.primary}>designed</span><br />
             <span className={styles.secondary}>Purposefully </span>
-            <span className={styles.primary}>built.</span>
+            <span className={styles.primary}>built</span>
           </div>
 
           <div className={styles.quickLinks}>
-            <a href="/#projects" className={styles.quickLink}>Projects</a>
+            <a href="/projects" className={styles.quickLink}>Projects</a>
             <span className={styles.linkDivider}>·</span>
             <a href="/experience" className={styles.quickLink}>Experience</a>
             <span className={styles.linkDivider}>·</span>
             <a href="https://drive.google.com/file/d/1owe5QFBcN31WJJM4txaOtS4iFAbXHYKW/preview" target="_blank" rel="noopener noreferrer" className={styles.quickLink}>Resume</a>
-          </div>
-
-          <div className={styles.copyright}>
-            <span className={styles.copyrightText}>
-              © {new Date().getFullYear()} Gaurav Mishra
-            </span>
-            <span className={styles.copyrightDivider}>•</span>
-            <span className={styles.copyrightText}>
-              Designing products that feel good to use.
-            </span>
           </div>
         </div>
       </motion.div>

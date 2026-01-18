@@ -11,7 +11,7 @@ const thoughts = [
     slug: 'samsung-prism',
     title: 'Inside Samsung PRISM',
     date: 'Mar 2025',
-    excerpt: 'How I got selected, what actually happens, and what nobody tells you.',
+    excerpt: 'Everything about the selection process, what working in PRISM actually feels like, and whether you should apply.',
     link: '/thoughts/samsung-prism',
     comingSoon: false
   },
@@ -20,7 +20,7 @@ const thoughts = [
     slug: 'ios-developer-program',
     title: 'iOS Developer Program',
     date: 'Dec 2024',
-    excerpt: 'Selection, training, and what Apple actually teaches you.',
+    excerpt: 'Complete breakdown of the selection process, bootcamp rounds, and what the year-long program actually involves.',
     link: '/thoughts/ios-developer-program',
     comingSoon: false
   }
@@ -31,19 +31,15 @@ export default function Thoughts({ limit }) {
 
   return (
     <section className={styles.wrapper} id="thoughts">
-      <motion.div
-        className={styles.headerRow}
+      <motion.h2
+        className={styles.header}
         initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.5 }}
       >
-        <h2 className={styles.header}>Thoughts & Builds</h2>
-        <div className={styles.ruleWrapper} aria-hidden>
-          <div className={styles.rule} />
-          <div className={styles.ruleAccent} />
-        </div>
-      </motion.div>
+        Thoughts
+      </motion.h2>
 
       <div className={styles.grid}>
         {displayThoughts.map((thought) => (

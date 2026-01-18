@@ -27,7 +27,7 @@ export default function Home() {
         <Projects />
       </div>
       <div id="experience">
-        <Experience limit={3} />
+        <Experience limit={2} />
       </div>
       <div id="thoughts">
         <Thoughts limit={3} />

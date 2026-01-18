@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import * as analytics from '../lib/analytics'
 import { Analytics } from "@vercel/analytics/next"
+import ScrollProgress from '../components/ScrollProgress/ScrollProgress'
 
 export default function App({ Component, pageProps }) {
   const router = useRouter()
@@ -30,6 +31,7 @@ export default function App({ Component, pageProps }) {
         {/* Font Awesome for icons (CDN) - no SRI here to avoid broken integrity value */}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </Head>
+      <ScrollProgress />
       <Component {...pageProps} />
       <Analytics />
     </>

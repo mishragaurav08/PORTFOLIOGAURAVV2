@@ -1,319 +1,316 @@
 [
-{
-  "id": 1,
-  "slug": "samsung-prism",
-  "title": "Inside Samsung PRISM",
-  "date": "Mar 2025",
-  "excerpt": "How I got selected, what actually happens, and what nobody tells you.",
-  "content": [
-    {
-      "type": "paragraph",
-      "text": "I didn’t plan to be part of Samsung PRISM. There was no strategy. No checklist. No dream internship target. I found the Google Form in a random college group, glanced at it, and thought, \"fill kar deta hoon, waise bhi kaunsa ho jana hai,\" and then forgot about it completely."
-    },
-    {
-      "type": "paragraph",
-      "text": "A few days later, during a community meeting I was hosting, a batchmate casually asked, \"Gaurav, did you fill the Samsung PRISM form?\" I laughed. She said, \"Aaj last day hai. Bhar de.\" That careless form, filled with zero expectations, ended up **changing the direction of my engineering journey**."
-    },
-    {
-      "type": "heading",
-      "text": "Round 1 - The Elimination Gate"
-    },
-    {
-      "type": "paragraph",
-      "text": "The first round was conducted internally at SRM. It was a Google Form-based objective test, but with a twist. **Every question required rough sheet submissions with detailed working**, not just ticking options. After this round, nearly 60% of candidates were eliminated. Only about **40% moved forward**."
-    },
-    {
-      "type": "heading",
-      "text": "Round 2 - The Real Filter"
-    },
-    {
-      "type": "paragraph",
-      "text": "The second round was conducted directly by Samsung. **Three coding problems.** Online. Timed. I was able to solve two properly. In my head, that was the end; **I assumed I wouldn’t get any call**. For 45 days nothing happened. No emails. No updates. No hope."
-    },
-    {
-      "type": "heading",
-      "text": "The Message That Changed Everything"
-    },
-    {
-      "type": "paragraph",
-      "text": "One random day, while I was organizing a hackathon, I was added to a WhatsApp group by an SRM faculty member. The group name was Samsung PRISM. I thought it was some seminar group. I messaged the faculty, \"Ma’am, what is this group about?\" She replied, \"It’s for Samsung PRISM.\" **That’s how I found out I was selected.**"
-    },
-    {
-      "type": "heading",
-      "text": "Team Allocation & NDA Reality"
-    },
-    {
-      "type": "paragraph",
-      "text": "We were randomly assigned into teams of four students along with two SRM faculty mentors and Samsung industry mentors. Each team received a research problem statement directly from Samsung. We were **required to sign NDAs**, so I can’t share project details, but I can tell you how it actually feels. **This is not a college internship. This is industry-grade research engineering.**"
-    },
-    {
-      "type": "heading",
-      "text": "What Working in PRISM Actually Feels Like"
-    },
-    {
-      "type": "paragraph",
-      "text": "At first we thought we would finish this in two months. We were **completely wrong**. Not because of workload, but because of expectation. Samsung does not want working projects. They want **deployable, meaningful, industry-usable systems**."
-    },
-    {
-      "type": "paragraph",
-      "text": "We had weekly meetings with SRM faculty mentors and monthly reviews with Samsung industry mentors. Here is something real that nobody tells you. Most of the time our work went **completely beyond what was asked**. Even when a task was done, we kept refining, experimenting and rebuilding simply because we wanted it to be better."
-    },
-    {
-      "type": "paragraph",
-      "text": "Through every review our project consistently stayed in the green zone. Recently we completed the project along with a mandatory research paper submission. **Yes, publication is part of the PRISM program.**"
-    },
-    {
-      "type": "heading",
-      "text": "What You Actually Get (Perks)"
-    },
-    {
-      "type": "list",
-      "items": [
-        "Participation Certificate + goodies on completion",
-        "Certificate of Excellence + ₹15,000 stipend per student (if mentors approve)",
-        "Eligibility for Samsung SRIB Magpie",
-        "Counts as an industry project",
-        "Drop one professional elective in 7th semester"
-      ]
-    },
-    {
-      "type": "paragraph",
-      "text": "But the biggest gain is not the stipend. It is the **mindset shift**."
-    },
-    {
-      "type": "paragraph",
-      "text": "PRISM teaches you **patience, depth, and responsibility**."
-    },
-    {
-      "type": "heading",
-      "text": "Who Should Apply"
-    },
-    {
-      "type": "paragraph",
-      "text": "PRISM is for you if you enjoy **long-term projects**, like solving real-world system problems, want **industry mentorship**, are comfortable with ambiguity, and care more about learning than quick certificates."
-    },
-    {
-      "type": "paragraph",
-      "text": "It is not for you if you want quick internships, avoid documentation and reviews, want spoon-fed tasks, or are only chasing stipends."
-    },
-    {
-      "type": "heading",
-      "text": "Why This Matters"
-    },
-    {
-      "type": "paragraph",
-      "text": "Samsung PRISM did not just teach me to build systems. It taught me to **think like someone whose work will be used by real users, in real industries and with real consequences**. Once you experience that, you do not look at engineering the same way again."
-    },
-    {
-      "type": "paragraph",
-      "text": "I wrote this because a lot of students kept asking me how to get into Samsung PRISM, what the selection looks like, and what the program is actually like. If you still have doubts or want to know more, you can always reach out. I am happy to help."
-    }
-  ]
-},
+  {
+    "id": 1,
+    "slug": "samsung-prism",
+    "title": "Inside Samsung PRISM",
+    "date": "Mar 2025",
+    "excerpt": "Everything about the selection process, what working in PRISM actually feels like, and whether you should apply.",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "**Quick heads up:** This is based on my experience at SRMIST KTR. The process, structure, and specifics might be different at other colleges. Take this as one person's perspective, not a universal guide."
+      },
+      {
+        "type": "paragraph",
+        "text": "Let me tell you about Samsung PRISM - not the polished version you see on posters, but what it's actually like. Most students I talk to have the same questions: How do you get in? What do you actually do? Is it worth it?"
+      },
+      {
+        "type": "paragraph",
+        "text": "So here's everything, unfiltered."
+      },
+      {
+        "type": "heading",
+        "text": "The Selection Process"
+      },
+      {
+        "type": "paragraph",
+        "text": "PRISM opens applications through a Google Form, usually shared in college groups. You fill it, submit it, and then... you wait."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Round 1** happens at your university. It's an objective test, but here's the catch - you can't just tick answers. **Every question needs rough work**, detailed reasoning. This round cuts **60% of applicants**."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Round 2** is where Samsung gets directly involved. **Three coding problems. Timed. Online.** You solve what you can, submit, and then there's this long silence - sometimes 45 days, sometimes more. No scores. No feedback. Just waiting."
+      },
+      {
+        "type": "paragraph",
+        "text": "When you do get selected, it's usually through a WhatsApp group. Not an email. Not a call. A group add. That's PRISM for you - real, unpolished, straightforward."
+      },
+      {
+        "type": "heading",
+        "text": "What Actually Happens After Selection"
+      },
+      {
+        "type": "paragraph",
+        "text": "You get put into a team of **four students**. You also get **two faculty mentors from your university** and **industry mentors from Samsung**. This isn't optional - this is your team for the entire program."
+      },
+      {
+        "type": "paragraph",
+        "text": "Each team gets a **real research problem from Samsung**. A problem Samsung actually cares about solving. And you **sign NDAs** - proper legal documents - before you even see the problem statement."
+      },
+      {
+        "type": "paragraph",
+        "text": "Here's what most people don't realize: **This isn't an internship. It's research engineering.**"
+      },
+      {
+        "type": "heading",
+        "text": "The Reality of Working in PRISM"
+      },
+      {
+        "type": "paragraph",
+        "text": "When you start, you think \"okay, two months, we'll finish this.\" You won't."
+      },
+      {
+        "type": "paragraph",
+        "text": "Not because there's too much work, but because **Samsung's expectations are different**. They don't want something that works. They want something **deployable**. Something that can go into production. Something that solves the problem properly."
+      },
+      {
+        "type": "paragraph",
+        "text": "You have **weekly reviews with your faculty mentors** and **monthly reviews with Samsung engineers**. In these reviews, you defend every choice. Every assumption. Every line of your approach. \"Why did you do it this way?\" \"What happens if this fails?\" \"How does this scale?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "At the end, you don't just submit code. You submit a **research paper**. Yes, actual publication. That's part of the program. Your work needs to be documented."
+      },
+      {
+        "type": "heading",
+        "text": "What You Get Out of It"
+      },
+      {
+        "type": "paragraph",
+        "text": "Let's talk perks first:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Participation Certificate + goodies on completion",
+          "Certificate of Excellence + ₹15,000 stipend (if your mentors approve your work)",
+          "Eligibility for Samsung SRIB Magpie (next level program)",
+          "Counts as your industry project requirement",
+          "Can replace one professional elective"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "But honestly? The real gain isn't the stipend or the certificate. It's that you learn how to build things that **actually matter**."
+      },
+      {
+        "type": "heading",
+        "text": "Should You Apply?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Look, PRISM isn't for everyone, and that's okay. Here's how to know if it's for you."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Apply if:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "You like working on one thing deeply rather than many things superficially",
+          "You want to understand how real product engineering works",
+          "You're okay with ambiguity and figuring things out as you go",
+          "You care more about learning than collecting certificates",
+          "You want actual industry mentorship, not just project guidance"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Skip it if:**"
+      },
+      {
+        "type": "list",
+        "items": [
+          "You want quick wins and fast turnarounds",
+          "You prefer clear instructions over open-ended problems",
+          "You're only doing it for the stipend or resume line"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Final Word"
+      },
+      {
+        "type": "paragraph",
+        "text": "Getting selected for PRISM is one thing. What you do with it is another."
+      },
+      {
+        "type": "paragraph",
+        "text": "It's not going to be the easiest project you do in college. But if you're someone who wants to build things that **actually work** in the real world, understand how **industry thinks about problems**, and learn what it means to commit to something meaningful - PRISM might be exactly what you need."
+      },
+      {
+        "type": "paragraph",
+        "text": "The form will come. You'll have to decide if you want to fill it. At least now, you know exactly what you’re signing up for."
+      }
+    ]
+  },
   {
     "id": 2,
     "slug": "ios-developer-program",
     "title": "iOS Developer Program",
     "date": "Dec 2024",
-    "excerpt": "Selection, training, and what Apple actually teaches you.",
+    "excerpt": "Complete breakdown of the selection process, bootcamp rounds, and what the year-long program actually involves.",
     "comingSoon": false,
     "content": [
-        {
-          "type": "paragraph",
-          "text": "Selection, training, and what Apple actually teaches you"
-        },
       {
         "type": "paragraph",
-        "text": "I didn't see this program as \"just another certification.\""
+        "text": "**Quick heads up:** This is based on my experience at SRMIST KTR. The program structure, selection process, and details might vary at other institutions. This is my take on how it worked for us."
       },
       {
         "type": "paragraph",
-        "text": "From the first day inside the Apple Building at CRC, sitting with a Mac that was officially issued to me, it stopped feeling like college. It felt like the beginning of a **real product career**."
-      },
-      {
-        "type": "paragraph",
-        "text": "This program doesn't train you to become an iOS developer. It **trains you to think like a product builder**."
+        "text": "The Apple × Infosys iOS Developer Program isn't just another certification. It's a year-long transformation from college student to product builder. Let me walk you through what it actually takes to get in, what happens inside, and whether it's worth it."
       },
       {
         "type": "heading",
-        "text": "How You Get In"
+        "text": "The Selection Process"
       },
       {
         "type": "paragraph",
-        "text": "For the Apple × Infosys iOS Developer Program, you first receive a Google Form in your 4th semester. This is the main application form."
+        "text": "Applications open in your **4th semester** via a Google Form. You fill it with your profile details - CGPA, projects, skills, whatever you've done so far."
       },
       {
         "type": "paragraph",
-        "text": "Around **3,000 students apply**, and roughly **350 are shortlisted** purely based on profile."
+        "text": "From around **3,000 applications**, roughly **350 students get shortlisted** purely on profile strength. If you make it through, you get called for the bootcamp."
       },
       {
         "type": "heading",
-        "text": "The Bootcamp Round"
+        "text": "The Bootcamp - Where Selection Really Happens"
       },
       {
         "type": "paragraph",
-        "text": "After semester vacations, at the beginning of 5th semester, shortlisted students are called for a **5-day offline bootcamp** in the Mac Lab."
+        "text": "At the start of 5th semester, shortlisted students come in for a **5-day offline bootcamp** in the Mac Lab. This is where things get real."
       },
       {
         "type": "paragraph",
-        "text": "You are randomly grouped into teams and given a real problem statement. Over these five days, you ideate, design a solution, and finally pitch it."
+        "text": "You're put into random teams, given an actual problem statement, and you have five days to: ideate a solution, design it, and pitch it. This round **carries 50 marks** and is the most important part of selection."
       },
       {
         "type": "paragraph",
-        "text": "This round **carries 50 marks** and is the most important part of the entire selection process."
+        "text": "On the same Sunday, there's an **Infosys coding exam** (2 questions, **50 marks**). Combined, these two rounds decide everything."
       },
       {
         "type": "paragraph",
-        "text": "On the Sunday of the same week, you also appear for the Infosys exam, which has 2 questions and **carries another 50 marks**."
+        "text": "Results come in **3-4 days**. From thousands of applicants, only **100 students make it**. Recent cutoff: **62 marks out of 100**."
       },
       {
         "type": "paragraph",
-        "text": "Within **3-4 days, the results are declared**."
-      },
-      {
-        "type": "paragraph",
-        "text": "From thousands of applicants, only **100 students are finally selected**. This year, the cutoff was **62 marks**."
+        "text": "Quick note: Even if you don't get selected, your bootcamp + exam marks can **replace your 5th semester open elective**. So it's not wasted effort."
       },
       {
         "type": "heading",
-        "text": "Even If You're Not Selected"
+        "text": "What Changes After You're In"
       },
       {
         "type": "paragraph",
-        "text": "Even if you are not selected for the iOS program, you can still replace your 5th semester open elective with the combined marks of the bootcamp and Infosys exam."
-      },
-      {
-        "type": "paragraph",
-        "text": "If you are selected, your open elective is automatically replaced by these marks."
-      },
-      {
-        "type": "heading",
-        "text": "What Changes After Selection"
-      },
-      {
-        "type": "paragraph",
-        "text": "There are **two batches of 50 students each** (morning and evening)."
-      },
-      {
-        "type": "paragraph",
-        "text": "Instead of regular subjects, you get a dedicated Apple-focused curriculum:"
+        "text": "You're split into **two batches of 50** (morning and evening). Your entire 5th semester changes. No regular classes. Instead, you get:"
       },
       {
         "type": "list",
         "items": [
-            "Principles of UX / UI Design (Professional Elective)",
-            "iOS App Development Skills (Professional Elective)",
-            "iOS App Prototype Design and Development (Professional Elective)",
-            "FLA (Common Subject)",
-            "Maths (Common Subject)"
-
+          "Principles of UX/UI Design (Professional Elective)",
+          "iOS App Development Skills (Professional Elective)",
+          "iOS App Prototype Design and Development (Professional Elective)",
+          "FLA (Common Subject)",
+          "Maths (Common Subject)"
         ]
       },
       {
-        "type": "heading",
-        "text": "How the Program Actually Runs"
-      },
-      {
         "type": "paragraph",
-        "text": "This program runs throughout your entire 3rd year."
-      },
-      {
-        "type": "paragraph",
-        "text": "You form a team of three of your choice and begin with ideation. You go through multiple mentor reviews, finalize your idea, design the product, build the frontend, integrate databases, and finally complete your application."
-      },
-      {
-        "type": "paragraph",
-        "text": "Once finished, your app must be **published on the App Store**."
-      },
-      {
-        "type": "paragraph",
-        "text": "Along with this, there is an **offline internship at Infosys**, where you visit the Infosys office for about a month."
-      },
-      {
-        "type": "paragraph",
-        "text": "All your classes are conducted inside the Apple Building at CRC, and you do not attend regular classes during your 5th semester."
-      },
-      {
-        "type": "paragraph",
-        "text": "Some core subjects that cannot be mapped in 5th semester are shifted to 6th semester."
+        "text": "All classes happen inside the **Apple Building at CRC**. You get a Mac assigned to you. It stops feeling like college pretty quickly."
       },
       {
         "type": "heading",
-        "text": "Working Culture Inside the iOS Center"
+        "text": "How the Year Actually Works"
       },
       {
         "type": "paragraph",
-        "text": "The working culture inside the iOS Center is **completely different from regular college life**."
+        "text": "This runs through your entire 3rd year. You pick a **team of three**, come up with an app idea, and then build it properly."
       },
       {
         "type": "paragraph",
-        "text": "You sit with your Mac throughout your classes (except Maths and FLA). It feels less like a classroom and more like a **product studio**."
+        "text": "Not a college project. An **actual product** that goes on the **App Store**."
       },
       {
         "type": "paragraph",
-        "text": "There is more freedom, more ownership, and more responsibility, which naturally pushes you to think like a **real product builder**."
+        "text": "You go through multiple mentor reviews. You defend your design choices. You iterate. You refine. You learn how real products are built, not just coded."
+      },
+      {
+        "type": "paragraph",
+        "text": "There's also a **month-long offline internship at Infosys** - you actually visit their office, work there, see how a corporate setup functions."
+      },
+      {
+        "type": "paragraph",
+        "text": "Some core subjects that don't fit in 5th semester get shifted to 6th. Your schedule looks different from regular students, but it's manageable."
       },
       {
         "type": "heading",
-        "text": "What Apple Actually Cares About"
+        "text": "What It's Actually Like Inside"
       },
       {
         "type": "paragraph",
-        "text": "This program is not about memorizing Swift syntax."
+        "text": "The culture is **nothing like regular college**. You're sitting with a Mac in every class (except Maths and FLA). It feels less like a classroom, more like a **product studio**."
       },
       {
         "type": "paragraph",
-        "text": "Apple focuses on:"
+        "text": "There's more freedom. More ownership. More responsibility. You're not just attending lectures - you're building something that will have your name on it in the App Store."
+      },
+      {
+        "type": "heading",
+        "text": "What Apple Actually Evaluates"
+      },
+      {
+        "type": "paragraph",
+        "text": "This isn't about memorizing Swift syntax. Apple cares about:"
       },
       {
         "type": "list",
         "items": [
-          "Clarity of thinking",
-          "Design decisions",
-          "Product storytelling",
-          "Simplicity over complexity",
-          "Consistency in reviews and iterations"
+          "How clearly you think through problems",
+          "Why you make certain design decisions",
+          "How you tell the story of your product",
+          "Whether you keep things simple or overcomplicate",
+          "How consistent you are through reviews and iterations"
         ]
       },
       {
         "type": "paragraph",
-        "text": "You are evaluated more on **how you think and design** than on how much code you write."
+        "text": "You're evaluated more on **how you think and design** than how much code you write. That's the Apple way."
       },
       {
         "type": "heading",
-        "text": "Common Myths"
+        "text": "Let's Clear Some Myths"
       },
       {
         "type": "paragraph",
-        "text": "Myth 1: Your CGPA will drop"
+        "text": "**\"Your CGPA will drop\"** - Not true. Your academics stay safe if you manage your time. The program is demanding, but it's not designed to tank your grades."
       },
       {
         "type": "paragraph",
-        "text": "Not true. Your academics remain safe if you stay consistent."
-      },
-      {
-        "type": "paragraph",
-        "text": "Myth 2: You won't get placement opportunities"
-      },
-      {
-        "type": "paragraph",
-        "text": "Not true. You get all placement opportunities like the regular batch. You may only miss companies that visit campus during your Infosys internship period."
+        "text": "**\"You'll miss placements\"** - Also not true. You get all placement opportunities like regular students. The only catch: you might miss some companies that visit during your Infosys internship month."
       },
       {
         "type": "heading",
-        "text": "How This Program Changed My Thinking"
+        "text": "What You'll Actually Learn"
       },
       {
         "type": "paragraph",
-        "text": "Before this program, I cared mainly about UI polish and rushed features."
+        "text": "This program changes how you think about building products. You stop rushing features and start thinking in **user flows, accessibility, performance, documentation, and long-term usability**."
       },
       {
         "type": "paragraph",
-        "text": "Now, I think in **user flows, accessibility, performance, documentation, and long-term usability**. I build slower, but I build better."
+        "text": "You build slower, but you build better. That's what matters."
       },
       {
         "type": "paragraph",
-        "text": "A few glimpses from the journey:"
+        "text": "If you're wondering whether to apply - ask yourself: Do you want to learn how to build things the Apple way? Do you care about design and product thinking, not just code? Are you ready to commit a full year to becoming a better builder?"
+      },
+      {
+        "type": "paragraph",
+        "text": "If yes, fill the form when it comes. It's worth it."
       },
       {
         "type": "images",

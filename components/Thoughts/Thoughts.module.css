@@ -6,46 +6,14 @@
   box-sizing: border-box;
 }
 
-.headerRow {
-  display: flex;
-  align-items: center;
-  gap: clamp(16px, 2vw, 32px);
-  margin-bottom: clamp(32px, 4vh, 48px);
-  width: 100%;
-}
-
 .header {
-  font-weight: 900;
+  font-weight: 800;
   color: var(--accent);
-  margin: 0;
-  font-size: clamp(24px, 5vw, 48px);
+  margin: 0 0 clamp(40px, 5vh, 64px) 0;
+  font-size: clamp(32px, 5.5vw, 64px);
   font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  text-transform: uppercase;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.ruleWrapper {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  min-width: 0; /* Allows shrinking on mobile */
-}
-
-.rule {
-  height: 4px;
-  background: var(--muted);
-  flex: 1 1 auto;
-  margin-right: 16px;
-  min-width: 60px; /* Prevents it from disappearing on small screens */
-}
-
-.ruleAccent {
-  width: clamp(48px, 6vw, 64px);
-  height: 4px;
-  background: var(--accent);
-  flex-shrink: 0;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .grid {
@@ -55,19 +23,19 @@
 }
 
 .card {
-  background: var(--bg);
+  background: linear-gradient(135deg, rgba(134, 239, 172, 0.02) 0%, rgba(134, 239, 172, 0.005) 100%), var(--bg);
   border-radius: 16px;
-  padding: clamp(28px, 3.5vw, 36px);
+  padding: clamp(28px, 3.8vw, 36px);
   border: 2px solid var(--border);
-  transition: border 500ms cubic-bezier(0.4, 0, 0.2, 1), background 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border 400ms cubic-bezier(0.4, 0, 0.2, 1), background 400ms cubic-bezier(0.4, 0, 0.2, 1), transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: clamp(16px, 2vh, 20px);
+  gap: clamp(20px, 2.5vh, 24px);
   position: relative;
   z-index: 1;
   height: 100%;
-  min-height: 180px;
+  min-height: 240px;
 }
 
 .cardComingSoon {
@@ -78,7 +46,7 @@
   border: 2px solid transparent;
   background:
     linear-gradient(var(--bg), var(--bg)) padding-box,
-  linear-gradient(90deg, var(--bg), var(--accent), var(--bg)) border-box;
+    linear-gradient(90deg, var(--bg), var(--accent), var(--bg)) border-box;
   background-size: 200% 100%;
   animation: borderFlow 1.5s linear infinite;
 }
@@ -95,33 +63,34 @@
 .cardContent {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1vh, 12px);
+  gap: clamp(12px, 1.5vh, 16px);
   flex: 1;
 }
 
 .date {
   color: var(--accent);
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-size: clamp(14px, 1.4vw, 16px);
+  font-size: clamp(12px, 1.2vw, 14px);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 .title {
   font-family: 'Big Shoulders Display', system-ui;
-  font-size: clamp(28px, 3.2vw, 38px);
+  font-size: clamp(24px, 3vw, 32px);
   color: var(--white);
   font-weight: 800;
   margin: 0;
-  line-height: 1.15;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
 .excerpt {
-  color: var(--muted2);
+  color: rgba(255, 255, 255, 0.75);
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-size: clamp(15px, 1.6vw, 18px);
-  line-height: 1.65;
+  font-size: clamp(14px, 1.5vw, 16px);
+  line-height: 1.7;
   margin: 0;
 }
 
@@ -131,7 +100,7 @@
   gap: 8px;
   color: var(--accent);
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-size: clamp(15px, 1.6vw, 17px);
+  font-size: clamp(14px, 1.5vw, 16px);
   font-weight: 700;
   text-decoration: none;
   transition: gap 220ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -151,10 +120,6 @@
   display: inline-flex;
   align-items: center;
   transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.readMore:hover .arrow {
-  transform: translate(2px, -2px);
 }
 
 .comingSoonBadge {
@@ -282,13 +247,9 @@
 
 /* Small Mobile */
 @media (max-width: 480px) {
-  .headerRow {
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .ruleWrapper {
-    flex: 1;
+  .header {
+    font-size: clamp(24px, 7vw, 32px);
+    margin-bottom: 32px;
   }
   
   .card {
@@ -344,73 +305,89 @@
 }
 
 /* Thought Detail Page Styles */
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(16px, 2vw, 32px);
+  margin-bottom: clamp(40px, 5vh, 64px);
+  width: 100%;
+}
+
 .backIconBtn {
   background: none;
   border: none;
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  display: flex;
+  padding: 0;
+  width: auto;
+  height: auto;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-right: 28px;
+  margin-right: 20px;
   outline: none;
   position: relative;
-  transition: background 0.18s, border-color 0.18s;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
 }
 
 .backIconSvg {
   display: block;
-}
-
-.thoughtHeader {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  color: var(--accent);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 24px;
 }
 
 .thoughtTitle {
   font-family: 'Big Shoulders Display', system-ui;
-  font-size: clamp(32px, 6vw, 56px);
+  font-size: clamp(32px, 5.5vw, 64px);
   color: var(--accent);
-  font-weight: 900;
+  font-weight: 800;
   margin: 0;
   line-height: 1.1;
-  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
 }
 
 .thoughtCard {
-  background: var(--accent);
-  color: var(--black);
-  padding: clamp(32px, 4vw, 48px) clamp(28px, 4vw, 56px);
-  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(134, 239, 172, 0.02) 0%, rgba(134, 239, 172, 0.005) 100%), var(--bg);
+  border: 2px solid rgba(134, 239, 172, 0.12);
+  padding: clamp(36px, 4.5vw, 56px) clamp(32px, 4.5vw, 52px);
+  border-radius: 16px;
   width: 100%;
 }
 
 .thoughtContent {
   display: flex;
   flex-direction: column;
-  gap: clamp(20px, 3vh, 32px);
+  gap: clamp(20px, 3vh, 28px);
 }
 
 .contentParagraph {
-  color: var(--black);
+  color: rgba(255, 255, 255, 0.92);
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-size: clamp(17px, 2vw, 19px);
+  font-size: clamp(17px, 1.9vw, 19px);
   line-height: 1.8;
   margin: 0;
 }
 
+.contentParagraph strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
 .contentHeading {
   font-family: 'Big Shoulders Display', system-ui;
-  font-size: clamp(26px, 4vw, 34px);
-  color: var(--black);
+  font-size: clamp(26px, 3.8vw, 36px);
+  color: var(--white);
   font-weight: 800;
-  margin: clamp(16px, 3vh, 24px) 0 clamp(8px, 1.5vh, 16px) 0;
+  margin: clamp(48px, 6vh, 64px) 0 clamp(8px, 1.2vh, 12px) 0;
   line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.contentHeading:first-child {
+  margin-top: 0;
 }
 
 .contentList {
@@ -423,11 +400,11 @@
 }
 
 .contentListItem {
-  color: var(--black);
+  color: rgba(255, 255, 255, 0.92);
   font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-size: clamp(16px, 1.8vw, 19px);
-  line-height: 1.6;
-  padding-left: 28px;
+  font-size: clamp(17px, 1.9vw, 19px);
+  line-height: 1.75;
+  padding-left: 32px;
   position: relative;
 }
 
@@ -435,7 +412,7 @@
   content: '→';
   position: absolute;
   left: 0;
-  color: var(--black);
+  color: var(--accent);
   font-weight: 700;
 }
 
@@ -459,10 +436,13 @@
 }
 
 .moreHeading {
-  font-size: clamp(20px, 3.5vw, 28px);
-  color: var(--accent);
-  margin: 0 0 16px 0;
+  font-family: 'Big Shoulders Display', system-ui;
+  font-size: clamp(28px, 4vw, 36px);
+  color: var(--white);
+  margin: 0 0 clamp(24px, 3vh, 32px) 0;
   font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
 .moreWrapper .grid {
@@ -478,14 +458,12 @@
 
 @media (max-width: 768px) {
   .backIconBtn {
-    width: 48px;
-    height: 48px;
     margin-right: 16px;
   }
   
   .thoughtCard {
     padding: 24px 20px;
-    border-radius: 16px;
+    border-radius: 12px;
   }
   
   .thoughtContent {
@@ -497,7 +475,7 @@
   }
   
   .contentHeading {
-    font-size: 24px;
+    font-size: 22px;
   }
   
   .contentListItem {

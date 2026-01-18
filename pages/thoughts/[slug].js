@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../components/Thoughts/Thoughts.module.css';
 import thoughtsData from '../../components/Thoughts/thoughtsData.json';
 import Footer from '../../components/Footer/Footer';
@@ -16,8 +16,7 @@ export default function ThoughtPage() {
   const thought = thoughtsData.find((t) => t.slug === slug);
 
   const handleBack = () => {
-    // Always navigate to the Thoughts section to avoid unexpected history navigation
-    router.push('/#thoughts');
+    router.push('/');
   };
 
   if (!thought) {
@@ -65,15 +64,13 @@ export default function ThoughtPage() {
                 hover: { x: -3, transition: { type: 'spring', stiffness: 300, damping: 18 } },
                 tap: { x: -1 }
               }}
-              style={{ color: 'var(--accent)', display: 'inline-flex' }}
+              style={{ display: 'inline-flex', transform: 'scaleX(-1)' }}
               aria-hidden="true"
             >
-              <FontAwesomeIcon icon={faChevronLeft} size="lg" />
+              <FontAwesomeIcon icon={faReply} size="lg" />
             </motion.span>
           </motion.button>
-          <div className={styles.thoughtHeader}>
-            <h1 className={styles.thoughtTitle}>{thought.title}</h1>
-          </div>
+          <h1 className={styles.thoughtTitle}>{thought.title}</h1>
         </motion.div>
 
         <div className={styles.thoughtCard}>

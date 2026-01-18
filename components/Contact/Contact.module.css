@@ -106,11 +106,6 @@
   transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.socialIcons a:hover {
-  color: var(--black);
-  transform: scale(1.25);
-}
-
 .ctaBtn {
   display: inline-flex;
   align-items: center;

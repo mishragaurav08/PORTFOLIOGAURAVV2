@@ -7,7 +7,7 @@ import Footer from '../components/Footer/Footer';
 import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faReply } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 
 export default function ProjectsPage() {
@@ -30,7 +30,7 @@ export default function ProjectsPage() {
           style={{ marginBottom: 'clamp(40px, 7vw, 72px)' }}
         >
           <motion.button
-            onClick={() => router.push('/#projects')}
+            onClick={() => router.push('/')}
             className={styles.backIconBtn}
             aria-label="Go back"
             whileHover="hover"
@@ -39,24 +39,21 @@ export default function ProjectsPage() {
             animate="rest"
             variants={{}}
           >
-          <motion.span
-            className={styles.backIconSvg}
-            initial={{ x: 0 }}
-            variants={{
-              rest: { x: 0 },
-              hover: { x: -3, transition: { type: 'spring', stiffness: 300, damping: 18 } },
-              tap: { x: -1 }
-            }}
-            style={{ color: 'var(--accent)', display: 'inline-flex' }}
-            aria-hidden="true"
-          >
-            <FontAwesomeIcon icon={faChevronLeft} size="lg" />
-          </motion.span>
+            <motion.span
+              className={styles.backIconSvg}
+              initial={{ x: 0 }}
+              variants={{
+                rest: { x: 0 },
+                hover: { x: -3, transition: { type: 'spring', stiffness: 300, damping: 18 } },
+                tap: { x: -1 }
+              }}
+              style={{ display: 'inline-flex', transform: 'scaleX(-1)' }}
+              aria-hidden="true"
+            >
+              <FontAwesomeIcon icon={faReply} size="lg" />
+            </motion.span>
           </motion.button>
-          <h2 className={styles.header}>ALL WORKS</h2>
-          <div className={styles.ruleWrapper} aria-hidden="true">
-            <div className={styles.rule} />
-          </div>
+          <h2 className={styles.header}>All Work</h2>
         </motion.div>
         <div className={styles.grid}>
           {projectsData.map((p, i) => (

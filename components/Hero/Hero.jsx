@@ -50,7 +50,7 @@ export default function Hero() {
             whileInView="show"
             animate="float"
           >
-            You’re looking at
+            Hi, I’m
           </motion.p>
           <motion.h1
             className={styles.huge}
@@ -105,7 +105,7 @@ export default function Hero() {
             />
           )}
         </button>
-        <div className={styles.scrollText}>Start exploring</div>
+        <div className={styles.scrollText}>Step inside</div>
       </div>
     </main>
   )

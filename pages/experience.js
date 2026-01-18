@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faReply } from '@fortawesome/free-solid-svg-icons'
 import Experience from '../components/Experience/Experience'
 import Contact from '../components/Contact/Contact'
 import Footer from '../components/Footer/Footer'
@@ -29,7 +29,7 @@ export default function ExperiencePage() {
           style={{ marginBottom: 'clamp(40px, 7vw, 72px)' }}
         >
           <motion.button
-            onClick={() => router.push('/#experience')}
+            onClick={() => router.push('/')}
             className={styles.backIconBtn}
             aria-label="Go back"
             whileHover="hover"
@@ -46,13 +46,13 @@ export default function ExperiencePage() {
                 hover: { x: -3, transition: { type: 'spring', stiffness: 300, damping: 18 } },
                 tap: { x: -1 }
               }}
-              style={{ color: 'var(--accent)', display: 'inline-flex' }}
+              style={{ display: 'inline-flex', transform: 'scaleX(-1)' }}
               aria-hidden="true"
             >
-              <FontAwesomeIcon icon={faChevronLeft} size="lg" />
+              <FontAwesomeIcon icon={faReply} size="lg" />
             </motion.span>
           </motion.button>
-          <h2 className={styles.header}>CAREER HIGHLIGHTS</h2>
+          <h2 className={styles.header}>Career Highlights</h2>
         </motion.div>
         <Experience showHeader={false} wrap={false} />
       </section>
