@@ -10,17 +10,18 @@ export default function App({ Component, pageProps }) {
   const router = useRouter()
 
   useEffect(() => {
-    // Track page views on route change
+    // Track page views and scroll to top on route change
     const handleRouteChange = (url) => {
-      analytics.pageview(url)
-    }
-    
-    router.events.on('routeChangeComplete', handleRouteChange)
-    
+      analytics.pageview(url);
+      if (typeof window !== 'undefined') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <>

@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './Footer.module.css';
 import { motion } from 'framer-motion';
 
 export default function Footer() {
   
+  const mascotRef = useRef(null);
   const handleMascotActivate = () => {
     if (typeof window === 'undefined') return;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Find the real scroll container (same logic as ScrollProgress)
+    const container =
+      document.querySelector('[data-scroll-container]') ||
+      Array.from(document.querySelectorAll('*')).find(
+        el =>
+          getComputedStyle(el).overflowY === 'auto' &&
+          el.scrollHeight > el.clientHeight
+      ) ||
+      document.scrollingElement ||
+      document.documentElement;
+    if (container) {
+      container.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -20,6 +33,7 @@ export default function Footer() {
       >
         <div className={styles.mascotContainer}>
           <img
+            ref={mascotRef}
             src="/assets/mascot.svg"
             alt="Mascot"
             className={styles.mascot}

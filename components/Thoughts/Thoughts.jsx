@@ -57,6 +57,11 @@ export default function Thoughts({ limit }) {
                 <a
                   className={styles.readMore}
                   aria-label={`Read ${thought.title}`}
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }}
                 >
                   <span className={styles.readText}>Read</span>
                   <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />

@@ -8,6 +8,8 @@ import styles from '../../components/Thoughts/Thoughts.module.css';
 import thoughtsData from '../../components/Thoughts/thoughtsData.json';
 import Footer from '../../components/Footer/Footer';
 import SEO from '../../components/SEO';
+import ScrollProgress from '../../components/ScrollProgress/ScrollProgress';
+import Contact from '../../components/Contact/Contact';
 
 export default function ThoughtPage() {
   const router = useRouter();
@@ -38,6 +40,7 @@ export default function ThoughtPage() {
       />
       
       <section className={styles.wrapper} id="thought-detail">
+        <ScrollProgress />
         <motion.div
           className={styles.headerRow}
           initial={{ opacity: 0, y: 18 }}
@@ -151,6 +154,7 @@ export default function ThoughtPage() {
         })()}
       </section>
       
+      <Contact />
       <Footer />
     </>
   );
