@@ -59,7 +59,19 @@ export default function Thoughts({ limit }) {
                   aria-label={`Read ${thought.title}`}
                   onClick={() => {
                     if (typeof window !== 'undefined') {
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      // Find the real scroll container (same logic as mascot/progress bar)
+                      const container =
+                        document.querySelector('[data-scroll-container]') ||
+                        Array.from(document.querySelectorAll('*')).find(
+                          el =>
+                            getComputedStyle(el).overflowY === 'auto' &&
+                            el.scrollHeight > el.clientHeight
+                        ) ||
+                        document.scrollingElement ||
+                        document.documentElement;
+                      if (container) {
+                        container.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
                     }
                   }}
                 >

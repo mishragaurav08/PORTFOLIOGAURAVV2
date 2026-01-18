@@ -13,21 +13,17 @@ import Contact from '../../components/Contact/Contact';
 
 export default function ThoughtPage() {
   const router = useRouter();
-  const { slug } = router.query;
 
+  const { slug } = router.query;
   const thought = thoughtsData.find((t) => t.slug === slug);
 
   const handleBack = () => {
     router.push('/');
   };
 
-  if (!thought) {
-    return (
-      <div className={styles.wrapper}>
-        <h1>Thought not found</h1>
-      </div>
-    );
-  }
+  // Instantly render the page, no lazy loading
+
+  if (!thought) return null;
 
   return (
     <>
