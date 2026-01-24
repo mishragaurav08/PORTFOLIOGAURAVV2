@@ -75,10 +75,10 @@ export default function SEO({
               alternateName: ['SRMIST', 'SRM University', 'SRM'],
             },
             sameAs: [
-              'https://www.linkedin.com/in/gaurav-mishra-2668691b3/',
-              'https://github.com/gauravMishra08',
-              'https://www.figma.com/@gaurav08',
-              'https://www.instagram.com/mishragaurav08/',
+              'https://www.linkedin.com/in/mishragaurav08',
+              'https://github.com/mishragaurav08',
+              'https://www.figma.com/@mishragaurav08',
+              'https://www.instagram.com/mishragaurav08',
             ],
             knowsAbout: [
               'UX Design',

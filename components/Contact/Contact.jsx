@@ -41,7 +41,7 @@ export default function Contact() {
           <div className={styles.socialLabel}>Around the web</div>
           <div className={styles.socialIcons}>
             <a 
-              href="https://www.linkedin.com/in/gaurav-mishra-2668691b3/" 
+              href="https://www.linkedin.com/in/mishragaurav08" 
               target="_blank" 
               rel="noopener noreferrer" 
               aria-label="LinkedIn"
@@ -50,7 +50,7 @@ export default function Contact() {
               <FontAwesomeIcon icon={faLinkedin} size="2x" />
             </a>
             <a 
-              href="https://github.com/gauravMishra08" 
+              href="https://github.com/mishragaurav08" 
               target="_blank" 
               rel="noopener noreferrer" 
               aria-label="GitHub"
@@ -59,7 +59,7 @@ export default function Contact() {
               <FontAwesomeIcon icon={faGithub} size="2x" />
             </a>
             <a 
-              href="https://www.figma.com/@gaurav08" 
+              href="https://www.figma.com/@mishragaurav08" 
               target="_blank" 
               rel="noopener noreferrer" 
               aria-label="Figma"
