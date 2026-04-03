@@ -36,6 +36,7 @@ export default function Thoughts() {
             ) : (
               <Link
                 href={`/${thought.slug}`}
+                scroll
                 className={styles.readMore}
                 aria-label={`Read ${thought.title}`}
               >

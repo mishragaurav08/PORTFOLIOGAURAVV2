@@ -87,6 +87,45 @@
   user-select: none;
 }
 
+@media (max-width: 768px) {
+  .carouselTrack {
+    gap: 14px;
+    animation-duration: 26s;
+  }
+
+  .carouselItem {
+    width: min(82vw, 360px);
+  }
+
+  .carouselImg {
+    max-width: none;
+    min-width: 0;
+    width: 100%;
+    aspect-ratio: auto;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 480px) {
+  .carouselWrap {
+    margin: 18px 0;
+  }
+
+  .carouselTrack {
+    gap: 10px;
+    animation-duration: 22s;
+  }
+
+  .carouselItem {
+    width: min(86vw, 320px);
+  }
+
+  .carouselImg {
+    border-radius: 7px;
+  }
+}
+
 @keyframes scroll-carousel {
   0% {
     transform: translate3d(0, 0, 0);
@@ -415,8 +454,8 @@
 .readerFabWrap {
   position: fixed;
   right: clamp(14px, 2.2vw, 28px);
-  bottom: clamp(14px, 2.6vh, 26px);
-  z-index: 120;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  z-index: 999;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -647,7 +686,14 @@
 
   .readerFabWrap {
     right: 10px;
-    bottom: 12px;
+    left: 10px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    justify-content: flex-end;
+  }
+
+  .readerFabPrimary,
+  .readerFabBtn {
+    min-height: 44px;
   }
 
   .readerFabActions {

@@ -4,7 +4,6 @@ import styles from './ResumeModal.module.css';
 
 export default function ResumeModal({ isOpen, onClose }) {
   const resumeViewerSrc = '/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
-  const resumeDirectSrc = '/resume.pdf';
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -43,9 +42,6 @@ export default function ResumeModal({ isOpen, onClose }) {
         <div className={styles.headerRow}>
           <h2 className={styles.title}>Resume</h2>
           <div className={styles.actions}>
-            <a href={resumeDirectSrc} target="_blank" rel="noopener noreferrer" className={styles.openBtn}>
-              Open
-            </a>
             <a href="/resume.pdf" download className={styles.actionBtn}>
               Download
             </a>
@@ -58,9 +54,6 @@ export default function ResumeModal({ isOpen, onClose }) {
           {loading && (
             <div className={styles.spinnerWrap}>
               <div className={styles.spinner} aria-label="Loading resume" />
-              <a href={resumeDirectSrc} target="_blank" rel="noopener noreferrer" className={styles.fallbackOpenBtn}>
-                Open
-              </a>
             </div>
           )}
           {isOpen && (

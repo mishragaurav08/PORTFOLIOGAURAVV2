@@ -43,10 +43,15 @@ export default function ThoughtPage() {
   const [isPaused, setIsPaused] = useState(false);
   const [voices, setVoices] = useState([]);
   const stopRequestedRef = useRef(false);
+  const fallbackTriedRef = useRef(false);
   // For auto-scroll
   const [currentLineIndex, setCurrentLineIndex] = useState(-1);
   const blockRefs = useMemo(() => thought ? getBlockRefs(thought.content) : [], [thought]);
-  const hasSpeechApi = globalThis.window !== undefined && Boolean(globalThis.speechSynthesis);
+  const hasSpeechApi = (
+    globalThis.window !== undefined
+    && 'speechSynthesis' in globalThis.window
+    && 'SpeechSynthesisUtterance' in globalThis.window
+  );
 
   const stripMarkdown = useCallback((text = '') => {
     return text.replaceAll(/\*\*(.*?)\*\*/g, '$1').replaceAll(/\s+/g, ' ').trim();
@@ -109,7 +114,7 @@ export default function ThoughtPage() {
     setIsPaused(false);
   }, [hasSpeechApi]);
 
-  const speakLine = useCallback((index) => {
+  const speakLine = useCallback((index, forceDefaultVoice = false) => {
     if (!hasSpeechApi) return;
 
     if (index < 0 || index >= readableLines.length) {
@@ -124,18 +129,31 @@ export default function ThoughtPage() {
     const utterance = new SpeechSynthesisUtterance(readableLines[index]);
     utterance.rate = 0.94;
     utterance.pitch = 0.93;
-    utterance.lang = preferredVoice?.lang || 'en-IN';
+    utterance.volume = 1;
+    utterance.lang = forceDefaultVoice
+      ? 'en-US'
+      : (preferredVoice?.lang || globalThis.navigator?.language || 'en-US');
 
-    if (preferredVoice) {
+    if (!forceDefaultVoice && preferredVoice) {
       utterance.voice = preferredVoice;
     }
 
+    utterance.onstart = () => {
+      setIsReading(true);
+      setIsPaused(false);
+    };
+
     utterance.onend = () => {
       if (stopRequestedRef.current) return;
-      speakLine(index + 1);
+      speakLine(index + 1, false);
     };
 
     utterance.onerror = () => {
+      if (!forceDefaultVoice && !fallbackTriedRef.current && !stopRequestedRef.current) {
+        fallbackTriedRef.current = true;
+        speakLine(index, true);
+        return;
+      }
       setIsReading(false);
       setIsPaused(false);
       setCurrentLineIndex(-1);
@@ -148,11 +166,20 @@ export default function ThoughtPage() {
     if (!isSpeechSupported || readableLines.length === 0 || !hasSpeechApi) return;
 
     stopRequestedRef.current = false;
+    fallbackTriedRef.current = false;
     globalThis.speechSynthesis.cancel();
+    globalThis.speechSynthesis.resume();
+    if (voices.length === 0) {
+      setVoices(globalThis.speechSynthesis.getVoices());
+    }
     setIsReading(true);
     setIsPaused(false);
-    speakLine(0);
-  }, [hasSpeechApi, isSpeechSupported, readableLines.length, speakLine]);
+    globalThis.setTimeout(() => {
+      if (!stopRequestedRef.current) {
+        speakLine(0, false);
+      }
+    }, 70);
+  }, [hasSpeechApi, isSpeechSupported, readableLines.length, speakLine, voices.length]);
 
   const pauseReading = useCallback(() => {
     if (!hasSpeechApi || !isReading) return;
@@ -176,21 +203,32 @@ export default function ThoughtPage() {
   }, [currentLineIndex, blockRefs]);
 
   useEffect(() => {
-    setIsSpeechSupported(hasSpeechApi && Boolean(globalThis.SpeechSynthesisUtterance));
+    setIsSpeechSupported(hasSpeechApi);
   }, [hasSpeechApi]);
 
   useEffect(() => {
     if (!hasSpeechApi) return undefined;
 
+    const synthesis = globalThis.speechSynthesis;
+
     const updateVoices = () => {
-      setVoices(globalThis.speechSynthesis.getVoices());
+      setVoices(synthesis.getVoices());
     };
 
     updateVoices();
-    globalThis.speechSynthesis.addEventListener('voiceschanged', updateVoices);
+
+    if (typeof synthesis.addEventListener === 'function') {
+      synthesis.addEventListener('voiceschanged', updateVoices);
+    } else {
+      synthesis.onvoiceschanged = updateVoices;
+    }
 
     return () => {
-      globalThis.speechSynthesis.removeEventListener('voiceschanged', updateVoices);
+      if (typeof synthesis.removeEventListener === 'function') {
+        synthesis.removeEventListener('voiceschanged', updateVoices);
+      } else {
+        synthesis.onvoiceschanged = null;
+      }
     };
   }, [hasSpeechApi]);
 
@@ -198,6 +236,11 @@ export default function ThoughtPage() {
     stopReading();
     setCurrentLineIndex(-1);
   }, [stopReading, slug]);
+
+  useEffect(() => {
+    if (globalThis.window === undefined) return;
+    globalThis.window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [slug]);
 
   useEffect(() => {
     return () => {
@@ -318,7 +361,14 @@ export default function ThoughtPage() {
                       <div className={styles.carouselTrack}>
                         {carouselImgs.map((img, i) => (
                           <div className={styles.carouselItem} key={img + '-' + i}>
-                            <img src={img} alt={`${thought.title} visual`} className={styles.carouselImg} draggable={false} />
+                            <img
+                              src={img}
+                              alt={`${thought.title} visual`}
+                              className={styles.carouselImg}
+                              draggable={false}
+                              loading="lazy"
+                              decoding="async"
+                            />
                           </div>
                         ))}
                       </div>
@@ -369,11 +419,12 @@ export default function ThoughtPage() {
             type="button"
             className={styles.readerFabPrimary}
             onClick={startReading}
-            disabled={!isSpeechSupported || readableLines.length === 0}
+            disabled={readableLines.length === 0}
             aria-label="Read this thought for me"
+            title={isSpeechSupported ? 'Read this thought for me' : 'Audio reader is not supported on this browser'}
           >
             <FontAwesomeIcon icon={faMicrophone} className={styles.readerFabIcon} aria-hidden />
-            <span>Read for me</span>
+            <span>{isSpeechSupported ? 'Read for me' : 'Audio unavailable'}</span>
           </button>
         )}
 
