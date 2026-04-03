@@ -41,15 +41,9 @@
 
 .itemHeader {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 14px;
+  flex-direction: column;
+  gap: 8px;
   margin-bottom: 12px;
-}
-
-.titleWrapper {
-  min-width: 0;
-  flex: 1;
 }
 
 .itemTitle {
@@ -68,11 +62,17 @@
   line-height: 1.4;
   font-weight: 600;
   font-family: var(--font-body);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.dateWrapper {
-  flex-shrink: 0;
-  text-align: right;
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .itemDate {
@@ -104,14 +104,12 @@
     padding: 20px;
   }
 
-  .itemHeader {
-    flex-direction: column;
-    align-items: flex-start;
+  .metaRow {
     gap: 10px;
   }
 
-  .dateWrapper {
-    text-align: left;
+  .itemOrg {
+    font-size: clamp(0.95rem, 2.9vw, 1.05rem);
   }
 }
 

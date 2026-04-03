@@ -51,11 +51,9 @@ export default function Experience() {
             key={`${exp.title}-${exp.org}`}
           >
             <div className={styles.itemHeader}>
-              <div className={styles.titleWrapper}>
-                <h3 className={styles.itemTitle}>{exp.title}</h3>
+              <h3 className={styles.itemTitle}>{exp.title}</h3>
+              <div className={styles.metaRow}>
                 <div className={styles.itemOrg}>{exp.org}</div>
-              </div>
-              <div className={styles.dateWrapper}>
                 <div className={styles.itemDate}>{exp.date}</div>
               </div>
             </div>

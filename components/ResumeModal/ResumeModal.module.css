@@ -80,6 +80,7 @@
   gap: 10px;
 }
 
+.openBtn,
 .actionBtn,
 .closeBtn {
   border: 2px solid var(--accent);
@@ -95,15 +96,36 @@
   cursor: pointer;
 }
 
+.openBtn {
+  border-color: rgba(var(--neon-rgb), 0.35);
+  background: transparent;
+  color: var(--white);
+}
+
 .closeBtn {
   border-color: var(--border-light);
   background: transparent;
   color: var(--white);
 }
 
+.openBtn:hover,
 .actionBtn:hover,
 .closeBtn:hover {
   opacity: 0.9;
+}
+
+.fallbackOpenBtn {
+  margin-top: 14px;
+  border: 2px solid rgba(var(--neon-rgb), 0.45);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--white);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: var(--type-btn);
+  font-weight: 700;
+  line-height: 1;
+  padding: 10px 16px;
 }
 
 .viewerWrap {
@@ -131,6 +153,7 @@
     width: 100%;
   }
 
+  .openBtn,
   .actionBtn,
   .closeBtn {
     flex: 1;
