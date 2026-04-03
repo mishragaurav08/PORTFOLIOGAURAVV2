@@ -35,6 +35,7 @@ function getBlockRefs(content) {
 
 export default function ThoughtPage() {
   const router = useRouter();
+  const isThoughtRoute = router.pathname === '/thoughts/[slug]' || router.pathname === '/[slug]';
 
   const { slug } = router.query;
   const thought = thoughtsData.find((t) => t.slug === slug);
@@ -163,7 +164,7 @@ export default function ThoughtPage() {
   }, [hasSpeechApi, preferredVoice, readableLines]);
 
   const startReading = useCallback(() => {
-    if (!isSpeechSupported || readableLines.length === 0 || !hasSpeechApi) return;
+    if (!isThoughtRoute || !isSpeechSupported || readableLines.length === 0 || !hasSpeechApi) return;
 
     stopRequestedRef.current = false;
     fallbackTriedRef.current = false;
@@ -174,12 +175,43 @@ export default function ThoughtPage() {
     }
     setIsReading(true);
     setIsPaused(false);
-    globalThis.setTimeout(() => {
+
+    // Mobile Chrome can need a tiny "warm-up" utterance before real speech starts.
+    const warmup = new SpeechSynthesisUtterance(' ');
+    warmup.volume = 0;
+    warmup.rate = 1;
+    warmup.pitch = 1;
+    warmup.lang = globalThis.navigator?.language || 'en-US';
+
+    warmup.onend = () => {
       if (!stopRequestedRef.current) {
         speakLine(0, false);
       }
-    }, 70);
-  }, [hasSpeechApi, isSpeechSupported, readableLines.length, speakLine, voices.length]);
+    };
+
+    warmup.onerror = () => {
+      if (!stopRequestedRef.current) {
+        speakLine(0, true);
+      }
+    };
+
+    globalThis.setTimeout(() => {
+      if (stopRequestedRef.current) return;
+      try {
+        globalThis.speechSynthesis.speak(warmup);
+      } catch {
+        speakLine(0, true);
+      }
+    }, 60);
+
+    globalThis.setTimeout(() => {
+      if (stopRequestedRef.current) return;
+      if (!globalThis.speechSynthesis.speaking && !globalThis.speechSynthesis.pending) {
+        fallbackTriedRef.current = true;
+        speakLine(0, true);
+      }
+    }, 900);
+  }, [hasSpeechApi, isSpeechSupported, isThoughtRoute, readableLines.length, speakLine, voices.length]);
 
   const pauseReading = useCallback(() => {
     if (!hasSpeechApi || !isReading) return;
@@ -238,8 +270,32 @@ export default function ThoughtPage() {
   }, [stopReading, slug]);
 
   useEffect(() => {
+    if (isThoughtRoute) return;
+    stopReading();
+    setCurrentLineIndex(-1);
+  }, [isThoughtRoute, stopReading]);
+
+  useEffect(() => {
     if (globalThis.window === undefined) return;
-    globalThis.window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
+    const forceTop = () => {
+      globalThis.window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    forceTop();
+    const rafId = globalThis.requestAnimationFrame(() => {
+      forceTop();
+    });
+    const timeoutId = globalThis.setTimeout(() => {
+      forceTop();
+    }, 120);
+
+    return () => {
+      globalThis.cancelAnimationFrame(rafId);
+      globalThis.clearTimeout(timeoutId);
+    };
   }, [slug]);
 
   useEffect(() => {
@@ -400,7 +456,16 @@ export default function ThoughtPage() {
                         <span>Coming Soon</span>
                       </div>
                     ) : (
-                      <Link href={`/${o.slug}`} className={styles.readMore} aria-label={`Read ${o.title}`}>
+                      <Link
+                        href={`/${o.slug}`}
+                        className={styles.readMore}
+                        aria-label={`Read ${o.title}`}
+                        onClick={() => {
+                          if (globalThis.window !== undefined) {
+                            globalThis.window.scrollTo(0, 0);
+                          }
+                        }}
+                      >
                         <span className={styles.readText}>Read</span>
                         <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />
                       </Link>
@@ -413,6 +478,7 @@ export default function ThoughtPage() {
         })()}
       </section>
 
+      {isThoughtRoute && (
       <div className={styles.readerFabWrap} aria-live="polite">
         {!isReading && (
           <button
@@ -448,6 +514,7 @@ export default function ThoughtPage() {
           </div>
         )}
       </div>
+      )}
       
       <Contact />
       <Footer />

@@ -39,6 +39,11 @@ export default function Thoughts() {
                 scroll
                 className={styles.readMore}
                 aria-label={`Read ${thought.title}`}
+                onClick={() => {
+                  if (globalThis.window !== undefined) {
+                    globalThis.window.scrollTo(0, 0);
+                  }
+                }}
               >
                 <span className={styles.readText}>Read</span>
                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />
