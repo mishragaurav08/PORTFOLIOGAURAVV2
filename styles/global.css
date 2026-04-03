@@ -10,7 +10,7 @@ body,
   overflow-y: auto;
   background: var(--bg);
   color: var(--text-main);
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

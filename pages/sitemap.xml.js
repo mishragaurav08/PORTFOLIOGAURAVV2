@@ -28,10 +28,11 @@ function generateSiteMap() {
        <priority>1.0</priority>
      </url>
      ${thoughtPosts
+       .filter((post) => Boolean(post.slug))
        .map((post) => {
          return `
      <url>
-      <loc>${domain}/${post.slug}</loc>
+      <loc>${domain}/thoughts/${post.slug}</loc>
        <lastmod>${new Date(post.date || Date.now()).toISOString()}</lastmod>
        <changefreq>monthly</changefreq>
        <priority>0.7</priority>
