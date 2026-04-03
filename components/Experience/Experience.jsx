@@ -8,7 +8,7 @@ const experiences = [
     title: 'Samsung PRISM',
     org: 'Samsung R&D Institute India',
     date: "Mar'25 - Aug'25",
-    desc: `At Samsung PRISM, I explored how network traffic behaves at scale. I built machine learning pipelines to analyze packet data and tested models to classify traffic patterns in production-like scenarios. This experience taught me to think beyond code—about systems, data, and real-world impact.`
+    desc: `At Samsung PRISM, I explored how network traffic behaves at scale. I built machine learning pipelines to analyze packet data and tested models to classify traffic patterns in production-like scenarios. This experience taught me to think beyond code - about systems, data, and real-world impact.`
   },
   {
     title: 'iOS Developer Intern',
