@@ -14,69 +14,25 @@ export default function About() {
         transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.5 }}
       >
-        <h2 className={styles.header}>Who I Am</h2>
+        <h2 className={styles.header}>A bit about me</h2>
 <div className={styles.copy}>
   <p className={styles.paragraph}>
-    <strong>I design and build digital products people actually use.</strong>{' '}
-    Right now, that means building for iOS - but at its core, my focus has always been
-    on creating thoughtful, usable experiences that scale beyond a single screen. I’m a UX/UI designer and frontend developer, currently studying Computer Science (Cyber Security) at SRMIST.
-    I enjoy working at the intersection of design, engineering, and product thinking.
-    I co-founded <strong>Studique</strong>, a campus platform used by <strong>15,000+ students</strong>, 
-    where I lead frontend architecture, design systems, and core product decisions.
-    I’ve interned with <strong>Samsung</strong> and am currently part of the{' '}
-    <strong>Apple × Infosys iOS Developer Program</strong>.
+    I started with one simple goal, build things people will actually use. That mindset led to <strong>Studique</strong>, which grew to <strong>15,000+ students</strong>, where I led frontend, design, and product decisions. Then came the <strong>Apple x Infosys iOS Program</strong>, an iOS internship at Infosys, and research work with <strong>Samsung</strong> on network traffic and ML systems. Right now, I am building <strong>Interact</strong>. Every project teaches me the same thing, great products happen when design, engineering, and product thinking move together.
   </p>
 </div>
 
 
 
         <div className={styles.actions}>
-          {(() => {
-            const resumeHref = "https://drive.google.com/file/d/1owe5QFBcN31WJJM4txaOtS4iFAbXHYKW/preview"
-            const isExternal = typeof resumeHref === 'string' && /^https?:\/\//i.test(resumeHref)
-
-            if (isExternal) {
-              return (
-                <a
-                  className={styles.resume}
-                  href={resumeHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Open resume"
-                >
-                  <FontAwesomeIcon icon={faFilePdf} className={styles.resumeIcon} aria-hidden />
-                  <span className={styles.resumeText}>View resume</span>
-                </a>
-              )
-            }
-
-            // Same-page / hash action -> render a button with identical visuals
-            return (
-              <button
-                type="button"
-                className={styles.resume}
-                aria-label="Open resume"
-                onClick={() => {
-                  if (typeof window === 'undefined') return
-                  if (!resumeHref) return
-                  if (resumeHref.startsWith('#')) {
-                    const id = resumeHref.slice(1)
-                    const el = document.getElementById(id)
-                    if (el) el.scrollIntoView({ behavior: 'smooth' })
-                  } else {
-                    // fallback behavior for non-hash same-page actions
-                    window.scrollTo({ top: window.scrollY + window.innerHeight, behavior: 'smooth' })
-                  }
-                }}
-              >
-                <FontAwesomeIcon icon={faFilePdf} className={styles.resumeIcon} aria-hidden />
-                <span className={styles.resumeText}>Here’s my resume</span>
-                <span className={styles.ctaArrow} aria-hidden>
-                  →
-                </span>
-              </button>
-            )
-          })()}
+          <a
+            className={styles.resume}
+            href="/resume.pdf"
+            data-open-resume
+            aria-label="Open resume"
+          >
+            <FontAwesomeIcon icon={faFilePdf} className={styles.resumeIcon} aria-hidden />
+            <span className={styles.resumeText}>View resume</span>
+          </a>
         </div>
       </motion.div>
     </section>

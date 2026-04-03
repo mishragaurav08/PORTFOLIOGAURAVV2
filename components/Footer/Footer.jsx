@@ -1,26 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styles from './Footer.module.css';
 import { motion } from 'framer-motion';
 
 export default function Footer() {
-  
-  const mascotRef = useRef(null);
-  const handleMascotActivate = () => {
-    if (typeof window === 'undefined') return;
-    // Find the real scroll container (same logic as ScrollProgress)
-    const container =
-      document.querySelector('[data-scroll-container]') ||
-      Array.from(document.querySelectorAll('*')).find(
-        el =>
-          getComputedStyle(el).overflowY === 'auto' &&
-          el.scrollHeight > el.clientHeight
-      ) ||
-      document.scrollingElement ||
-      document.documentElement;
-    if (container) {
-      container.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
+  // Mascot logic removed
 
   return (
     <footer className={styles.footer}>
@@ -31,25 +14,6 @@ export default function Footer() {
         transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className={styles.mascotContainer}>
-          <img
-            ref={mascotRef}
-            src="/assets/mascot.svg"
-            alt="Mascot"
-            className={styles.mascot}
-            role="button"
-            tabIndex={0}
-            aria-label="Scroll to top"
-            title="Back to top"
-            onClick={handleMascotActivate}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                handleMascotActivate();
-              }
-            }}
-          />
-        </div>
 
         <div className={styles.content}>
           <div className={styles.quote}>
@@ -57,14 +21,6 @@ export default function Footer() {
             <span className={styles.primary}>designed</span><br />
             <span className={styles.secondary}>Purposefully </span>
             <span className={styles.primary}>built</span>
-          </div>
-
-          <div className={styles.quickLinks}>
-            <a href="/projects" className={styles.quickLink}>Projects</a>
-            <span className={styles.linkDivider}>·</span>
-            <a href="/experience" className={styles.quickLink}>Experience</a>
-            <span className={styles.linkDivider}>·</span>
-            <a href="https://drive.google.com/file/d/1owe5QFBcN31WJJM4txaOtS4iFAbXHYKW/preview" target="_blank" rel="noopener noreferrer" className={styles.quickLink}>Resume</a>
           </div>
         </div>
       </motion.div>

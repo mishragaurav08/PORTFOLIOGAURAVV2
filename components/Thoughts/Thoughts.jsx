@@ -4,30 +4,10 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import thoughtsData from './thoughtsData.json';
 
-const thoughts = [
-  {
-    id: 1,
-    slug: 'samsung-prism',
-    title: 'Inside Samsung PRISM',
-    date: 'Mar 2025',
-    excerpt: 'Everything about the selection process, what working in PRISM actually feels like, and whether you should apply.',
-    link: '/thoughts/samsung-prism',
-    comingSoon: false
-  },
-  {
-    id: 2,
-    slug: 'ios-developer-program',
-    title: 'iOS Developer Program',
-    date: 'Dec 2024',
-    excerpt: 'Complete breakdown of the selection process, bootcamp rounds, and what the year-long program actually involves.',
-    link: '/thoughts/ios-developer-program',
-    comingSoon: false
-  }
-];
-
-export default function Thoughts({ limit }) {
-  const displayThoughts = limit ? thoughts.slice(0, limit) : thoughts;
+export default function Thoughts() {
+  const displayThoughts = thoughtsData;
 
   return (
     <section className={styles.wrapper} id="thoughts">
@@ -38,8 +18,9 @@ export default function Thoughts({ limit }) {
         transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.5 }}
       >
-        Thoughts
+        What I Learned
       </motion.h2>
+      <p className={styles.sectionIntro}>Notes from projects, programs, and moments that changed how I build.</p>
 
       <div className={styles.grid}>
         {displayThoughts.map((thought) => (
@@ -53,31 +34,13 @@ export default function Thoughts({ limit }) {
                 <span>Coming Soon</span>
               </div>
             ) : (
-              <Link href={`/thoughts/${thought.slug}`} legacyBehavior>
-                <a
-                  className={styles.readMore}
-                  aria-label={`Read ${thought.title}`}
-                  onClick={() => {
-                    if (typeof window !== 'undefined') {
-                      // Find the real scroll container (same logic as mascot/progress bar)
-                      const container =
-                        document.querySelector('[data-scroll-container]') ||
-                        Array.from(document.querySelectorAll('*')).find(
-                          el =>
-                            getComputedStyle(el).overflowY === 'auto' &&
-                            el.scrollHeight > el.clientHeight
-                        ) ||
-                        document.scrollingElement ||
-                        document.documentElement;
-                      if (container) {
-                        container.scrollTo({ top: 0, behavior: 'smooth' });
-                      }
-                    }
-                  }}
-                >
-                  <span className={styles.readText}>Read</span>
-                  <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />
-                </a>
+              <Link
+                href={`/${thought.slug}`}
+                className={styles.readMore}
+                aria-label={`Read ${thought.title}`}
+              >
+                <span className={styles.readText}>Read</span>
+                <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />
               </Link>
             )}
           </article>

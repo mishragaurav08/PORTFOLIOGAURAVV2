@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 
 function generateSiteMap() {
   // Replace with your actual domain
@@ -13,9 +13,9 @@ function generateSiteMap() {
     const thoughtsData = JSON.parse(
       fs.readFileSync(path.join(thoughtsDirectory, 'thoughtsData.json'), 'utf8')
     )
-    thoughtPosts = thoughtsData.thoughts || []
-  } catch (error) {
-    console.log('No thoughts found')
+    thoughtPosts = Array.isArray(thoughtsData) ? thoughtsData : (thoughtsData.thoughts || [])
+  } catch {
+    thoughtPosts = []
   }
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -27,23 +27,11 @@ function generateSiteMap() {
        <changefreq>daily</changefreq>
        <priority>1.0</priority>
      </url>
-     <url>
-       <loc>${domain}/projects</loc>
-       <lastmod>${new Date().toISOString()}</lastmod>
-       <changefreq>weekly</changefreq>
-       <priority>0.8</priority>
-     </url>
-     <url>
-       <loc>${domain}/experience</loc>
-       <lastmod>${new Date().toISOString()}</lastmod>
-       <changefreq>weekly</changefreq>
-       <priority>0.8</priority>
-     </url>
      ${thoughtPosts
        .map((post) => {
          return `
      <url>
-       <loc>${domain}/thoughts/${post.slug}</loc>
+      <loc>${domain}/${post.slug}</loc>
        <lastmod>${new Date(post.date || Date.now()).toISOString()}</lastmod>
        <changefreq>monthly</changefreq>
        <priority>0.7</priority>

@@ -174,7 +174,7 @@
       },
       {
         "type": "paragraph",
-        "text": "From around **3,000 applications**, roughly **350 students get shortlisted** purely on profile strength. If you make it through, you get called for the bootcamp."
+        "text": "From around **2,000 applications**, roughly **350 students get shortlisted** purely on profile strength. If you make it through, you get called for the bootcamp."
       },
       {
         "type": "heading",
@@ -315,10 +315,10 @@
       {
         "type": "images",
         "images": [
-          "/assets/orientation.jpg",
-          "/assets/AyuthaPooja.jpg",
-          "/assets/BreakoutRoom.jpg",
-          "/assets/TeamInteract.jpg"
+          "/assets/breakoutroom.png",
+          "/assets/infosys.png",
+          "/assets/ios.png",
+          "/assets/classroom.png"
         ]
       }
     ]

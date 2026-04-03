@@ -1,21 +1,211 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReply, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faArrowUpRightFromSquare, faMicrophone, faPause, faPlay, faStop } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../components/Thoughts/Thoughts.module.css';
 import thoughtsData from '../../components/Thoughts/thoughtsData.json';
 import Footer from '../../components/Footer/Footer';
-import SEO from '../../components/SEO';
-import ScrollProgress from '../../components/ScrollProgress/ScrollProgress';
+import Seo from '../../components/SEO';
 import Contact from '../../components/Contact/Contact';
+
+// Helper to get all readable blocks in the rendered order
+function getBlockRefs(content) {
+  const refs = [];
+  let idx = 0;
+  content.forEach((block) => {
+    if (block.type === 'heading' && block.text) {
+      refs.push({ type: 'heading', idx, ref: React.createRef() });
+      idx++;
+    }
+    if (block.type === 'paragraph' && block.text) {
+      refs.push({ type: 'paragraph', idx, ref: React.createRef() });
+      idx++;
+    }
+    if (block.type === 'list' && Array.isArray(block.items)) {
+      block.items.forEach(() => {
+        refs.push({ type: 'listItem', idx, ref: React.createRef() });
+        idx++;
+      });
+    }
+  });
+  return refs;
+}
 
 export default function ThoughtPage() {
   const router = useRouter();
 
   const { slug } = router.query;
   const thought = thoughtsData.find((t) => t.slug === slug);
+  const [isSpeechSupported, setIsSpeechSupported] = useState(false);
+  const [isReading, setIsReading] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [voices, setVoices] = useState([]);
+  const stopRequestedRef = useRef(false);
+  // For auto-scroll
+  const [currentLineIndex, setCurrentLineIndex] = useState(-1);
+  const blockRefs = useMemo(() => thought ? getBlockRefs(thought.content) : [], [thought]);
+  const hasSpeechApi = globalThis.window !== undefined && Boolean(globalThis.speechSynthesis);
+
+  const stripMarkdown = useCallback((text = '') => {
+    return text.replaceAll(/\*\*(.*?)\*\*/g, '$1').replaceAll(/\s+/g, ' ').trim();
+  }, []);
+
+  const readableLines = useMemo(() => {
+    if (!thought?.content) return [];
+
+    const lines = [];
+
+    thought.content.forEach((block) => {
+      if (block.type === 'heading' && block.text) {
+        lines.push(stripMarkdown(block.text));
+      }
+
+      if (block.type === 'paragraph' && block.text) {
+        lines.push(stripMarkdown(block.text));
+      }
+
+      if (block.type === 'list' && Array.isArray(block.items)) {
+        block.items.forEach((item) => {
+          const cleaned = stripMarkdown(item);
+          if (cleaned) lines.push(cleaned);
+        });
+      }
+    });
+
+    return lines;
+  }, [stripMarkdown, thought]);
+
+  const preferredVoice = useMemo(() => {
+    if (!voices.length) return null;
+
+    const scoreVoice = (voice) => {
+      const lang = (voice.lang || '').toLowerCase();
+      const voicePrint = `${voice.name} ${voice.voiceURI || ''}`.toLowerCase();
+      let score = 0;
+
+      if (lang === 'en-in') score += 120;
+      if (lang.startsWith('en-in')) score += 95;
+      if (lang === 'hi-in' || lang.startsWith('hi-in')) score += 65;
+      if (voicePrint.includes('india') || voicePrint.includes('indian')) score += 80;
+      if (voicePrint.includes('ravi') || voicePrint.includes('aditya') || voicePrint.includes('rahul') || voicePrint.includes('arjun') || voicePrint.includes('heera') || voicePrint.includes('rishi')) score += 55;
+      if (voicePrint.includes('male') || voicePrint.includes('man')) score += 30;
+      if (voicePrint.includes('female') || voicePrint.includes('woman') || voicePrint.includes('samantha') || voicePrint.includes('veena')) score -= 35;
+
+      return score;
+    };
+
+    const ranked = [...voices].sort((a, b) => scoreVoice(b) - scoreVoice(a));
+    return ranked[0] || voices[0];
+  }, [voices]);
+
+  const stopReading = useCallback(() => {
+    if (!hasSpeechApi) return;
+
+    stopRequestedRef.current = true;
+    globalThis.speechSynthesis.cancel();
+    setIsReading(false);
+    setIsPaused(false);
+  }, [hasSpeechApi]);
+
+  const speakLine = useCallback((index) => {
+    if (!hasSpeechApi) return;
+
+    if (index < 0 || index >= readableLines.length) {
+      setIsReading(false);
+      setIsPaused(false);
+      setCurrentLineIndex(-1);
+      return;
+    }
+
+    setCurrentLineIndex(index);
+
+    const utterance = new SpeechSynthesisUtterance(readableLines[index]);
+    utterance.rate = 0.94;
+    utterance.pitch = 0.93;
+    utterance.lang = preferredVoice?.lang || 'en-IN';
+
+    if (preferredVoice) {
+      utterance.voice = preferredVoice;
+    }
+
+    utterance.onend = () => {
+      if (stopRequestedRef.current) return;
+      speakLine(index + 1);
+    };
+
+    utterance.onerror = () => {
+      setIsReading(false);
+      setIsPaused(false);
+      setCurrentLineIndex(-1);
+    };
+
+    globalThis.speechSynthesis.speak(utterance);
+  }, [hasSpeechApi, preferredVoice, readableLines]);
+
+  const startReading = useCallback(() => {
+    if (!isSpeechSupported || readableLines.length === 0 || !hasSpeechApi) return;
+
+    stopRequestedRef.current = false;
+    globalThis.speechSynthesis.cancel();
+    setIsReading(true);
+    setIsPaused(false);
+    speakLine(0);
+  }, [hasSpeechApi, isSpeechSupported, readableLines.length, speakLine]);
+
+  const pauseReading = useCallback(() => {
+    if (!hasSpeechApi || !isReading) return;
+    globalThis.speechSynthesis.pause();
+    setIsPaused(true);
+  }, [hasSpeechApi, isReading]);
+
+  const resumeReading = useCallback(() => {
+    if (!hasSpeechApi || !isReading) return;
+    globalThis.speechSynthesis.resume();
+    setIsPaused(false);
+  }, [hasSpeechApi, isReading]);
+
+  // Auto-scroll to current block
+  useEffect(() => {
+    if (currentLineIndex < 0 || !blockRefs[currentLineIndex]) return;
+    const node = blockRefs[currentLineIndex].ref.current;
+    if (node) {
+      node.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [currentLineIndex, blockRefs]);
+
+  useEffect(() => {
+    setIsSpeechSupported(hasSpeechApi && Boolean(globalThis.SpeechSynthesisUtterance));
+  }, [hasSpeechApi]);
+
+  useEffect(() => {
+    if (!hasSpeechApi) return undefined;
+
+    const updateVoices = () => {
+      setVoices(globalThis.speechSynthesis.getVoices());
+    };
+
+    updateVoices();
+    globalThis.speechSynthesis.addEventListener('voiceschanged', updateVoices);
+
+    return () => {
+      globalThis.speechSynthesis.removeEventListener('voiceschanged', updateVoices);
+    };
+  }, [hasSpeechApi]);
+
+  useEffect(() => {
+    stopReading();
+    setCurrentLineIndex(-1);
+  }, [stopReading, slug]);
+
+  useEffect(() => {
+    return () => {
+      if (hasSpeechApi) {
+        globalThis.speechSynthesis.cancel();
+      }
+    };
+  }, [hasSpeechApi]);
 
   const handleBack = () => {
     router.push('/');
@@ -27,16 +217,15 @@ export default function ThoughtPage() {
 
   return (
     <>
-      <SEO 
+      <Seo 
         title={`${thought.title} - Gaurav's Thoughts`}
         description={thought.excerpt || thought.title}
         keywords={`${thought.title}, blog, thoughts, insights, UX design, frontend development`}
-        canonicalUrl={`https://gauravmishra.dev/thoughts/${slug}`}
+        canonicalUrl={`https://gauravmishra.dev/${slug}`}
         ogType="article"
       />
       
       <section className={styles.wrapper} id="thought-detail">
-        <ScrollProgress />
         <motion.div
           className={styles.headerRow}
           initial={{ opacity: 0, y: 18 }}
@@ -74,45 +263,71 @@ export default function ThoughtPage() {
 
         <div className={styles.thoughtCard}>
           <article className={styles.thoughtContent}>
-            {thought.content.map((block, index) => {
-              if (block.type === 'paragraph') {
-                // Render **bold** markers inside paragraph text as <strong>
-                const parts = block.text.split(/\*\*(.*?)\*\*/g);
-                return (
-                  <p key={index} className={styles.contentParagraph}>
-                    {parts.map((part, i) =>
-                      i % 2 === 1 ? <strong key={i}>{part}</strong> : <span key={i}>{part}</span>
-                    )}
-                  </p>
-                );
-              }
-              if (block.type === 'heading') {
-                return (
-                  <h2 key={index} className={styles.contentHeading}>
-                    {block.text}
-                  </h2>
-                );
-              }
-              if (block.type === 'list') {
-                return (
-                  <ul key={index} className={styles.contentList}>
-                    {block.items.map((item, i) => (
-                      <li key={i} className={styles.contentListItem}>{item}</li>
-                    ))}
-                  </ul>
-                );
-              }
-              if (block.type === 'images') {
-                return (
-                  <div key={index} className={styles.imageGrid}>
-                    {block.images.map((img, i) => (
-                      <img key={i} src={img} alt={`${thought.title} ${i + 1}`} className={styles.contentImage} />
-                    ))}
-                  </div>
-                );
-              }
-              return null;
-            })}
+            {(() => {
+              let refIdx = 0;
+              return thought.content.map((block) => {
+                const blockKey = `${block.type}-${block.text || (block.items ? block.items.join('|') : '') || (block.images ? block.images.join('|') : '')}`;
+                if (block.type === 'paragraph') {
+                  const parts = block.text.split(/\*\*(.*?)\*\*/g);
+                  let isBold = false;
+                  const tokenCount = {};
+                  const ref = blockRefs[refIdx]?.ref;
+                  const idx = refIdx;
+                  refIdx++;
+                  return (
+                    <p key={blockKey} ref={ref} className={styles.contentParagraph + (currentLineIndex === idx ? ' ' + styles.activeReading : '')}>
+                      {parts.map((part) => {
+                        tokenCount[part] = (tokenCount[part] || 0) + 1;
+                        const tokenKey = `${isBold ? 'b' : 't'}-${part}-${tokenCount[part]}`;
+                        const node = isBold ? <strong key={tokenKey}>{part}</strong> : <span key={tokenKey}>{part}</span>;
+                        isBold = !isBold;
+                        return node;
+                      })}
+                    </p>
+                  );
+                }
+                if (block.type === 'heading') {
+                  const ref = blockRefs[refIdx]?.ref;
+                  const idx = refIdx;
+                  refIdx++;
+                  return (
+                    <h2 key={blockKey} ref={ref} className={styles.contentHeading + (currentLineIndex === idx ? ' ' + styles.activeReading : '')}>
+                      {block.text}
+                    </h2>
+                  );
+                }
+                if (block.type === 'list') {
+                  return (
+                    <ul key={blockKey} className={styles.contentList}>
+                      {block.items.map((item, i) => {
+                        const ref = blockRefs[refIdx]?.ref;
+                        const idx = refIdx;
+                        refIdx++;
+                        return (
+                          <li key={item} ref={ref} className={styles.contentListItem + (currentLineIndex === idx ? ' ' + styles.activeReading : '')}>{item}</li>
+                        );
+                      })}
+                    </ul>
+                  );
+                }
+                if (block.type === 'images') {
+                  // Carousel: duplicate images for seamless scroll
+                  const carouselImgs = [...block.images, ...block.images];
+                  return (
+                    <div key={blockKey} className={styles.carouselWrap}>
+                      <div className={styles.carouselTrack}>
+                        {carouselImgs.map((img, i) => (
+                          <div className={styles.carouselItem} key={img + '-' + i}>
+                            <img src={img} alt={`${thought.title} visual`} className={styles.carouselImg} draggable={false} />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+                return null;
+              });
+            })()}
           </article>
         </div>
 
@@ -135,11 +350,9 @@ export default function ThoughtPage() {
                         <span>Coming Soon</span>
                       </div>
                     ) : (
-                      <Link href={`/thoughts/${o.slug}`} legacyBehavior>
-                        <a className={styles.readMore} aria-label={`Read ${o.title}`}>
-                          <span className={styles.readText}>Read</span>
-                          <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />
-                        </a>
+                      <Link href={`/${o.slug}`} className={styles.readMore} aria-label={`Read ${o.title}`}>
+                        <span className={styles.readText}>Read</span>
+                        <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />
                       </Link>
                     )}
                   </article>
@@ -149,6 +362,41 @@ export default function ThoughtPage() {
           );
         })()}
       </section>
+
+      <div className={styles.readerFabWrap} aria-live="polite">
+        {!isReading && (
+          <button
+            type="button"
+            className={styles.readerFabPrimary}
+            onClick={startReading}
+            disabled={!isSpeechSupported || readableLines.length === 0}
+            aria-label="Read this thought for me"
+          >
+            <FontAwesomeIcon icon={faMicrophone} className={styles.readerFabIcon} aria-hidden />
+            <span>Read for me</span>
+          </button>
+        )}
+
+        {isReading && (
+          <div className={styles.readerFabActions}>
+            {isPaused ? (
+              <button type="button" className={styles.readerFabBtn} onClick={resumeReading}>
+                <FontAwesomeIcon icon={faPlay} className={styles.readerFabActionIcon} aria-hidden />
+                Resume
+              </button>
+            ) : (
+              <button type="button" className={styles.readerFabBtn} onClick={pauseReading}>
+                <FontAwesomeIcon icon={faPause} className={styles.readerFabActionIcon} aria-hidden />
+                Pause
+              </button>
+            )}
+            <button type="button" className={styles.readerFabBtn} onClick={stopReading}>
+              <FontAwesomeIcon icon={faStop} className={styles.readerFabActionIcon} aria-hidden />
+              Stop
+            </button>
+          </div>
+        )}
+      </div>
       
       <Contact />
       <Footer />

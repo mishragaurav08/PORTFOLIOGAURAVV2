@@ -3,6 +3,14 @@ import styles from './Hero.module.css'
 import { motion, useReducedMotion } from 'framer-motion'
 export default function Hero() {
   const reduce = useReducedMotion()
+  const heroNameChars = [
+    { key: 'g', char: 'G' },
+    { key: 'a1', char: 'A' },
+    { key: 'u', char: 'U' },
+    { key: 'r', char: 'R' },
+    { key: 'a2', char: 'A' },
+    { key: 'v', char: 'V' },
+  ]
   const minimalFade = {
     hidden: { opacity: 0, y: 16 },
     show: {
@@ -50,7 +58,7 @@ export default function Hero() {
             whileInView="show"
             animate="float"
           >
-            Hi, I’m
+            This is
           </motion.p>
           <motion.h1
             className={styles.huge}
@@ -59,15 +67,15 @@ export default function Hero() {
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
           >
-            {"GAURAV".split("").map((char, i) => (
+            {heroNameChars.map((item, i) => (
               <motion.span
-                key={i}
+                key={item.key}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + i * 0.07, type: 'spring', stiffness: 180, damping: 14 }}
                 style={{ display: 'inline-block' }}
               >
-                {char}
+                {item.char}
               </motion.span>
             ))}
           </motion.h1>
@@ -78,7 +86,8 @@ export default function Hero() {
             whileInView="show"
             animate="float"
           >
-            Currently building for iOS <br className={styles.lineBreak} />with Apple × Infosys
+            I am currently building <span style={{ color: 'var(--accent)', fontWeight: 600 }}>Interact</span>.
+            <br />Keep scrolling and I will walk you through the journey.
           </motion.p>
         </motion.section>
       </div>
@@ -88,9 +97,9 @@ export default function Hero() {
           className={styles.scrollIndicator}
           aria-label="Scroll to next section"
           onClick={() => {
-            if (typeof window !== 'undefined') {
+            if (globalThis.window !== undefined) {
               const behavior = reduce ? 'auto' : 'smooth'
-              window.scrollTo({ top: window.scrollY + window.innerHeight, behavior })
+              globalThis.window.scrollTo({ top: globalThis.window.scrollY + globalThis.window.innerHeight, behavior })
             }
           }}
         >

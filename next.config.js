@@ -8,6 +8,15 @@ const nextConfig = {
   compress: true,
   // Generate sitemap on build
   trailingSlash: false,
+  async redirects() {
+    return [
+      {
+        source: '/thoughts/:slug',
+        destination: '/:slug',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig

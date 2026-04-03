@@ -4,8 +4,9 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link rel="icon" href="/assets/mascot.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="/assets/mascot.svg" type="image/svg+xml" />
+        <link rel="icon" href="/icon.png" type="image/png" />
+        <link rel="shortcut icon" href="/icon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/icon.png" />
         
         {/* Google Analytics - Replace GA_MEASUREMENT_ID with your actual ID */}
         <script
@@ -26,7 +27,6 @@ export default function Document() {
         />
         
         {/* Favicon variations */}
-        <link rel="apple-touch-icon" href="/assets/mascot.svg" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <body>

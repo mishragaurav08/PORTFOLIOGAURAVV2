@@ -7,75 +7,32 @@
 }
 
 .headerRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(16px, 2vw, 32px);
-  margin-bottom: clamp(40px, 5vh, 64px);
-  width: 100%;
+  margin-bottom: clamp(30px, 4vh, 54px);
 }
 
 .header {
+  margin: 0 0 10px 0;
   font-weight: 800;
   color: var(--accent);
-  margin: 0;
-  font-size: clamp(32px, 5.5vw, 64px);
-  font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-size: var(--type-section-title);
   line-height: 1.1;
   letter-spacing: -0.02em;
-  flex-shrink: 0;
+  font-family: var(--font-display);
 }
 
-.seeAll {
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  color: var(--bg);
-  font-weight: 700;
-  font-size: clamp(15px, 1.5vw, 17px);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
-  padding: clamp(10px, 1.2vw, 12px) clamp(20px, 2.2vw, 28px);
-  border-radius: 8px;
-  background: var(--accent);
-  border: 2px solid var(--accent);
-  flex-shrink: 0;
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: clamp(6px, 1vw, 10px);
-}
-
-.seeAll:hover {
-  background: var(--bg);
-  color: var(--accent);
-}
-
-.seeAllText {
-  display: inline-flex;
-  align-items: center;
-}
-
-.seeAllIcon {
-  margin-left: 8px;
-  display: inline-flex;
-  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.ctaArrow {
-  display: inline-flex;
-  align-items: center;
-  font-size: 1.05em;
-  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.seeAll:active {
-  transform: translateY(0);
+.intro {
+  margin: 0;
+  max-width: 720px;
+  color: var(--text-muted);
+  font-size: var(--type-body-lg);
+  line-height: 1.7;
+  font-family: var(--font-body);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(24px, 3vw, 40px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(22px, 2.6vw, 34px);
 }
 
 .card {
@@ -84,81 +41,35 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: border 500ms cubic-bezier(0.4, 0, 0.2, 1), background 500ms cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid var(--border);
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  min-height: 480px;
+  transition: border 350ms cubic-bezier(0.4, 0, 0.2, 1), transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover {
-  border: 2px solid transparent;
-  background: 
-    linear-gradient(var(--bg), var(--bg)) padding-box,
-    linear-gradient(
-      90deg,
-  var(--bg),
-  var(--accent),
-  var(--bg)
-    ) border-box;
-  background-size: 200% 100%;
-  animation: borderFlow 1.5s linear infinite;
-}
-
-@keyframes borderFlow {
-  0% {
-    background-position: 100% 0;
-  }
-  100% {
-    background-position: -100% 0;
-  }
+  border-color: var(--accent);
+  transform: none;
 }
 
 .media {
   width: 100%;
   aspect-ratio: 4 / 3;
-  height: auto;
   overflow: hidden;
   background: var(--muted);
-  position: relative;
-}
-
-.media::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.25);
-  z-index: 1;
-  transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-}
-
-.card:hover .media::before {
-  opacity: 0;
 }
 
 .media img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: center center;
+  object-position: center;
   display: block;
-  background: var(--muted);
-  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cardBody {
-  background: var(--bg);
-  border-radius: 0 0 20px 20px;
-  color: var(--white);
-  padding: clamp(24px, 3.5vw, 32px);
   display: flex;
   flex-direction: column;
-  gap: clamp(16px, 2vw, 24px);
+  gap: 18px;
+  padding: clamp(20px, 3vw, 30px);
   flex: 1;
 }
 
@@ -166,41 +77,44 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 20px;
+  gap: 14px;
 }
 
 .titleWrapper {
-  flex: 1;
   min-width: 0;
+  flex: 1;
 }
 
 .title {
-  font-family: 'Big Shoulders Display', system-ui;
-  font-size: clamp(22px, 2.5vw, 28px);
-  color: var(--white);
-  font-weight: 800;
   margin: 0 0 8px 0;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: var(--type-card-title);
   line-height: 1.1;
+  font-weight: 800;
   letter-spacing: -0.01em;
 }
 
 .tag {
   color: var(--accent);
-  font-weight: 600;
-  font-size: clamp(12px, 1.2vw, 14px);
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-family: var(--font-body);
+  font-size: var(--type-meta);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
 .desc {
   margin: 0;
   color: var(--text-muted);
-  font-size: clamp(14px, 1.5vw, 16px);
+  font-family: var(--font-body);
+  font-size: var(--type-body);
   line-height: 1.65;
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-weight: 400;
   flex: 1;
+}
+
+.buttonWrapper {
+  flex-shrink: 0;
 }
 
 .ctaBtn {
@@ -209,61 +123,33 @@
   gap: 8px;
   height: clamp(36px, 4vh, 44px);
   border-radius: 8px;
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-size: clamp(14px, 1.4vw, 16px);
-  font-weight: 700;
+  border: 2px solid var(--accent);
   padding: 0 clamp(16px, 2vw, 24px);
-  border-width: 2px;
-  border-style: solid;
-  transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: var(--type-btn);
+  font-weight: 700;
   white-space: nowrap;
-  flex-shrink: 0;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.ctaBtn.demo {
+.ctaBtn.demo,
+.ctaBtn.design,
+.ctaBtn.github,
+.ctaBtn.inprogress {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--bg);
 }
 
-.ctaBtn.demo:hover {
+.ctaBtn.demo:hover,
+.ctaBtn.design:hover,
+.ctaBtn.github:hover,
+.ctaBtn.inprogress:hover {
   background: var(--bg);
   color: var(--accent);
   border-color: var(--accent);
-}
-
-.ctaBtn.design {
-  /* Use global palette accent-alt for design CTAs (brighter, more on-brand than generic --info) */
-  background: var(--accent-alt);
-  border-color: var(--accent-alt);
-  color: var(--bg);
-}
-
-.ctaBtn.design:hover {
-  background: var(--bg);
-  color: var(--accent-alt);
-  border-color: var(--accent-alt);
-}
-
-.ctaBtn.github {
-  background: var(--white);
-  border-color: var(--white);
-  color: var(--black);
-}
-
-.ctaBtn.github:hover {
-  background: var(--black);
-  color: var(--white);
-  border-color: var(--white);
-}
-
-.ctaBtn.inprogress {
-  background: var(--bg);
-  border-color: var(--accent);
-  color: var(--accent);
-  opacity: 0.85;
 }
 
 .ctaBtn:disabled,
@@ -272,7 +158,7 @@
 }
 
 .icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   font-size: clamp(16px, 1.6vw, 18px);
 }
@@ -291,237 +177,28 @@
   animation: spin 3s linear infinite;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .card:hover,
-  .seeAll:hover,
-  .ctaBtn:hover,
-  .media img,
-  .cogSpin {
-    animation: none !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  
-  .card:hover {
-    border: 2px solid var(--accent) !important;
-    background: var(--bg) !important;
-  }
-  .seeAllIcon {
-    transition: none !important;
-    transform: none !important;
-  }
-}
-
-/* Tablet/Laptop */
-@media (max-width: 1200px) {
+@media (max-width: 1100px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(20px, 3vw, 32px);
-  }
-  
-  .card:last-child {
-    grid-column: 1 / -1;
-    max-width: calc(50% - 12px);
-    justify-self: center;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 880px) {
-  .headerRow {
-    gap: clamp(12px, 2vw, 20px);
-    margin-bottom: clamp(32px, 4vh, 40px);
-  }
-
-  .header {
-    font-size: clamp(28px, 6vw, 48px);
-  }
-
-  .seeAll {
-    padding: 10px 20px;
-    font-size: 15px;
-  }
-
-  /* Keep itemHeader as flex row (not column) */
-  .itemHeader {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: clamp(16px, 2vw, 24px);
-  }
-  
-  /* Keep date at top right */
-  .dateWrapper {
-    flex-shrink: 0;
-    text-align: right;
-    width: auto; /* Not 100% */
-  }
-  
-  .itemDesc {
-    max-width: 100%;
-  }
-}
-
-/* Mobile Landscape & Small Tablets */
-@media (max-width: 768px) {
+@media (max-width: 760px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: clamp(20px, 4vh, 28px);
-    max-width: 600px;
-    margin: 0 auto;
   }
-  
-  .card:last-child {
-    max-width: 100%;
-  }
-  
-  .card {
-    min-height: 400px;
-  }
-  .media {
-    aspect-ratio: 4 / 3;
-    height: auto;
-  }
-  
+
   .cardBody {
-    padding: 20px;
+    padding: 22px;
   }
 }
 
-/* Mobile Portrait */
-@media (max-width: 480px) {
-  /* KEEP SINGLE ROW LAYOUT - NO WRAPPING */
-  .headerRow {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 28px;
-    width: 100%;
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .ctaBtn,
+  .cogSpin {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
   }
-  
-  .header {
-    font-size: clamp(24px, 7vw, 32px);
-  }
-
-  .seeAll {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-  
-  .card {
-    min-height: 280px;
-    border-radius: 16px;
-  }
-  
-  .media {
-    aspect-ratio: 4 / 3;
-    height: auto;
-  }
-}
-
-/* Very Small Mobile */
-@media (max-width: 360px) {
-  .headerRow {
-    gap: 8px;
-  }
-  
-  .header {
-    font-size: clamp(22px, 8vw, 28px);
-  }
-  
-  .seeAll {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-}
-
-/* Also update the Mobile media query to prevent date wrapping: */
-@media (max-width: 640px) {
-  .headerRow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 32px;
-    width: 100%;
-  }
-  
-  .list {
-    gap: 24px;
-  }
-  
-  .item {
-    padding: 20px;
-    border-radius: 12px;
-  }
-  
-  /* Add this to prevent long date wrapping on mobile */
-  .itemHeader {
-    gap: 12px;
-    align-items: flex-start;
-  }
-  
-  .dateWrapper {
-    flex-shrink: 0;
-    text-align: right;
-  }
-  
-  .itemDate {
-    font-size: clamp(15px, 4vw, 18px);
-    padding: 5px 12px;
-    white-space: nowrap;
-  }
-  
-  .itemTitle {
-    font-size: clamp(20px, 5vw, 26px);
-  }
-  
-  .itemOrg {
-    font-size: clamp(15px, 4vw, 18px);
-  }
-  
-  .itemDesc {
-    font-size: clamp(15px, 4vw, 17px);
-  }
-}
-
-/* Ultra-wide screens */
-@media (min-width: 1600px) {
-  .wrapper {
-    max-width: 1500px;
-  }
-  
-  .grid {
-    gap: 48px;
-  }
-  
-  .card {
-    min-height: 460px;
-  }
-  
-  .media {
-    height: 320px;
-  }
-}
-
-.backIconBtn {
-  background: none;
-  border: none;
-  padding: 0;
-  width: auto;
-  height: auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin-right: 20px;
-  outline: none;
-  position: relative;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
-}
-
-.backIconSvg {
-  display: block;
-  color: var(--accent);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 24px;
 }

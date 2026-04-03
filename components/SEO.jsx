@@ -1,19 +1,21 @@
+/* eslint-disable react/prop-types */
 import Head from 'next/head'
 
 export default function SEO({
-  title = 'Gaurav Mishra - UX/UI Designer & Frontend Developer | SRMIST',
-  description = 'Gaurav Mishra is a UX/UI designer and frontend developer at SRMIST. Co-founder of Studique (15,000+ students). Expert in React, Next.js, and product design. Samsung & Apple iOS Developer Program alumni.',
-  keywords = 'Gaurav Mishra, Gaurav Mishra SRMIST, Gaurav SRM, Gaurav Mishra portfolio, UX Designer SRMIST, Studique founder, Studique SRM, UI Designer, Frontend Developer, Web Developer SRMIST, React Developer, Next.js, Computer Science SRMIST, Cyber Security, Samsung Intern, Apple Developer, Gaurav Mishra developer',
-  ogImage = '/assets/mascot.svg',
+  title = 'Gaurav Mishra | UX/UI Designer, Frontend & iOS Developer',
+  description = 'Portfolio of Gaurav Mishra - UX/UI designer, frontend and iOS developer from SRMIST. Builder of Studique (15,000+ users), Interact, LockR, herSpace, and projects across React, Next.js, SwiftUI, and product design.',
+  keywords = 'Gaurav Mishra, Gaurav Mishra portfolio, UX UI designer, frontend developer, iOS developer, SwiftUI developer, React developer, Next.js developer, product designer, full stack developer, Studique founder, SRMIST developer, Samsung PRISM, Apple Infosys iOS Developer Program, Infosys internship, Supabase, mobile app developer, web developer, IRCTC redesign, SRMConnect, LockR iOS, herSpace iOS, Interact app',
+  ogImage = '/icon.png',
   ogType = 'website',
   twitterCard = 'summary_large_image',
   canonicalUrl,
   author = 'Gaurav Mishra',
   robots = 'index, follow',
 }) {
-  const baseUrl = 'https://gauravmishra.dev' 
+  const baseUrl = 'https://gauravmishra.dev'
   const fullUrl = canonicalUrl || baseUrl
-  const fullImageUrl = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`
+  const normalizedImage = ogImage || '/icon.png'
+  const fullImageUrl = normalizedImage.startsWith('http') ? normalizedImage : `${baseUrl}${normalizedImage}`
 
   return (
     <Head>
@@ -24,6 +26,8 @@ export default function SEO({
       <meta name="keywords" content={keywords} />
       <meta name="author" content={author} />
       <meta name="robots" content={robots} />
+      <meta name="application-name" content="Gaurav Mishra Portfolio" />
+      <meta name="apple-mobile-web-app-title" content="Gaurav Portfolio" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="English" />
@@ -37,6 +41,7 @@ export default function SEO({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={fullImageUrl} />
+      <meta property="og:image:alt" content="Gaurav Mishra Portfolio" />
       <meta property="og:site_name" content="Gaurav Portfolio" />
       <meta property="og:locale" content="en_US" />
 
@@ -77,7 +82,6 @@ export default function SEO({
             sameAs: [
               'https://www.linkedin.com/in/mishragaurav08',
               'https://github.com/mishragaurav08',
-              'https://www.figma.com/@mishragaurav08',
               'https://www.instagram.com/mishragaurav08',
             ],
             knowsAbout: [
@@ -86,10 +90,13 @@ export default function SEO({
               'Frontend Development',
               'React',
               'Next.js',
+              'SwiftUI',
+              'iOS Development',
+              'Supabase',
               'Web Development',
-              'Cyber Security',
               'Product Design',
               'Studique',
+              'Samsung PRISM',
             ],
           }),
         }}

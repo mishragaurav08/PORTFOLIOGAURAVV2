@@ -1,13 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './Projects.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import projectsData from './projects.json';
 import CTAButton from './CTAButton';
 
 export default function Projects() {
-  const projects = projectsData.slice(0, 3);
+  const projects = projectsData;
 
   return (
     <section className={styles.wrapper} id="projects">
@@ -18,17 +16,8 @@ export default function Projects() {
         transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.5 }}
       >
-        <h2 className={styles.header}>Selected Work</h2>
-        <a
-          href="/projects"
-          className={styles.seeAll}
-          aria-label="View all projects"
-        >
-          <span className={styles.seeAllText}>
-            View all
-            <FontAwesomeIcon icon={faArrowRight} className={styles.seeAllIcon} aria-hidden />
-          </span>
-        </a>
+        <h2 className={styles.header}>What I Built</h2>
+        <p className={styles.intro}>This is the part where ideas turned into products, experiments, and lessons.</p>
       </motion.div>
 
       <div className={styles.grid}>
@@ -39,7 +28,7 @@ export default function Projects() {
           >
             <div className={styles.media} aria-label={`${p.title} project preview`}>
               <img
-                src={p.image || '/assets/default.png'}
+                src={p.image}
                 alt={`${p.title} project interface`}
                 loading="lazy"
               />

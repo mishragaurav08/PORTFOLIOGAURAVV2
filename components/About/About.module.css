@@ -6,91 +6,80 @@
   box-sizing: border-box;
 }
 
-.header {
-  font-weight: 800;
-  color: var(--black);
-  margin: 0 0 clamp(24px, 3vh, 32px) 0;
-  font-size: clamp(28px, 4.5vw, 48px);
-  font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  display: block;
-  width: 100%;
-}
-
 .card {
+  width: 100%;
+  border-radius: 20px;
   background: var(--accent);
   color: var(--black);
-  padding: clamp(32px, 4vw, 48px) clamp(28px, 4vw, 56px);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  padding: clamp(28px, 4vw, 48px) clamp(22px, 3.6vw, 56px);
+  transition: transform 260ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.card:hover {
+  transform: none;
+}
+
+.header {
+  margin: 0 0 clamp(14px, 2vh, 22px) 0;
+  color: var(--black);
+  font-size: var(--type-section-title);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+}
 
 .copy {
-  flex: 1;
-  margin-bottom: clamp(16px, 2vh, 24px);
+  margin-bottom: clamp(18px, 2vh, 28px);
 }
 
 .paragraph {
-  /* slightly reduced spacing between paragraphs for a denser layout */
-  margin: 0 0 0.5em 0;
-  font-size: clamp(18px, 2.2vw, 24px);
-  line-height: 1.7;
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-weight: 400;
+  margin: 0;
+  color: var(--black);
+  font-size: var(--type-body-lg);
+  line-height: 1.72;
+  font-weight: 500;
+  font-family: var(--font-body);
 }
 
 .paragraph strong {
   font-weight: 700;
-  color: var(--black);
 }
 
 .actions {
   display: flex;
-  align-items: center;
   justify-content: flex-end;
-  width: 100%;
+  align-items: center;
 }
 
 .resume,
 .resume[role="button"] {
   display: inline-flex;
   align-items: center;
-  gap: clamp(8px, 1.5vw, 14px);
-  padding: 12px 24px;
+  gap: 10px;
+  border: 2px solid var(--black);
+  border-radius: 10px;
   background: transparent;
   color: var(--black);
-  border-radius: 8px;
-  border: 3px solid var(--black);
+  padding: 12px 20px;
   text-decoration: none;
+  font-size: var(--type-btn);
   font-weight: 700;
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  font-size: clamp(16px, 1.6vw, 18px);
-  transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
-  white-space: nowrap;
+  line-height: 1;
   cursor: pointer;
+  transition: background 220ms cubic-bezier(0.4, 0, 0.2, 1), color 220ms cubic-bezier(0.4, 0, 0.2, 1), transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--font-body);
 }
 
-/* reset native button styles when .resume used on a button element */
 .resume[type="button"] {
   appearance: none;
   -webkit-appearance: none;
-  /* keep border from the main .resume rule so visuals stay identical */
-  background: transparent;
-  padding: 12px 24px;
 }
 
 .resume:hover {
   background: var(--black);
   color: var(--accent);
-  border-color: var(--black);
-}
-
-.resume:active {
-  transform: translateY(0);
+  transform: none;
 }
 
 .resumeText {
@@ -98,160 +87,36 @@
   align-items: center;
 }
 
+.resumeIcon {
+  font-size: 1.05em;
+}
+
 .ctaArrow {
   display: inline-flex;
   align-items: center;
-  font-size: 1.05em;
-  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 760px) {
+  .card {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .resume,
+  .resume[role="button"] {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .resume:hover,
-  .resume:active {
+  .card,
+  .resume {
+    transition: none !important;
     transform: none !important;
-  }
-}
-
-.resume:focus-visible {
-  outline: none;
-  border-color: var(--black);
-  background: var(--black);
-  color: var(--accent);
-
-}
-
-.resumeIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.15em; /* scales with text */
-  line-height: 1;
-  color: inherit;
-}
-
-/* Tablet/Laptop */
-@media (max-width: 1024px) {
-  .wrapper {
-    padding: clamp(40px, 6vh, 64px) 24px;
-  }
-  
-  .card {
-    padding: clamp(28px, 4vw, 40px) clamp(24px, 3vw, 40px);
-  }
-  
-  .paragraph {
-    font-size: clamp(18px, 2vw, 22px);
-    line-height: 1.65;
-  }
-  
-  .actions {
-    min-width: 160px;
-  }
-}
-
-/* Tablet */
-@media (max-width: 880px) {
-  .card {
-    flex-direction: column;
-  }
-  
-  .actions {
-    justify-content: flex-end;
-    margin-top: 0;
-  }
-  
-  .resume {
-    margin-top: 0;
-    position: relative;
-    width: auto;
-  }
-}
-
-/* Mobile */
-@media (max-width: 640px) {
-  .wrapper {
-    padding: 32px 20px;
-    margin-bottom: 48px;
-  }
-  
-  .header {
-    margin-bottom: 20px;
-    font-size: clamp(24px, 7vw, 32px);
-  }
-  
-  .card {
-    padding: 24px 20px;
-    border-radius: 16px;
-  }
-  
-  .paragraph {
-    font-size: clamp(16px, 4vw, 18px);
-    line-height: 1.6;
-  }
-  
-  .actions {
-    justify-content: center;
-  }
-  
-  .resume {
-    width: 100%;
-    justify-content: center;
-    padding: 14px 20px;
-    font-size: 17px;
-  }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-  .headerRow {
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .ruleWrapper {
-    flex: 1;
-  }
-  
-  .card {
-    padding: 20px 16px;
-  }
-  
-  .paragraph {
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  
-  .resume {
-    padding: 16px;
-  }
-
-}
-
-/* Very Small Mobile */
-@media (max-width: 360px) {
-  .paragraph {
-    font-size: 15px;
-  }
-  
-  .resume {
-    padding: 14px;
-    font-size: 16px;
-  }
-  
-}
-
-/* Ultra-wide screens */
-@media (min-width: 1600px) {
-  .wrapper {
-    max-width: 1500px;
-  }
-  
-  .card {
-    padding: 56px 64px;
-  }
-  
-  .paragraph {
-    font-size: 26px;
-    line-height: 1.75;
   }
 }

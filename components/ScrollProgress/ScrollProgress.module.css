@@ -14,7 +14,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(134, 239, 172, 0.12);
+  background: rgba(var(--accent-rgb), 0.14);
 }
 
 .bar {
@@ -23,7 +23,7 @@
   transform-origin: left center;
   transform: scaleX(0);
 
-  background: linear-gradient(90deg, #86EFAC, #BBF7D0);
+  background: var(--gradient-main);
 
   transition: transform 0.12s cubic-bezier(0.1, 0.7, 0.1, 1);
 

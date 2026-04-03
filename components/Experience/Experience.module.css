@@ -6,157 +6,68 @@
   box-sizing: border-box;
 }
 
-.backIconBtn {
-  background: none;
-  border: none;
-  padding: 0;
-  width: auto;
-  height: auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin-right: 20px;
-  outline: none;
-  position: relative;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
-}
-
-.backIconSvg {
-  display: block;
-  color: var(--accent);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 24px;
-}
-
 .headerRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(16px, 2vw, 32px);
-  margin-bottom: clamp(40px, 5vh, 64px);
-  width: 100%;
+  margin-bottom: clamp(30px, 4vh, 54px);
 }
 
 .header {
+  margin: 0;
   font-weight: 800;
   color: var(--accent);
-  margin: 0;
-  font-size: clamp(32px, 5.5vw, 64px);
-  font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-size: var(--type-section-title);
   line-height: 1.1;
   letter-spacing: -0.02em;
-  flex-shrink: 0;
-}
-
-.seeAll {
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  color: var(--bg);
-  font-weight: 700;
-  font-size: clamp(15px, 1.5vw, 17px);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
-  padding: clamp(10px, 1.2vw, 12px) clamp(20px, 2.2vw, 28px);
-  border-radius: 8px;
-  background: var(--accent);
-  border: 2px solid var(--accent);
-  flex-shrink: 0;
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: clamp(6px, 1vw, 10px);
-}
-
-.seeAll:hover {
-  background: var(--bg);
-  color: var(--accent);
-}
-
-.seeAllText {
-  display: inline-flex;
-  align-items: center;
-}
-
-.seeAllIcon {
-  margin-left: 8px;
-  display: inline-flex;
-  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.ctaArrow {
-  display: inline-flex;
-  align-items: center;
-  font-size: 1.05em;
-  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--font-display);
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: clamp(28px, 4vh, 40px);
+  gap: clamp(22px, 3.2vh, 34px);
 }
 
 .item {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(16px, 2vh, 20px);
-  padding: clamp(24px, 3.5vh, 32px) clamp(28px, 3.5vw, 36px);
-  background: var(--bg);
+  padding: clamp(22px, 3.2vh, 30px) clamp(22px, 3.2vw, 34px);
   border-radius: 16px;
   border: 2px solid var(--border);
-  transition: border 500ms cubic-bezier(0.4, 0, 0.2, 1), background 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  z-index: 1;
+  background: var(--bg);
+  transition: border 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .item:hover {
-  border: 2px solid transparent;
-  background:
-    linear-gradient(var(--bg), var(--bg)) padding-box,
-  linear-gradient(90deg, var(--bg), var(--accent), var(--bg)) border-box;
-  background-size: 200% 100%;
-  animation: borderFlow 1.5s linear infinite;
-}
-
-@keyframes borderFlow {
-  0% {
-    background-position: 100% 0;
-  }
-  100% {
-    background-position: -100% 0;
-  }
+  border-color: var(--accent);
+  transform: none;
 }
 
 .itemHeader {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: clamp(16px, 2vw, 24px);
+  gap: 14px;
+  margin-bottom: 12px;
 }
 
 .titleWrapper {
-  flex: 1;
   min-width: 0;
+  flex: 1;
 }
 
 .itemTitle {
-  font-size: clamp(20px, 2.5vw, 26px);
-  font-weight: 800;
+  margin: 0 0 6px 0;
   color: var(--white);
-  font-family: 'Big Shoulders Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-size: var(--type-card-title);
   line-height: 1.1;
-  margin: 0 0 8px 0;
+  font-weight: 800;
   letter-spacing: -0.01em;
+  font-family: var(--font-display);
 }
 
 .itemOrg {
   color: var(--accent);
-  font-size: clamp(14px, 1.6vw, 17px);
-  font-weight: 600;
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-size: var(--type-body);
   line-height: 1.4;
+  font-weight: 600;
+  font-family: var(--font-body);
 }
 
 .dateWrapper {
@@ -165,241 +76,48 @@
 }
 
 .itemDate {
+  display: inline-flex;
+  align-items: center;
   color: var(--accent);
-  font-size: clamp(13px, 1.5vw, 16px);
-  font-weight: 700;
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  white-space: nowrap;
   background: rgba(var(--neon-rgb), 0.1);
-  padding: 6px 14px;
+  border: 1px solid rgba(var(--neon-rgb), 0.24);
   border-radius: 8px;
-  border: 1px solid rgba(var(--neon-rgb), 0.2);
+  padding: 6px 12px;
+  white-space: nowrap;
+  font-size: var(--type-meta);
+  font-weight: 700;
+  font-family: var(--font-body);
 }
 
 .itemDesc {
-  color: var(--text-muted);
-  font-size: clamp(14px, 1.6vw, 16px);
-  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  line-height: 1.65;
   margin: 0;
-  max-width: 90%;
+  white-space: normal;
+  max-width: 100%;
+  color: var(--text-muted);
+  font-size: var(--type-body);
+  line-height: 1.7;
+  font-family: var(--font-body);
 }
 
-/* Tablet/Laptop */
-@media (max-width: 1024px) {
-  .wrapper {
-    padding: clamp(40px, 6vh, 64px) 24px;
-  }
-  
-  .item {
-    padding: clamp(18px, 2.5vh, 24px) clamp(20px, 2.5vw, 28px);
-  }
-  
-  .itemDesc {
-    max-width: 95%;
-  }
-}
-
-/* Tablet */
-@media (max-width: 880px) {
-  .headerRow {
-    gap: clamp(12px, 2vw, 20px);
-    margin-bottom: clamp(24px, 3vh, 36px);
-  }
-  
-  /* ONLY CHANGE: Remove flex-direction column to keep date on right */
-  .itemHeader {
-    flex-direction: row; /* Changed from column to row */
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: clamp(16px, 2vw, 24px);
-  }
-  
-  /* ONLY CHANGE: Keep date at top right, not full width */
-  .dateWrapper {
-    flex-shrink: 0;
-    text-align: right;
-    width: auto; /* Changed from 100% to auto */
-  }
-  
-  .itemDate {
-    display: inline-block; /* Keep as is */
-  }
-  
-  .itemDesc {
-    max-width: 100%;
-  }
-}
-
-/* Mobile */
-@media (max-width: 640px) {
-  .headerRow {
-    gap: 12px;
-    margin-bottom: 32px;
-  }
-
-  .list {
-    gap: 24px;
-  }
-  
+@media (max-width: 760px) {
   .item {
     padding: 20px;
-    border-radius: 12px;
   }
-  
-  /* ONLY CHANGE: Keep date on right in mobile too */
+
   .itemHeader {
-    flex-direction: row; /* Keep as row */
-    gap: 12px;
+    flex-direction: column;
     align-items: flex-start;
-  }
-  
-  .dateWrapper {
-    flex-shrink: 0;
-    text-align: right;
-  }
-  
-  .itemDate {
-    font-size: clamp(15px, 4vw, 18px);
-    padding: 5px 12px;
-    white-space: nowrap;
-  }
-  
-  .itemTitle {
-    font-size: clamp(20px, 5vw, 26px);
-  }
-  
-  .itemOrg {
-    font-size: clamp(15px, 4vw, 18px);
-  }
-  
-  .itemDesc {
-    font-size: clamp(15px, 4vw, 17px);
-  }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-  .headerRow {
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: nowrap;
     gap: 10px;
-    margin-bottom: 32px;
   }
-  
-  .header {
-    font-size: clamp(24px, 7vw, 32px);
-  }
-  
-  .seeAll {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-  
-  .item {
-    padding: 18px;
-  }
-  
-  /* ONLY CHANGE: Keep date on right in small mobile */
-  .itemHeader {
-    flex-direction: row; /* Keep as row */
-  }
-  
-  .dateWrapper {
-    flex-shrink: 0;
-    text-align: right;
-  }
-  
-  .itemTitle {
-    font-size: 20px;
-  }
-  
-  .itemOrg {
-    font-size: 15px;
-  }
-  
-  .itemDate {
-    font-size: 15px;
-  }
-  
-  .itemDesc {
-    font-size: 15px;
-  }
-}
 
-/* Very Small Mobile */
-@media (max-width: 360px) {
-  
-  .item {
-    padding: 16px;
-  }
-  
-  /* ONLY CHANGE: Keep date on right in very small mobile */
-  .itemHeader {
-    flex-direction: row; /* Keep as row */
-    gap: 8px;
-  }
-  
   .dateWrapper {
-    flex-shrink: 0;
-  }
-  
-  .itemTitle {
-    font-size: 18px;
-  }
-  
-  .itemOrg {
-    font-size: 14px;
-  }
-  
-  .itemDate {
-    font-size: 14px;
-    padding: 4px 10px;
-  }
-  
-  .itemDesc {
-    font-size: 14px;
-    line-height: 1.5;
-  }
-}
-
-/* Ultra-wide screens */
-@media (min-width: 1600px) {
-  .wrapper {
-    max-width: 1500px;
-  }
-  
-  .list {
-    gap: 48px;
-  }
-  
-  .item {
-    padding: 32px 40px;
-  }
-  
-  .itemTitle {
-    font-size: 34px;
-  }
-  
-  .itemOrg {
-    font-size: 22px;
-  }
-  
-  .itemDate {
-    font-size: 22px;
-  }
-  
-  .itemDesc {
-    font-size: 20px;
-    line-height: 1.7;
-    max-width: 85%;
+    text-align: left;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .item:hover {
-    transform: none !important;
+  .item {
     transition: none !important;
+    transform: none !important;
   }
 }

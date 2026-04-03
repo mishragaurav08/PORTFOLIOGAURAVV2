@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Contact.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faGithub, faFigma, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin, faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
 import * as analytics from '../../lib/analytics';
 
@@ -10,9 +10,9 @@ export default function Contact() {
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText('hello.gauravdev@gmail.com');
+      await navigator.clipboard.writeText('gaurav84294372@gmail.com');
       setCopied(true);
-      setTimeout(() => setCopied(false), 200000);
+      setTimeout(() => setCopied(false), 2200);
       // Track email copy event
       analytics.trackButtonClick('Copy Email');
     } catch (err) {
@@ -29,16 +29,16 @@ export default function Contact() {
       <div className={styles.card}>
         <div className={styles.left}>
           <div className={styles.headingWrapper}>
-            <h2 className={styles.heading}>Get in Touch</h2>
+            <h2 className={styles.heading}>Let us talk</h2>
             <span className={styles.availabilityBadge}>Open to opportunities</span>
           </div>
           <p className={styles.desc}>
-            If you're building something meaningful or just want to talk product, startups, or design - I'd love to hear from you.
+            If you are building something meaningful, I would love to hear about it. Product, design, engineering, or early-stage ideas, I am always up for a real conversation.
           </p>
-          <p className={styles.responseTime}>I usually respond within 24 hours.</p>
+          <p className={styles.responseTime}>I usually reply within 24 hours.</p>
         </div>
         <div className={styles.right}>
-          <div className={styles.socialLabel}>Around the web</div>
+          <div className={styles.socialLabel}>Elsewhere</div>
           <div className={styles.socialIcons}>
             <a 
               href="https://www.linkedin.com/in/mishragaurav08" 
@@ -59,15 +59,6 @@ export default function Contact() {
               <FontAwesomeIcon icon={faGithub} size="2x" />
             </a>
             <a 
-              href="https://www.figma.com/@mishragaurav08" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              aria-label="Figma"
-              onClick={() => handleSocialClick('Figma')}
-            >
-              <FontAwesomeIcon icon={faFigma} size="2x" />
-            </a>
-            <a 
               href="https://www.instagram.com/mishragaurav08/" 
               target="_blank" 
               rel="noopener noreferrer" 
@@ -80,9 +71,9 @@ export default function Contact() {
           <button
             onClick={handleCopyEmail}
             className={styles.ctaBtn}
-            aria-label={`Copy email address: hello.gauravdev@gmail.com`}
+            aria-label={`Copy email address: gaurav84294372@gmail.com`}
           >
-            <span className={styles.ctaText}>{copied ? 'Email copied!' : 'hello.gauravdev@gmail.com'}</span>
+            <span className={styles.ctaText}>{copied ? 'Email copied!' : 'gaurav84294372@gmail.com'}</span>
             {copied ? (
               <FontAwesomeIcon icon={faCheck} className={styles.ctaIcon} aria-hidden />
             ) : (
@@ -94,7 +85,7 @@ export default function Contact() {
             {copied ? 'Email copied!' : ''}
           </div>
           <a
-            href="mailto:hello.gauravdev@gmail.com?subject=Project%20Inquiry%20from%20Portfolio"
+            href="mailto:gaurav84294372@gmail.com?subject=Project%20Inquiry%20from%20Portfolio"
             className={styles.mailFallback}
             aria-hidden="true"
             tabIndex={-1}

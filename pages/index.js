@@ -6,15 +6,15 @@ import Experience from '../components/Experience/Experience'
 import Thoughts from '../components/Thoughts/Thoughts'
 import Contact from '../components/Contact/Contact'
 import Footer from '../components/Footer/Footer'
-import SEO from '../components/SEO'
+import Seo from '../components/SEO'
 
 export default function Home() {
   return (
     <>
-      <SEO 
-        title="Gaurav Mishra - UX/UI Designer & Frontend Developer | SRMIST Portfolio"
-        description="Gaurav Mishra - UX/UI Designer and Frontend Developer at SRMIST. Co-founder of Studique (15,000+ students). Specialized in React, Next.js, and product design. View my portfolio, projects, and experience."
-        keywords="Gaurav Mishra, Gaurav Mishra SRMIST, Gaurav SRM, Studique, Studique SRM, portfolio, UX designer SRMIST, frontend developer, web developer"
+      <Seo 
+        title="Gaurav Mishra Portfolio | UX/UI Designer, Frontend & iOS Developer"
+        description="Explore Gaurav Mishra's portfolio: UX/UI design, frontend and iOS projects, Samsung PRISM research, Infosys internship, and products like Studique, Interact, LockR, and herSpace."
+        keywords="Gaurav Mishra portfolio, UX UI designer portfolio, frontend developer portfolio, iOS developer portfolio, React Next.js developer, SwiftUI projects, Samsung PRISM, Infosys internship, Studique founder, SRMIST"
         canonicalUrl="https://gauravmishra.dev"
       />
       <div id="hero">
@@ -27,10 +27,10 @@ export default function Home() {
         <Projects />
       </div>
       <div id="experience">
-        <Experience limit={2} />
+        <Experience />
       </div>
       <div id="thoughts">
-        <Thoughts limit={3} />
+        <Thoughts />
       </div>
       <div id="contact">
         <Contact />
