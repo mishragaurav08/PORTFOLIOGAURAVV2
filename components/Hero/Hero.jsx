@@ -42,7 +42,7 @@ export default function Hero() {
   }
 
   return (
-    <main className={styles.container}>
+    <main className={styles.container} id="hero">
       <div className={styles.wrapper}>
         <motion.section
           className={styles.center}
@@ -92,16 +92,10 @@ export default function Hero() {
         </motion.section>
       </div>
       <div className={styles.scrollWrapper}>
-        <button
-          type="button"
+        <a
+          href="#about"
           className={styles.scrollIndicator}
-          aria-label="Scroll to next section"
-          onClick={() => {
-            if (globalThis.window !== undefined) {
-              const behavior = reduce ? 'auto' : 'smooth'
-              globalThis.window.scrollTo({ top: globalThis.window.scrollY + globalThis.window.innerHeight, behavior })
-            }
-          }}
+          aria-label="Go to about section"
         >
           {reduce ? (
             <motion.div className={styles.indicatorFill} aria-hidden="true" style={{ y: '0%' }} />
@@ -113,7 +107,7 @@ export default function Hero() {
               transition={{ duration: 1.6, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
             />
           )}
-        </button>
+        </a>
         <div className={styles.scrollText}>Step inside</div>
       </div>
     </main>

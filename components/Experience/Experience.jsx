@@ -65,7 +65,7 @@ export default function Experience() {
   );
 
   return (
-    <section className={styles.wrapper}>
+    <section className={styles.wrapper} id="experience">
       {content}
     </section>
   );

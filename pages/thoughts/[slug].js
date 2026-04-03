@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -14,30 +14,11 @@ export default function ThoughtPage({ thought }) {
   const router = useRouter();
   const { slug } = thought;
 
-  useEffect(() => {
-    if (globalThis.window === undefined) return;
-
-    const forceTop = () => {
-      globalThis.window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    };
-
-    forceTop();
-    const rafId = globalThis.requestAnimationFrame(() => {
-      forceTop();
-    });
-    const timeoutId = globalThis.setTimeout(() => {
-      forceTop();
-    }, 120);
-
-    return () => {
-      globalThis.cancelAnimationFrame(rafId);
-      globalThis.clearTimeout(timeoutId);
-    };
-  }, [slug]);
-
   const handleBack = () => {
+    if (globalThis.window !== undefined && globalThis.window.history.length > 1) {
+      router.back();
+      return;
+    }
     router.push('/');
   };
 
@@ -177,11 +158,6 @@ export default function ThoughtPage({ thought }) {
                         href={`/thoughts/${o.slug}`}
                         className={styles.readMore}
                         aria-label={`Read ${o.title}`}
-                        onClick={() => {
-                          if (globalThis.window !== undefined) {
-                            globalThis.window.scrollTo(0, 0);
-                          }
-                        }}
                       >
                         <span className={styles.readText}>Read</span>
                         <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />

@@ -21,29 +21,10 @@ export default function App({ Component, pageProps }) {
   }, [])
 
   useEffect(() => {
-    // Track page views and scroll to top on route change
+    // Track page views on route change.
     const handleRouteChange = (url) => {
       analytics.pageview(url);
-      if (globalThis.window !== undefined) {
-        const forceTop = () => {
-          globalThis.window.scrollTo(0, 0);
-          document.documentElement.scrollTop = 0;
-          document.body.scrollTop = 0;
-        };
-
-        forceTop();
-        globalThis.requestAnimationFrame(() => {
-          forceTop();
-        });
-        globalThis.setTimeout(() => {
-          forceTop();
-        }, 120);
-      }
     };
-
-    if (globalThis.window !== undefined && 'scrollRestoration' in globalThis.window.history) {
-      globalThis.window.history.scrollRestoration = 'manual';
-    }
 
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {

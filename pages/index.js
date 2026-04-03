@@ -17,24 +17,12 @@ export default function Home() {
         keywords="Gaurav Mishra portfolio, UX UI designer portfolio, frontend developer portfolio, iOS developer portfolio, React Next.js developer, SwiftUI projects, Samsung PRISM, Infosys internship, Studique founder, SRMIST"
         canonicalUrl="https://gauravmishra.dev"
       />
-      <div id="hero">
-        <Hero />
-      </div>
-      <div id="about">
-        <About />
-      </div>
-      <div id="projects">
-        <Projects />
-      </div>
-      <div id="experience">
-        <Experience />
-      </div>
-      <div id="thoughts">
-        <Thoughts />
-      </div>
-      <div id="contact">
-        <Contact />
-      </div>
+      <Hero />
+      <About />
+      <Projects />
+      <Experience />
+      <Thoughts />
+      <Contact />
       <Footer />
     </>
   )
