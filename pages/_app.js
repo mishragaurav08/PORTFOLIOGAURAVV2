@@ -25,9 +25,26 @@ export default function App({ Component, pageProps }) {
     const handleRouteChange = (url) => {
       analytics.pageview(url);
       if (globalThis.window !== undefined) {
-        globalThis.window.scrollTo({ top: 0, behavior: 'smooth' });
+        const forceTop = () => {
+          globalThis.window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        };
+
+        forceTop();
+        globalThis.requestAnimationFrame(() => {
+          forceTop();
+        });
+        globalThis.setTimeout(() => {
+          forceTop();
+        }, 120);
       }
     };
+
+    if (globalThis.window !== undefined && 'scrollRestoration' in globalThis.window.history) {
+      globalThis.window.history.scrollRestoration = 'manual';
+    }
+
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);

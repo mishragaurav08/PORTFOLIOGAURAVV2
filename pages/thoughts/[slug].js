@@ -53,6 +53,17 @@ export default function ThoughtPage() {
     && 'speechSynthesis' in globalThis.window
     && 'SpeechSynthesisUtterance' in globalThis.window
   );
+  const isPhoneDevice = useMemo(() => {
+    if (globalThis.window === undefined) return false;
+
+    const ua = globalThis.navigator?.userAgent || '';
+    const isPhoneUa = /Android|iPhone|iPod|Windows Phone|Mobile/i.test(ua);
+    const isSmallTouchViewport = globalThis.window.matchMedia('(max-width: 900px)').matches
+      && (globalThis.navigator?.maxTouchPoints || 0) > 0;
+
+    return isPhoneUa || isSmallTouchViewport;
+  }, []);
+  const isTtsAllowed = isThoughtRoute && !isPhoneDevice;
 
   const stripMarkdown = useCallback((text = '') => {
     return text.replaceAll(/\*\*(.*?)\*\*/g, '$1').replaceAll(/\s+/g, ' ').trim();
@@ -164,7 +175,7 @@ export default function ThoughtPage() {
   }, [hasSpeechApi, preferredVoice, readableLines]);
 
   const startReading = useCallback(() => {
-    if (!isThoughtRoute || !isSpeechSupported || readableLines.length === 0 || !hasSpeechApi) return;
+    if (!isTtsAllowed || !isSpeechSupported || readableLines.length === 0 || !hasSpeechApi) return;
 
     stopRequestedRef.current = false;
     fallbackTriedRef.current = false;
@@ -211,7 +222,7 @@ export default function ThoughtPage() {
         speakLine(0, true);
       }
     }, 900);
-  }, [hasSpeechApi, isSpeechSupported, isThoughtRoute, readableLines.length, speakLine, voices.length]);
+  }, [hasSpeechApi, isSpeechSupported, isTtsAllowed, readableLines.length, speakLine, voices.length]);
 
   const pauseReading = useCallback(() => {
     if (!hasSpeechApi || !isReading) return;
@@ -270,10 +281,10 @@ export default function ThoughtPage() {
   }, [stopReading, slug]);
 
   useEffect(() => {
-    if (isThoughtRoute) return;
+    if (isTtsAllowed) return;
     stopReading();
     setCurrentLineIndex(-1);
-  }, [isThoughtRoute, stopReading]);
+  }, [isTtsAllowed, stopReading]);
 
   useEffect(() => {
     if (globalThis.window === undefined) return;
@@ -478,7 +489,7 @@ export default function ThoughtPage() {
         })()}
       </section>
 
-      {isThoughtRoute && (
+      {isTtsAllowed && (
       <div className={styles.readerFabWrap} aria-live="polite">
         {!isReading && (
           <button
