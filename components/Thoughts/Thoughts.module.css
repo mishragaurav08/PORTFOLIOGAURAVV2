@@ -388,6 +388,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .carouselTrack {
+    animation: none !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+
   .card:hover,
   .readMore:hover,
   .arrow {
@@ -423,10 +428,15 @@
   justify-content: center;
   cursor: pointer;
   margin-right: 20px;
-  outline: none;
   position: relative;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
+}
+
+.backIconBtn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 6px;
 }
 
 .backIconSvg {

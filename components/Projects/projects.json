@@ -31,7 +31,7 @@
   },
   {
     "id": 4,
-    "title": "LockR (iOS)",
+    "title": "LockR",
     "tag": "iOS APP",
     "desc": "I built LockR as a privacy-first iOS document manager. It runs fully offline with on-device OCR and local search, with no cloud or tracking.",
     "pill": "demo",
@@ -41,7 +41,7 @@
   },
   {
     "id": 5,
-    "title": "herSpace (iOS)",
+    "title": "herSpace",
     "tag": "iOS APP",
     "desc": "I built herSpace as a privacy-first iOS cycle tracker. It works fully offline with prediction logic and a calm interface designed for trust.",
     "pill": "demo",

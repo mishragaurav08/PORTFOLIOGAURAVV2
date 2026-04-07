@@ -56,7 +56,7 @@ export default function Hero() {
             variants={floatText}
             initial="hidden"
             whileInView="show"
-            animate="float"
+            animate={reduce ? undefined : 'float'}
           >
             This is
           </motion.p>
@@ -84,7 +84,7 @@ export default function Hero() {
             variants={floatText}
             initial="hidden"
             whileInView="show"
-            animate="float"
+            animate={reduce ? undefined : 'float'}
           >
             I am currently building <span style={{ color: 'var(--accent)', fontWeight: 600 }}>Interact</span>.
             <br />Keep scrolling and I will walk you through the journey.

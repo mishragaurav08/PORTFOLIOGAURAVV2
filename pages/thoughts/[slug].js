@@ -14,6 +14,12 @@ export default function ThoughtPage({ thought }) {
   const router = useRouter();
   const { slug } = thought;
 
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
+  }, [slug]);
+
   const handleBack = () => {
     if (globalThis.window !== undefined && globalThis.window.history.length > 1) {
       router.back();
@@ -156,6 +162,7 @@ export default function ThoughtPage({ thought }) {
                     ) : (
                       <Link
                         href={`/thoughts/${o.slug}`}
+                        scroll
                         className={styles.readMore}
                         aria-label={`Read ${o.title}`}
                       >

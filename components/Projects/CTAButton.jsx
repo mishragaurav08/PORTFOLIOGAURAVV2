@@ -23,7 +23,7 @@ function getIcon(type) {
 
 const CTAButton = ({ type, href, children }) => {
   const baseClass = `${styles.ctaBtn} ${styles[type]}`;
-  const isDisabled = type === 'inprogress';
+  const isDisabled = type === 'inprogress' || (type !== 'inprogress' && !href);
   const icon = getIcon(type);
 
   if (isDisabled) {

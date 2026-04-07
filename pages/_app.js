@@ -36,6 +36,9 @@ export default function App({ Component, pageProps }) {
     const onDocumentClick = (event) => {
       const trigger = event.target.closest('[data-open-resume]')
       if (!trigger) return
+      if (event.defaultPrevented) return
+      if (event.button !== 0) return
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
       event.preventDefault()
       openResumeModal()
     }
@@ -45,6 +48,20 @@ export default function App({ Component, pageProps }) {
       document.removeEventListener('click', onDocumentClick)
     }
   }, [openResumeModal])
+
+  useEffect(() => {
+    const handleRouteScroll = (url) => {
+      if (url.includes('#')) return
+      if (url.startsWith('/thoughts/')) {
+        window.scrollTo(0, 0)
+      }
+    }
+
+    router.events.on('routeChangeComplete', handleRouteScroll)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteScroll)
+    }
+  }, [router.events])
 
   return (
     <>

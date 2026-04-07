@@ -7,16 +7,30 @@ import * as analytics from '../../lib/analytics';
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState('');
 
   const handleCopyEmail = async () => {
+    const email = 'gaurav84294372@gmail.com';
+    const fallbackMailto = 'mailto:gaurav84294372@gmail.com?subject=Project%20Inquiry%20from%20Portfolio';
+
+    if (!navigator?.clipboard?.writeText) {
+      setCopyError('Clipboard access is unavailable. Opening your mail app.');
+      setTimeout(() => setCopyError(''), 3000);
+      window.location.href = fallbackMailto;
+      return;
+    }
+
     try {
-      await navigator.clipboard.writeText('gaurav84294372@gmail.com');
+      await navigator.clipboard.writeText(email);
       setCopied(true);
+      setCopyError('');
       setTimeout(() => setCopied(false), 2200);
       // Track email copy event
       analytics.trackButtonClick('Copy Email');
     } catch (err) {
-      console.error('Failed to copy email:', err);
+      setCopyError('Could not copy email. Opening your mail app.');
+      setTimeout(() => setCopyError(''), 3000);
+      window.location.href = fallbackMailto;
     }
   };
 
@@ -82,8 +96,9 @@ export default function Contact() {
           </button>
           {/* Live region for announcing copy success to assistive tech */}
           <div aria-live="polite" role="status" className={styles.srOnly}>
-            {copied ? 'Email copied!' : ''}
+            {copied ? 'Email copied!' : copyError}
           </div>
+          {copyError && <p className={styles.copyError}>{copyError}</p>}
           <a
             href="mailto:gaurav84294372@gmail.com?subject=Project%20Inquiry%20from%20Portfolio"
             className={styles.mailFallback}

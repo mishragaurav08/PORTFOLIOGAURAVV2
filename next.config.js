@@ -1,3 +1,5 @@
+const thoughtsData = require('./components/Thoughts/thoughtsData.json')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -9,13 +11,15 @@ const nextConfig = {
   // Generate sitemap on build
   trailingSlash: false,
   async redirects() {
-    return [
-      {
-        source: '/thoughts/:slug',
-        destination: '/:slug',
-        permanent: true,
-      },
-    ]
+    const thoughtSlugs = thoughtsData
+      .map((thought) => thought?.slug)
+      .filter((slug) => typeof slug === 'string' && slug.length > 0)
+
+    return thoughtSlugs.map((slug) => ({
+      source: `/${slug}`,
+      destination: `/thoughts/${slug}`,
+      permanent: true,
+    }))
   },
 }
 
