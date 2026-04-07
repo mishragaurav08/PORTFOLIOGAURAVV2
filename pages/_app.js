@@ -57,6 +57,8 @@ export default function App({ Component, pageProps }) {
       if (event.defaultPrevented) return
       if (event.button !== 0) return
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      const isMobileLike = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches
+      if (isMobileLike) return
       event.preventDefault()
       openResumeModal()
     }

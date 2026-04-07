@@ -27,6 +27,8 @@ export default function About() {
           <a
             className={styles.resume}
             href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             data-open-resume
             aria-label="Open resume"
           >

@@ -45,17 +45,17 @@ export default function Projects() {
                   )}
                   {p.type === 'demo' && (
                     <CTAButton type="demo" href={p.link}>
-                      {p.link ? 'Live' : 'Coming Soon'}
+                      {p.link ? 'Live' : 'N/A'}
                     </CTAButton>
                   )}
                   {p.type === 'design' && (
                     <CTAButton type="design" href={p.link}>
-                      {p.link ? 'Design' : 'Coming Soon'}
+                      {p.link ? 'Design' : 'N/A'}
                     </CTAButton>
                   )}
                   {p.type === 'github' && (
                     <CTAButton type="github" href={p.link}>
-                      {p.link ? 'GitHub' : 'Coming Soon'}
+                      {p.link ? 'GitHub' : 'N/A'}
                     </CTAButton>
                   )}
                 </div>

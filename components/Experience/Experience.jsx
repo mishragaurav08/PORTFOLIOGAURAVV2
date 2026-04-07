@@ -25,7 +25,7 @@ const experiences = [
   {
     title: 'UX/UI Designer',
     org: 'Independent Work',
-    date: 'Freelance / Contract',
+    date: 'Freelance',
     desc: `Alongside development, I worked on design projects for apps and early-stage products. From interfaces to brand systems and Play Store assets, I helped shape how products look, feel, and communicate. That is where I learned that good design is not decoration, it is clarity.`
   }
 ];
