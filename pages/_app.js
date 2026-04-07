@@ -73,7 +73,6 @@ export default function App({ Component, pageProps }) {
     const handleRouteScroll = (url) => {
       if (url.includes('#')) return
       if (url.startsWith('/thoughts/')) {
-        scrollToPageTop()
         if (rafId !== null) {
           cancelAnimationFrame(rafId)
         }
