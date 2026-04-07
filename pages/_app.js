@@ -8,6 +8,24 @@ import { Analytics } from "@vercel/analytics/next"
 import ScrollProgress from '../components/ScrollProgress/ScrollProgress'
 import ResumeModal from '../components/ResumeModal/ResumeModal'
 
+function scrollToPageTop() {
+  if (typeof window === 'undefined') return;
+
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+
+  const appRoot = document.getElementById('__next');
+  if (appRoot) {
+    appRoot.scrollTop = 0;
+  }
+
+  const scroller = document.scrollingElement;
+  if (scroller) {
+    scroller.scrollTop = 0;
+  }
+}
+
 export default function App({ Component, pageProps }) {
   const router = useRouter()
   const [isResumeOpen, setIsResumeOpen] = useState(false)
@@ -50,15 +68,24 @@ export default function App({ Component, pageProps }) {
   }, [openResumeModal])
 
   useEffect(() => {
+    let rafId = null
+
     const handleRouteScroll = (url) => {
       if (url.includes('#')) return
       if (url.startsWith('/thoughts/')) {
-        window.scrollTo(0, 0)
+        scrollToPageTop()
+        if (rafId !== null) {
+          cancelAnimationFrame(rafId)
+        }
+        rafId = requestAnimationFrame(scrollToPageTop)
       }
     }
 
     router.events.on('routeChangeComplete', handleRouteScroll)
     return () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
       router.events.off('routeChangeComplete', handleRouteScroll)
     }
   }, [router.events])

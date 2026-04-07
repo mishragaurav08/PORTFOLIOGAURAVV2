@@ -10,14 +10,35 @@ import thoughtsData from '../../components/Thoughts/thoughtsData.json';
 import Footer from '../../components/Footer/Footer';
 import Seo from '../../components/SEO';
 
+function scrollToPageTop() {
+  if (typeof window === 'undefined') return;
+
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+
+  const appRoot = document.getElementById('__next');
+  if (appRoot) {
+    appRoot.scrollTop = 0;
+  }
+
+  const scroller = document.scrollingElement;
+  if (scroller) {
+    scroller.scrollTop = 0;
+  }
+}
+
 export default function ThoughtPage({ thought }) {
   const router = useRouter();
   const { slug } = thought;
 
   React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.scrollTo(0, 0);
-    }
+    scrollToPageTop();
+    const rafId = requestAnimationFrame(scrollToPageTop);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+    };
   }, [slug]);
 
   const handleBack = () => {
