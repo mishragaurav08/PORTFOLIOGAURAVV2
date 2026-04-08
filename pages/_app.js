@@ -7,6 +7,7 @@ import * as analytics from '../lib/analytics'
 import { Analytics } from "@vercel/analytics/next"
 import ScrollProgress from '../components/ScrollProgress/ScrollProgress'
 import ResumeModal from '../components/ResumeModal/ResumeModal'
+import SoundController from '../components/Sound/SoundController'
 
 function scrollToPageTop() {
   if (typeof window === 'undefined') return;
@@ -101,6 +102,7 @@ export default function App({ Component, pageProps }) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </Head>
       <ScrollProgress />
+      <SoundController />
       <Component {...pageProps} />
       <ResumeModal isOpen={isResumeOpen} onClose={closeResumeModal} />
       <Analytics />

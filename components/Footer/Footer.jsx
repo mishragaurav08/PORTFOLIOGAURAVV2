@@ -22,6 +22,9 @@ export default function Footer() {
             <span className={styles.secondary}>Purposefully </span>
             <span className={styles.primary}>built</span>
           </div>
+          <p className={styles.audioCredit}>
+            Audio: <a href="https://www.scottbuckley.com.au/library/aurora/" target="_blank" rel="noopener noreferrer">Aurora by Scott Buckley (CC BY 4.0)</a>
+          </p>
         </div>
       </motion.div>
     </footer>

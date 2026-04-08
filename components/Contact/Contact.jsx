@@ -6,11 +6,11 @@ import { faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
 import * as analytics from '../../lib/analytics';
 
 export default function Contact() {
+  const email = 'gaurav84294372@gmail.com';
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState('');
 
   const handleCopyEmail = async () => {
-    const email = 'gaurav84294372@gmail.com';
     const fallbackMailto = 'mailto:gaurav84294372@gmail.com?subject=Project%20Inquiry%20from%20Portfolio';
 
     if (!navigator?.clipboard?.writeText) {
@@ -85,9 +85,9 @@ export default function Contact() {
           <button
             onClick={handleCopyEmail}
             className={styles.ctaBtn}
-            aria-label={`Copy email address: gaurav84294372@gmail.com`}
+            aria-label={`Copy email address: ${email}`}
           >
-            <span className={styles.ctaText}>{copied ? 'Email copied!' : 'gaurav84294372@gmail.com'}</span>
+            <span className={styles.ctaText}>{email}</span>
             {copied ? (
               <FontAwesomeIcon icon={faCheck} className={styles.ctaIcon} aria-hidden />
             ) : (
