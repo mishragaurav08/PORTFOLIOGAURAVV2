@@ -17,6 +17,17 @@ function estimateReadTime(content = []) {
   return Math.max(1, Math.ceil(words / 220));
 }
 
+function scrollToPageTop() {
+  if (typeof window === 'undefined') return;
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  const appRoot = document.getElementById('__next');
+  if (appRoot) appRoot.scrollTop = 0;
+  const scroller = document.scrollingElement;
+  if (scroller) scroller.scrollTop = 0;
+}
+
 export default function Thoughts() {
   const displayThoughts = thoughtsData;
 
@@ -53,7 +64,10 @@ export default function Thoughts() {
                 href={`/thoughts/${thought.slug}`}
                 className={styles.readMore}
                 aria-label={`Read ${thought.title}`}
-                onClick={() => analytics.trackCtaClick(`Read Thought - ${thought.title}`)}
+                onClick={() => {
+                  scrollToPageTop();
+                  analytics.trackCtaClick(`Read Thought - ${thought.title}`);
+                }}
               >
                 <span className={styles.readText}>Read</span>
                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />

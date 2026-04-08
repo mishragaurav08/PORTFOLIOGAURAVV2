@@ -119,26 +119,18 @@
 
 @media (max-width: 768px) {
   .carouselWrap {
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: thin;
+    overflow: hidden;
   }
 
   .carouselTrack {
     gap: 14px;
-    animation: none;
+    animation: carouselLoop 24s linear infinite;
     width: max-content;
   }
 
   .carouselItem {
     width: min(82vw, 360px);
     aspect-ratio: 16 / 10;
-    scroll-snap-align: start;
-  }
-
-  .carouselItemClone {
-    display: none;
   }
 
   .carouselImg {
@@ -398,11 +390,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .carouselWrap {
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-
   .carouselTrack {
     animation: none !important;
   }

@@ -29,18 +29,16 @@ function scrollToPageTop() {
   }
 }
 
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
 export default function ThoughtPage({ thought }) {
   const router = useRouter();
   const { slug } = thought;
   const articleUrl = `https://gauravmishra.dev/thoughts/${slug}`;
 
-  React.useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     scrollToPageTop();
-    const rafId = requestAnimationFrame(scrollToPageTop);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-    };
   }, [slug]);
 
   const enhancedContent = React.useMemo(() => {
