@@ -4,6 +4,3 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://gauravmishra.dev/sitemap.xml
-
-# Crawl-delay (optional, can help with server load)
-Crawl-delay: 1

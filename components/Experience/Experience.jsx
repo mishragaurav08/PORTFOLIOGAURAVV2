@@ -7,7 +7,7 @@ const experiences = [
   {
     title: 'Samsung PRISM',
     org: 'Samsung R&D Institute India',
-    date: "Mar'25 - Aug'25",
+    date: 'Internship',
     desc: `At Samsung PRISM, I explored how network traffic behaves at scale. I built machine learning pipelines to analyze packet data and tested models to classify traffic patterns in production-like scenarios. This experience taught me to think beyond code - about systems, data, and real-world impact.`
   },
   {
@@ -17,7 +17,7 @@ const experiences = [
     desc: `During my internship at Infosys, I worked on a fleet management iOS app with real-time vehicle tracking. I built key onboarding flows, from authentication to profile verification, and developed modular SwiftUI components with a Supabase backend. It was my first experience shipping something that had to feel production-ready from day one.`
   },
   {
-    title: 'Apple × Infosys iOS Developer Program',
+    title: 'iOS Developer Program',
     org: 'Apple x Infosys',
     date: 'Participant',
     desc: `This program is where I sharpened how I build for mobile. Working with SwiftUI, I focused on clean and performant interfaces while learning how real products are designed, iterated, and shipped. It was less about adding features and more about building them right.`
@@ -51,10 +51,12 @@ export default function Experience() {
             key={`${exp.title}-${exp.org}`}
           >
             <div className={styles.itemHeader}>
-              <h3 className={styles.itemTitle}>{exp.title}</h3>
+              <div className={styles.titleRow}>
+                <h3 className={styles.itemTitle}>{exp.title}</h3>
+                <div className={styles.itemDate}>{exp.date}</div>
+              </div>
               <div className={styles.metaRow}>
                 <div className={styles.itemOrg}>{exp.org}</div>
-                <div className={styles.itemDate}>{exp.date}</div>
               </div>
             </div>
             <p className={styles.itemDesc}>{exp.desc}</p>

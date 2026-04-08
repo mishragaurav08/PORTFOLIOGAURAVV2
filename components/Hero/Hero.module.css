@@ -104,7 +104,6 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  animation: trackPulse 2.4s infinite cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .indicatorFill {
@@ -115,6 +114,13 @@
   top: 0%;
   background: var(--accent);
   will-change: transform;
+  animation: indicatorSlide 1.6s ease-in-out infinite;
+}
+
+@keyframes indicatorSlide {
+  0% { transform: translateY(0%); opacity: 0.9; }
+  50% { transform: translateY(150%); opacity: 1; }
+  100% { transform: translateY(0%); opacity: 0.9; }
 }
 
 .scrollIndicator:focus {

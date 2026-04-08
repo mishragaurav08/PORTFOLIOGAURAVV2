@@ -3,8 +3,8 @@ import Head from 'next/head'
 
 export default function SEO({
   title = 'Gaurav Mishra | UX/UI Designer, Frontend & iOS Developer',
-  description = 'Portfolio of Gaurav Mishra - UX/UI designer, frontend and iOS developer from SRMIST. Builder of Studique (15,000+ users), Interact, LockR, herSpace, and projects across React, Next.js, SwiftUI, and product design.',
-  keywords = 'Gaurav Mishra, Gaurav Mishra portfolio, UX UI designer, frontend developer, iOS developer, SwiftUI developer, React developer, Next.js developer, product designer, full stack developer, Studique founder, SRMIST developer, Samsung PRISM, Apple Infosys iOS Developer Program, Infosys internship, Supabase, mobile app developer, web developer, IRCTC redesign, SRMConnect, LockR iOS, herSpace iOS, Interact app',
+  description = 'Portfolio of Gaurav Mishra - UX/UI designer, frontend and iOS developer from SRMIST. Builder of Studique (15,000+ users), Interact, herSpace, and projects across React, Next.js, SwiftUI, and product design.',
+  keywords = 'Gaurav Mishra, Gaurav Mishra portfolio, UX UI designer, frontend developer, iOS developer, SwiftUI developer, React developer, Next.js developer, product designer, full stack developer, Studique founder, SRMIST developer, Samsung PRISM, Apple Infosys iOS Developer Program, Infosys internship, Supabase, mobile app developer, web developer, IRCTC redesign, SRMConnect, herSpace iOS, Interact app',
   ogImage = '/icon.png',
   ogType = 'website',
   twitterCard = 'summary_large_image',
@@ -16,6 +16,7 @@ export default function SEO({
   const fullUrl = canonicalUrl || baseUrl
   const normalizedImage = ogImage || '/icon.png'
   const fullImageUrl = normalizedImage.startsWith('http') ? normalizedImage : `${baseUrl}${normalizedImage}`
+  const siteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
 
   return (
     <Head>
@@ -26,11 +27,13 @@ export default function SEO({
       <meta name="keywords" content={keywords} />
       <meta name="author" content={author} />
       <meta name="robots" content={robots} />
+      <meta name="googlebot" content={robots} />
       <meta name="application-name" content="Gaurav Mishra Portfolio" />
       <meta name="apple-mobile-web-app-title" content="Gaurav Portfolio" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="English" />
+      {siteVerification ? <meta name="google-site-verification" content={siteVerification} /> : null}
       
       {/* Canonical URL */}
       <link rel="canonical" href={fullUrl} />
@@ -98,6 +101,45 @@ export default function SEO({
               'Studique',
               'Samsung PRISM',
             ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'Gaurav Mishra Portfolio',
+            url: baseUrl,
+            inLanguage: 'en-US',
+            publisher: {
+              '@type': 'Person',
+              name: 'Gaurav Mishra',
+              url: baseUrl,
+            },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: title,
+            description,
+            url: fullUrl,
+            isPartOf: {
+              '@type': 'WebSite',
+              name: 'Gaurav Mishra Portfolio',
+              url: baseUrl,
+            },
+            about: {
+              '@type': 'Person',
+              name: 'Gaurav Mishra',
+              url: baseUrl,
+            },
           }),
         }}
       />

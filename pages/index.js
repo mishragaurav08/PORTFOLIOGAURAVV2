@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Seo 
         title="Gaurav Mishra Portfolio | UX/UI Designer, Frontend & iOS Developer"
-        description="Explore Gaurav Mishra's portfolio: UX/UI design, frontend and iOS projects, Samsung PRISM research, Infosys internship, and products like Studique, Interact, LockR, and herSpace."
+        description="Explore Gaurav Mishra's portfolio: UX/UI design, frontend and iOS projects, Samsung PRISM research, Infosys internship, and products like Studique, Interact, and herSpace."
         keywords="Gaurav Mishra portfolio, UX UI designer portfolio, frontend developer portfolio, iOS developer portfolio, React Next.js developer, SwiftUI projects, Samsung PRISM, Infosys internship, Studique founder, SRMIST"
         canonicalUrl="https://gauravmishra.dev"
       />

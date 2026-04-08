@@ -6,6 +6,8 @@
   box-sizing: border-box;
 }
 
+/* Reading header removed per request */
+
 .header {
   font-weight: 800;
   color: var(--accent);
@@ -17,7 +19,7 @@
 }
 
 .sectionIntro {
-  margin: 0 0 clamp(30px, 4vh, 52px) 0;
+  margin: 0 0 var(--space-4) 0;
   max-width: 720px;
   color: var(--text-muted);
   font-size: var(--type-body-lg);
@@ -28,13 +30,21 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: clamp(24px, 3vw, 40px);
+  gap: var(--space-3);
+}
+
+.emptyState {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  color: var(--text-muted);
+  font-family: var(--font-body);
 }
 
 .card {
   background: var(--bg);
-  border-radius: 16px;
-  padding: clamp(28px, 3.8vw, 36px);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
   border: 2px solid var(--border);
   transition: border 400ms cubic-bezier(0.4, 0, 0.2, 1), background 400ms cubic-bezier(0.4, 0, 0.2, 1), transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
@@ -49,6 +59,7 @@
 
 /* Carousel for images in thoughts */
 .carouselWrap {
+  --carousel-gap: clamp(18px, 3vw, 32px);
   width: 100%;
   overflow: hidden;
   margin: clamp(24px, 4vh, 36px) 0;
@@ -59,9 +70,9 @@
 .carouselTrack {
   display: flex;
   width: max-content;
-  animation: scroll-carousel 34s linear infinite;
-  gap: clamp(18px, 3vw, 32px);
+  gap: var(--carousel-gap);
   will-change: transform;
+  animation: carouselLoop 34s linear infinite;
 }
 
 .carouselItem {
@@ -69,12 +80,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(240px, 30vw, 420px);
+  width: clamp(260px, 30vw, 520px);
   aspect-ratio: 16 / 10;
   border-radius: 8px;
   overflow: hidden;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
   border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.carouselWrap:hover .carouselTrack,
+.carouselWrap:focus-within .carouselTrack {
+  animation-play-state: paused;
+}
+
+@keyframes carouselLoop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .carouselImg {
@@ -93,14 +118,27 @@
 }
 
 @media (max-width: 768px) {
+  .carouselWrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+
   .carouselTrack {
     gap: 14px;
-    animation-duration: 26s;
+    animation: none;
+    width: max-content;
   }
 
   .carouselItem {
     width: min(82vw, 360px);
     aspect-ratio: 16 / 10;
+    scroll-snap-align: start;
+  }
+
+  .carouselItemClone {
+    display: none;
   }
 
   .carouselImg {
@@ -117,7 +155,6 @@
 
   .carouselTrack {
     gap: 10px;
-    animation-duration: 22s;
   }
 
   .carouselItem {
@@ -127,16 +164,6 @@
 
   .carouselImg {
     border-radius: 7px;
-  }
-}
-
-@keyframes scroll-carousel {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  100% {
-    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -192,6 +219,17 @@
   margin: 0;
 }
 
+.meta {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: var(--type-meta);
+  font-weight: 700;
+}
+
 .readMore {
   display: inline-flex;
   align-items: center;
@@ -237,34 +275,6 @@
   align-self: flex-start;
   position: relative;
   overflow: hidden;
-}
-
-.comingSoonBadge::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(var(--accent-alt-rgb), 0.28) 0%, transparent 70%);
-  transform: translate(-50%, -50%) scale(0);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.5);
-    opacity: 0;
-  }
-}
-
-.comingSoonBadge span {
-  position: relative;
-  z-index: 1;
 }
 
 /* Tablet/Laptop */
@@ -388,9 +398,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .carouselWrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
   .carouselTrack {
     animation: none !important;
-    transform: translate3d(0, 0, 0) !important;
   }
 
   .card:hover,
@@ -457,6 +471,28 @@
   flex-shrink: 0;
 }
 
+.titleWrap {
+  min-width: 0;
+}
+
+.thoughtMeta {
+  margin: var(--space-1) 0 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: var(--type-meta);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .thoughtMeta {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
+
 .thoughtCard {
   background: var(--bg);
   border: 2px solid var(--border);
@@ -470,7 +506,10 @@
   flex-direction: column;
   gap: clamp(14px, 2vh, 20px);
   width: 100%;
+  max-width: none;
 }
+
+/* Selection styling removed per request */
 
 .contentParagraph {
   color: var(--text-main);
@@ -479,7 +518,6 @@
   line-height: 1.85;
   letter-spacing: 0.004em;
   margin: 0;
-  transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .contentParagraph strong {
@@ -495,7 +533,6 @@
   margin: clamp(34px, 5vh, 52px) 0 clamp(10px, 1.4vh, 14px) 0;
   line-height: 1.22;
   letter-spacing: -0.01em;
-  transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .contentHeading:first-child {
@@ -520,7 +557,15 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Heading copy-link UI removed per request */
+
+.contentDivider {
+  height: 1px;
+  width: 100%;
+  margin: 22px 0 26px;
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0) 0%, rgba(212, 175, 55, 0.32) 50%, rgba(212, 175, 55, 0) 100%);
 }
 
 .contentListItem::before {
@@ -574,6 +619,8 @@
 .moreWrapper {
   margin-top: clamp(32px, 6vw, 64px);
 }
+
+/* Next/prev section removed per request */
 
 .moreHeading {
   font-family: var(--font-display);

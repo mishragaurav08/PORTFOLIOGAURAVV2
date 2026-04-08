@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import styles from './ResumeModal.module.css';
+import * as analytics from '../../lib/analytics';
 
 export default function ResumeModal({ isOpen, onClose }) {
   const resumeViewerSrc = '/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
@@ -82,7 +83,15 @@ export default function ResumeModal({ isOpen, onClose }) {
         <div className={styles.headerRow}>
           <h2 id="resume-modal-title" className={styles.title}>Resume</h2>
           <div className={styles.actions}>
-            <a href="/resume.pdf" download className={styles.actionBtn}>
+            <a
+              href="/resume.pdf"
+              download
+              className={styles.actionBtn}
+              onClick={() => {
+                analytics.trackResumeDownload()
+                analytics.trackCtaClick('Download Resume')
+              }}
+            >
               Download
             </a>
             <button

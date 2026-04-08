@@ -43,11 +43,11 @@ export default function Contact() {
       <div className={styles.card}>
         <div className={styles.left}>
           <div className={styles.headingWrapper}>
-            <h2 className={styles.heading}>Let us talk</h2>
-            <span className={styles.availabilityBadge}>Open to opportunities</span>
+            <h2 className={styles.heading}>Let&apos;s Talk</h2>
+            <span className={styles.availabilityBadge}>Open to Opportunities</span>
           </div>
           <p className={styles.desc}>
-            If you are building something meaningful, I would love to hear about it. Product, design, engineering, or early-stage ideas, I am always up for a real conversation.
+            If you are building a product and need end-to-end UI execution, I can help with UX thinking, frontend delivery, and iOS implementation.
           </p>
           <p className={styles.responseTime}>I usually reply within 24 hours.</p>
         </div>

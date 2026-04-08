@@ -9,6 +9,7 @@ import styles from '../../components/Thoughts/Thoughts.module.css';
 import thoughtsData from '../../components/Thoughts/thoughtsData.json';
 import Footer from '../../components/Footer/Footer';
 import Seo from '../../components/SEO';
+import * as analytics from '../../lib/analytics';
 
 function scrollToPageTop() {
   if (typeof window === 'undefined') return;
@@ -31,6 +32,7 @@ function scrollToPageTop() {
 export default function ThoughtPage({ thought }) {
   const router = useRouter();
   const { slug } = thought;
+  const articleUrl = `https://gauravmishra.dev/thoughts/${slug}`;
 
   React.useEffect(() => {
     scrollToPageTop();
@@ -40,6 +42,37 @@ export default function ThoughtPage({ thought }) {
       cancelAnimationFrame(rafId);
     };
   }, [slug]);
+
+  const enhancedContent = React.useMemo(() => {
+    const content = Array.isArray(thought.content) ? thought.content : [];
+    if (content.length < 9) return content;
+
+    const out = [];
+    let paragraphRun = 0;
+
+    content.forEach((block, idx) => {
+      out.push(block);
+
+      if (block.type === 'heading') {
+        paragraphRun = 0;
+        return;
+      }
+
+      if (block.type === 'paragraph') {
+        paragraphRun += 1;
+      } else {
+        paragraphRun = 0;
+      }
+
+      const isLast = idx === content.length - 1;
+      if (!isLast && paragraphRun >= 3) {
+        out.push({ type: 'divider' });
+        paragraphRun = 0;
+      }
+    });
+
+    return out;
+  }, [thought.content]);
 
   const handleBack = () => {
     if (globalThis.window !== undefined && globalThis.window.history.length > 1) {
@@ -55,8 +88,14 @@ export default function ThoughtPage({ thought }) {
         title={`${thought.title} - Gaurav's Thoughts`}
         description={thought.excerpt || thought.title}
         keywords={`${thought.title}, blog, thoughts, insights, UX design, frontend development`}
-        canonicalUrl={`https://gauravmishra.dev/thoughts/${slug}`}
+        canonicalUrl={articleUrl}
         ogType="article"
+      />
+      <SeoArticleSchema
+        title={thought.title}
+        description={thought.excerpt || thought.title}
+        datePublished={thought.date}
+        url={articleUrl}
       />
       
       <section className={styles.wrapper} id="thought-detail">
@@ -92,20 +131,25 @@ export default function ThoughtPage({ thought }) {
               <FontAwesomeIcon icon={faReply} size="lg" />
             </motion.span>
           </motion.button>
-          <h1 className={styles.thoughtTitle}>{thought.title}</h1>
+          <div className={styles.titleWrap}>
+            <h1 className={styles.thoughtTitle}>{thought.title}</h1>
+          </div>
         </motion.div>
 
         <div className={styles.thoughtCard}>
           <article className={styles.thoughtContent}>
             {(() => {
-              return thought.content.map((block) => {
+              return enhancedContent.map((block) => {
                 const blockKey = `${block.type}-${block.text || (block.items ? block.items.join('|') : '') || (block.images ? block.images.join('|') : '')}`;
                 if (block.type === 'paragraph') {
                   const parts = block.text.split(/\*\*(.*?)\*\*/g);
                   let isBold = false;
                   const tokenCount = {};
                   return (
-                    <p key={blockKey} className={styles.contentParagraph}>
+                    <p
+                      key={blockKey}
+                      className={styles.contentParagraph}
+                    >
                       {parts.map((part) => {
                         tokenCount[part] = (tokenCount[part] || 0) + 1;
                         const tokenKey = `${isBold ? 'b' : 't'}-${part}-${tokenCount[part]}`;
@@ -135,26 +179,36 @@ export default function ThoughtPage({ thought }) {
                   );
                 }
                 if (block.type === 'images') {
-                  // Carousel: duplicate images for seamless scroll
-                  const carouselImgs = [...block.images, ...block.images];
+                  const loopImages = block.images.length > 1
+                    ? [...block.images, ...block.images]
+                    : block.images;
                   return (
                     <div key={blockKey} className={styles.carouselWrap}>
                       <div className={styles.carouselTrack}>
-                        {carouselImgs.map((img, i) => (
-                          <div className={styles.carouselItem} key={img + '-' + i}>
+                        {loopImages.map((img, i) => {
+                          const isClone = i >= block.images.length;
+                          return (
+                          <div
+                            className={`${styles.carouselItem} ${isClone ? styles.carouselItemClone : ''}`}
+                            key={img + '-' + i}
+                            aria-hidden={isClone ? 'true' : undefined}
+                          >
                             <img
                               src={img}
-                              alt={`${thought.title} visual`}
+                              alt={isClone ? '' : `${thought.title} visual`}
                               className={styles.carouselImg}
                               draggable={false}
                               loading="lazy"
                               decoding="async"
                             />
                           </div>
-                        ))}
+                        )})}
                       </div>
                     </div>
                   );
+                }
+                if (block.type === 'divider') {
+                  return <div key={`${blockKey}-divider`} className={styles.contentDivider} aria-hidden="true" />;
                 }
                 return null;
               });
@@ -186,6 +240,7 @@ export default function ThoughtPage({ thought }) {
                         scroll
                         className={styles.readMore}
                         aria-label={`Read ${o.title}`}
+                        onClick={() => analytics.trackCtaClick(`Read Thought - ${o.title}`)}
                       >
                         <span className={styles.readText}>Read</span>
                         <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />
@@ -201,6 +256,40 @@ export default function ThoughtPage({ thought }) {
 
       <Footer />
     </>
+  );
+}
+
+function SeoArticleSchema({ title, description, datePublished, url }) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: title,
+          description,
+          datePublished,
+          dateModified: datePublished,
+          author: {
+            '@type': 'Person',
+            name: 'Gaurav Mishra',
+            url: 'https://gauravmishra.dev',
+          },
+          publisher: {
+            '@type': 'Person',
+            name: 'Gaurav Mishra',
+            url: 'https://gauravmishra.dev',
+          },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': url,
+          },
+          image: 'https://gauravmishra.dev/icon.png',
+          url,
+        }),
+      }}
+    />
   );
 }
 

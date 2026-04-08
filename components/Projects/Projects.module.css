@@ -7,7 +7,7 @@
 }
 
 .headerRow {
-  margin-bottom: clamp(30px, 4vh, 54px);
+  margin-bottom: var(--space-4);
 }
 
 .header {
@@ -32,12 +32,20 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(22px, 2.6vw, 34px);
+  gap: var(--space-3);
+}
+
+.emptyState {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  color: var(--text-muted);
+  font-family: var(--font-body);
 }
 
 .card {
   background: var(--bg);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -68,8 +76,8 @@
 .cardBody {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: clamp(20px, 3vw, 30px);
+  gap: var(--space-2);
+  padding: var(--space-3);
   flex: 1;
 }
 
@@ -122,7 +130,7 @@
   align-items: center;
   gap: 8px;
   height: clamp(36px, 4vh, 44px);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   border: 2px solid var(--accent);
   padding: 0 clamp(16px, 2vw, 24px);
   font-family: var(--font-body);
@@ -131,7 +139,7 @@
   white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
-  transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 220ms cubic-bezier(0.4, 0, 0.2, 1), color 220ms cubic-bezier(0.4, 0, 0.2, 1), border-color 220ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ctaBtn.demo,
@@ -168,15 +176,6 @@
   height: clamp(16px, 1.6vw, 18px);
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.cogSpin {
-  animation: spin 3s linear infinite;
-}
-
 @media (max-width: 1100px) {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -195,10 +194,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .card,
-  .ctaBtn,
-  .cogSpin {
+  .ctaBtn {
     transition: none !important;
-    animation: none !important;
     transform: none !important;
   }
 }

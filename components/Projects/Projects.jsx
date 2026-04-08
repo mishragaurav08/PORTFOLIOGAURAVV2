@@ -16,12 +16,15 @@ export default function Projects() {
         transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.5 }}
       >
-        <h2 className={styles.header}>What I Built</h2>
-        <p className={styles.intro}>This is the part where ideas turned into products, experiments, and lessons.</p>
+        <h2 className={styles.header}>Selected Projects</h2>
+        <p className={styles.intro}>Shipped work across product design, frontend systems, and iOS execution.</p>
       </motion.div>
 
-      <div className={styles.grid}>
-        {projects.map((p) => (
+      {projects.length === 0 ? (
+        <div className={styles.emptyState}>Projects are being updated. Check back shortly.</div>
+      ) : (
+        <div className={styles.grid}>
+          {projects.map((p) => (
           <article
             key={p.id}
             className={styles.card}
@@ -41,21 +44,21 @@ export default function Projects() {
                 </div>
                 <div className={styles.buttonWrapper}>
                   {p.type === 'inprogress' && (
-                    <CTAButton type="inprogress">Building</CTAButton>
+                    <CTAButton type="inprogress" projectTitle={p.title}>Building</CTAButton>
                   )}
                   {p.type === 'demo' && (
-                    <CTAButton type="demo" href={p.link}>
-                      {p.link ? 'Live' : 'N/A'}
+                    <CTAButton type="demo" href={p.link} projectTitle={p.title}>
+                      {p.link ? 'Live' : 'Private'}
                     </CTAButton>
                   )}
                   {p.type === 'design' && (
-                    <CTAButton type="design" href={p.link}>
-                      {p.link ? 'Design' : 'N/A'}
+                    <CTAButton type="design" href={p.link} projectTitle={p.title}>
+                      {p.link ? 'Design' : 'Private'}
                     </CTAButton>
                   )}
                   {p.type === 'github' && (
-                    <CTAButton type="github" href={p.link}>
-                      {p.link ? 'GitHub' : 'N/A'}
+                    <CTAButton type="github" href={p.link} projectTitle={p.title}>
+                      {p.link ? 'GitHub' : 'Private'}
                     </CTAButton>
                   )}
                 </div>
@@ -63,8 +66,9 @@ export default function Projects() {
               <p className={styles.desc}>{p.desc}</p>
             </div>
           </article>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

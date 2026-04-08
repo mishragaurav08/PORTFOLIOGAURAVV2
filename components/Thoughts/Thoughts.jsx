@@ -5,6 +5,17 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import thoughtsData from './thoughtsData.json';
+import * as analytics from '../../lib/analytics';
+
+function estimateReadTime(content = []) {
+  const words = content
+    .map((block) => [block.text, ...(block.items || [])].join(' '))
+    .join(' ')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 220));
+}
 
 export default function Thoughts() {
   const displayThoughts = thoughtsData;
@@ -20,13 +31,17 @@ export default function Thoughts() {
       >
         What I Learned
       </motion.h2>
-      <p className={styles.sectionIntro}>Notes from projects, programs, and moments that changed how I build.</p>
+      <p className={styles.sectionIntro}>Notes from projects, programs, and moments that changed how I ship products.</p>
 
-      <div className={styles.grid}>
-        {displayThoughts.map((thought) => (
+      {displayThoughts.length === 0 ? (
+        <div className={styles.emptyState}>No thoughts published yet. New notes coming soon.</div>
+      ) : (
+        <div className={styles.grid}>
+          {displayThoughts.map((thought) => (
           <article key={thought.id} className={`${styles.card} ${thought.comingSoon ? styles.cardComingSoon : ''}`}>
             <div className={styles.cardContent}>
               <h3 className={styles.title}>{thought.title}</h3>
+              {/* Meta removed per request */}
               {!thought.comingSoon && <p className={styles.excerpt}>{thought.excerpt}</p>}
             </div>
             {thought.comingSoon ? (
@@ -38,14 +53,16 @@ export default function Thoughts() {
                 href={`/thoughts/${thought.slug}`}
                 className={styles.readMore}
                 aria-label={`Read ${thought.title}`}
+                onClick={() => analytics.trackCtaClick(`Read Thought - ${thought.title}`)}
               >
                 <span className={styles.readText}>Read</span>
                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.arrow} aria-hidden />
               </Link>
             )}
           </article>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

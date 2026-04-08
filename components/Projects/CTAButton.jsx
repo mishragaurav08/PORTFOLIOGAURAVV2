@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faCog } from '@fortawesome/free-solid-svg-icons';
 import { faFigma, faGithub } from '@fortawesome/free-brands-svg-icons';
 import styles from './Projects.module.css';
+import * as analytics from '../../lib/analytics';
 
 const ICONS = {
   demo: faLink,
@@ -14,14 +15,10 @@ const ICONS = {
 function getIcon(type) {
   const icon = ICONS[type];
   if (!icon) return null;
-
-  // For consistency with existing CSS, keep the wrapper span's .icon styles
-  // and apply the spinning class for 'inprogress'.
-  const className = type === 'inprogress' ? styles.cogSpin : undefined;
-  return <FontAwesomeIcon icon={icon} className={className} />;
+  return <FontAwesomeIcon icon={icon} />;
 }
 
-const CTAButton = ({ type, href, children }) => {
+const CTAButton = ({ type, href, children, projectTitle }) => {
   const baseClass = `${styles.ctaBtn} ${styles[type]}`;
   const isDisabled = type === 'inprogress' || (type !== 'inprogress' && !href);
   const icon = getIcon(type);
@@ -42,6 +39,10 @@ const CTAButton = ({ type, href, children }) => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`View ${children}`}
+      onClick={() => {
+        analytics.trackProjectView(projectTitle || 'Project');
+        analytics.trackCtaClick(`Project CTA - ${projectTitle || 'Project'} - ${children}`);
+      }}
     >
       <span className={styles.icon}>{icon}</span>
       {children}

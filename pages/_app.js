@@ -5,9 +5,10 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import * as analytics from '../lib/analytics'
 import { Analytics } from "@vercel/analytics/next"
+import { AnimatePresence, motion } from 'framer-motion'
 import ScrollProgress from '../components/ScrollProgress/ScrollProgress'
 import ResumeModal from '../components/ResumeModal/ResumeModal'
-import SoundController from '../components/Sound/SoundController'
+import BackToTop from '../components/BackToTop/BackToTop'
 
 function scrollToPageTop() {
   if (typeof window === 'undefined') return;
@@ -61,6 +62,7 @@ export default function App({ Component, pageProps }) {
       const isMobileLike = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches
       if (isMobileLike) return
       event.preventDefault()
+      analytics.trackCtaClick('Open Resume Modal')
       openResumeModal()
     }
 
@@ -92,6 +94,41 @@ export default function App({ Component, pageProps }) {
     }
   }, [router.events])
 
+  useEffect(() => {
+    const container =
+      document.getElementById('__next') ||
+      document.scrollingElement ||
+      document.documentElement
+
+    if (!container) return undefined
+
+    const trackedDepths = new Set()
+    const onScroll = () => {
+      const maxScroll = container.scrollHeight - container.clientHeight
+      if (maxScroll <= 0) return
+      const depth = (container.scrollTop / maxScroll) * 100
+      if (depth >= 25 && !trackedDepths.has(25)) {
+        trackedDepths.add(25)
+        analytics.trackScrollDepth('25%')
+      }
+      if (depth >= 50 && !trackedDepths.has(50)) {
+        trackedDepths.add(50)
+        analytics.trackScrollDepth('50%')
+      }
+      if (depth >= 75 && !trackedDepths.has(75)) {
+        trackedDepths.add(75)
+        analytics.trackScrollDepth('75%')
+      }
+      if (depth >= 98 && !trackedDepths.has(100)) {
+        trackedDepths.add(100)
+        analytics.trackScrollDepth('100%')
+      }
+    }
+
+    container.addEventListener('scroll', onScroll, { passive: true })
+    return () => container.removeEventListener('scroll', onScroll)
+  }, [router.asPath])
+
   return (
     <>
       <Head>
@@ -101,11 +138,28 @@ export default function App({ Component, pageProps }) {
         {/* Font Awesome for icons (CDN) - no SRI here to avoid broken integrity value */}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </Head>
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <ScrollProgress />
-      <SoundController />
-      <Component {...pageProps} />
+      <BackToTop />
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={router.asPath}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -4 }}
+          transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
+        >
+          <main id="main-content" tabIndex={-1}>
+            <Component {...pageProps} />
+          </main>
+        </motion.div>
+      </AnimatePresence>
       <ResumeModal isOpen={isResumeOpen} onClose={closeResumeModal} />
       <Analytics />
     </>
   )
+}
+
+export function reportWebVitals(metric) {
+  analytics.trackWebVitals(metric)
 }

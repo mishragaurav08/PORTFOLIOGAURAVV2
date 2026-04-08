@@ -14,7 +14,15 @@ export default function Footer() {
         transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.2 }}
       >
-
+        <div className={styles.leftVisual}>
+          <img
+            src="/assets/footer.png"
+            alt="Footer visual"
+            className={styles.leftImage}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
         <div className={styles.content}>
           <div className={styles.quote}>
             <span className={styles.secondary}>Thoughtfully </span>
@@ -22,9 +30,6 @@ export default function Footer() {
             <span className={styles.secondary}>Purposefully </span>
             <span className={styles.primary}>built</span>
           </div>
-          <p className={styles.audioCredit}>
-            Audio: <a href="https://www.scottbuckley.com.au/library/aurora/" target="_blank" rel="noopener noreferrer">Aurora by Scott Buckley (CC BY 4.0)</a>
-          </p>
         </div>
       </motion.div>
     </footer>

@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from './Hero.module.css'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 export default function Hero() {
-  const reduce = useReducedMotion()
   const heroNameChars = [
     { key: 'g', char: 'G' },
     { key: 'a1', char: 'A' },
@@ -35,14 +34,10 @@ export default function Hero() {
       y: 0,
       transition: { duration: 0.9, ease: [0.4, 0, 0.2, 1], delay: 0.4 },
     },
-    float: {
-      y: [0, -8, 0],
-      transition: { duration: 2.2, repeat: Infinity, ease: 'easeInOut' },
-    },
   }
 
   return (
-    <main className={styles.container} id="hero">
+    <section className={styles.container} id="hero" aria-label="Hero">
       <div className={styles.wrapper}>
         <motion.section
           className={styles.center}
@@ -56,7 +51,6 @@ export default function Hero() {
             variants={floatText}
             initial="hidden"
             whileInView="show"
-            animate={reduce ? undefined : 'float'}
           >
             This is
           </motion.p>
@@ -84,10 +78,9 @@ export default function Hero() {
             variants={floatText}
             initial="hidden"
             whileInView="show"
-            animate={reduce ? undefined : 'float'}
           >
             I am currently building <span style={{ color: 'var(--accent)', fontWeight: 600 }}>Interact</span>.
-            <br />Keep scrolling and I will walk you through the journey.
+            <br />Explore selected work, case notes, and outcomes.
           </motion.p>
         </motion.section>
       </div>
@@ -97,19 +90,10 @@ export default function Hero() {
           className={styles.scrollIndicator}
           aria-label="Go to about section"
         >
-          {reduce ? (
-            <motion.div className={styles.indicatorFill} aria-hidden="true" style={{ y: '0%' }} />
-          ) : (
-            <motion.div
-              className={styles.indicatorFill}
-              aria-hidden="true"
-              animate={{ y: ['0%', '150%'] }}
-              transition={{ duration: 1.6, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-            />
-          )}
+          <motion.div className={styles.indicatorFill} aria-hidden="true" />
         </a>
         <div className={styles.scrollText}>Step inside</div>
       </div>
-    </main>
+    </section>
   )
 }
