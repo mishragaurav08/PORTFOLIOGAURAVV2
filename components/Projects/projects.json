@@ -4,9 +4,9 @@
     "title": "Interact",
     "tag": "iOS Product",
     "desc": "Building this to help hackathon teams form, collaborate, and stay aligned in one place. Each release improves clarity and team flow.",
-    "pill": "inprogress",
-    "link": "",
-    "type": "inprogress",
+    "pill": "demo",
+    "link": "https://interactapp.tech/",
+    "type": "demo",
     "image": "/assets/interact.png"
   },
   {
