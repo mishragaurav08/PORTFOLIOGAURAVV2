@@ -49,22 +49,37 @@
     rgba(255, 255, 255, 0.05) 0%,
     rgba(255, 255, 255, 0.02) 100%
   );
-  border-radius: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  -webkit-backdrop-filter: blur(60px) saturate(220%);
-  backdrop-filter: blur(60px) saturate(220%);
-  box-shadow: 
-    0 24px 80px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: var(--radius-card);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   will-change: backdrop-filter;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Glass Core */
+  -webkit-backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
+  backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
+  
+  /* Hide default border */
+  border: none;
 }
 
+/* Liquid Border & Shadow Overlay */
 .card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 10;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Premium Top Highlight */
+.card::before {
   content: "";
   position: absolute;
   top: 0;
@@ -78,13 +93,18 @@
     rgba(255, 255, 255, 0.3) 80%,
     transparent 100%
   );
-  z-index: 2;
+  z-index: 11;
   opacity: 0.8;
+  pointer-events: none;
 }
 
 .item:hover .card {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(calc(var(--blur-glass) + 20px)) saturate(calc(var(--saturate-glass) + 50%));
+}
+
+.item:hover .card::after {
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .itemHeader {
@@ -114,9 +134,9 @@
   justify-content: center;
   background: #ffffff;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   z-index: 5;
 }
 
@@ -193,19 +213,49 @@
 @media (max-width: 768px) {
   .timeline {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
   }
   .card {
-    padding: 32px 24px;
-    border-radius: 32px;
+    padding: clamp(24px, 6vw, 32px) clamp(20px, 5vw, 24px);
+    border-radius: var(--radius-card-mobile);
   }
   .logoWrap {
-    top: 24px;
-    right: 24px;
-    width: 40px;
-    height: 40px;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+  }
+  .itemHeader {
+    padding-right: 40px;
+    margin-bottom: 20px;
   }
   .itemTitle {
-    font-size: 20px;
+    font-size: clamp(18px, 5vw, 22px);
   }
+  .itemOrg {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .card {
+    border-radius: var(--radius-card-mobile);
+    padding: 24px 20px;
+  }
+  .itemHeader {
+    padding-right: 44px;
+  }
+  .logoWrap {
+    width: 32px;
+    height: 32px;
+    top: 24px;
+    right: 20px;
+  }
+}
+
+@media (min-width: 2000px) {
+  .wrapper { max-width: 1600px; }
+  .header { font-size: 96px; }
+  .itemTitle { font-size: 36px; }
+  .itemDesc { font-size: 18px; }
 }

@@ -38,27 +38,42 @@
     rgba(255, 255, 255, 0.05) 0%,
     rgba(255, 255, 255, 0.02) 100%
   );
-  border-radius: 44px;
+  border-radius: var(--radius-card);
   padding: clamp(24px, 4vw, 48px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  -webkit-backdrop-filter: blur(60px) saturate(220%);
-  backdrop-filter: blur(60px) saturate(220%);
-  box-shadow: 
-    0 24px 80px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
   position: relative;
   z-index: 1;
   height: 100%;
   min-height: 220px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  will-change: backdrop-filter;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Glass Core */
+  -webkit-backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
+  backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
+  
+  /* Hide default border */
+  border: none;
 }
 
+/* Liquid Border & Shadow Overlay */
 .card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 10;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+}
+
+/* Premium Top Highlight */
+.card::before {
   content: "";
   position: absolute;
   top: 0;
@@ -72,8 +87,9 @@
     rgba(255, 255, 255, 0.3) 80%,
     transparent 100%
   );
-  z-index: 2;
+  z-index: 11;
   opacity: 0.8;
+  pointer-events: none;
 }
 
 .cardComingSoon {
@@ -81,9 +97,13 @@
 }
 
 .card:hover {
-  border-color: rgba(255, 255, 255, 0.18);
   background: var(--glass-2);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(calc(var(--blur-glass) + 20px)) saturate(calc(var(--saturate-glass) + 50%));
+}
+
+.card:hover::after {
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 48px 96px -32px rgba(0, 0, 0, 0.7), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
 }
 
 .cardContent {
@@ -249,37 +269,50 @@
     gap: 16px;
   }
   .card {
-    padding: 28px;
-    border-radius: 24px;
+    padding: clamp(24px, 6vw, 32px) clamp(20px, 5vw, 24px);
+    border-radius: var(--radius-card-mobile);
   }
   .title {
-    font-size: 22px;
+    font-size: clamp(20px, 5vw, 24px);
   }
   .carouselItem {
-    width: min(82vw, 360px);
+    width: min(75vw, 320px);
   }
   .carouselTrack {
-    gap: 14px;
-    animation-duration: 24s;
+    gap: 12px;
+    animation-duration: 20s;
   }
 }
 
 @media (max-width: 480px) {
   .card {
-    padding: 24px;
+    padding: 24px 20px;
   }
   .title {
     font-size: 20px;
   }
   .carouselWrap {
-    margin: 18px 0;
-  }
-  .carouselTrack {
-    gap: 10px;
+    margin: 16px 0;
   }
   .carouselItem {
-    width: min(86vw, 320px);
+    width: min(85vw, 280px);
   }
+}
+
+@media (max-width: 360px) {
+  .card {
+    padding: 20px 16px;
+  }
+  .carouselItem {
+    width: 260px;
+  }
+}
+
+@media (min-width: 2000px) {
+  .wrapper { max-width: 1600px; }
+  .header { font-size: 96px; }
+  .title { font-size: 32px; }
+  .excerpt { font-size: 18px; }
 }
 
 /* Thought Detail Page Styles */
@@ -357,14 +390,12 @@
     rgba(255, 255, 255, 0.05) 0%,
     rgba(255, 255, 255, 0.02) 100%
   );
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  -webkit-backdrop-filter: blur(60px) saturate(220%);
-  backdrop-filter: blur(60px) saturate(220%);
-  box-shadow: 
-    0 24px 80px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
+  backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
+  box-shadow: var(--shadow-glass);
   padding: clamp(36px, 4.5vw, 56px) clamp(32px, 4.5vw, 52px);
-  border-radius: 44px;
+  border-radius: var(--radius-card);
   width: 100%;
   position: relative;
   overflow: hidden;

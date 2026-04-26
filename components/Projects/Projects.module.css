@@ -43,23 +43,41 @@
     rgba(255, 255, 255, 0.05) 0%,
     rgba(255, 255, 255, 0.02) 100%
   );
-  border-radius: 44px;
+  border-radius: var(--radius-card);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  -webkit-backdrop-filter: blur(60px) saturate(220%);
-  backdrop-filter: blur(60px) saturate(220%);
-  box-shadow: 
-    0 24px 80px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   height: 100%;
   position: relative;
   will-change: backdrop-filter;
+  
+  /* Glass Core */
+  -webkit-backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
+  backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
+  
+  /* Hide default border to use high-z-index one */
+  border: none;
 }
 
+/* The "Liquid" Border & Shadow Overlay - Stays ABOVE the image content */
 .card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 10;
+  
+  /* External liquid border (subtle 1px highlight) */
+  border: 1px solid var(--glass-border);
+  
+  /* Inner highlights & outer liquid shadow */
+  box-shadow: var(--shadow-glass);
+}
+
+/* Premium Top-Edge Reflection */
+.card::before {
   content: "";
   position: absolute;
   top: 0;
@@ -73,8 +91,9 @@
     rgba(255, 255, 255, 0.3) 80%,
     transparent 100%
   );
-  z-index: 5;
+  z-index: 11;
   opacity: 0.8;
+  pointer-events: none;
 }
 
 /* Big Card (Studique) - Left side, spans 2 columns and 2 rows */
@@ -187,6 +206,14 @@
   flex: 1;
 }
 
+.shortDesc {
+  display: none;
+}
+
+.hasShort {
+  display: block;
+}
+
 /* Big card can show more text - allowing more lines to look complete */
 .card:first-child .desc {
   font-size: clamp(15px, 1.2vw, 16px);
@@ -269,6 +296,9 @@
     grid-template-columns: 1fr;
     gap: 16px;
   }
+  .card {
+    border-radius: var(--radius-card-mobile);
+  }
   .card:first-child {
     grid-column: span 1;
     grid-row: span 1;
@@ -277,15 +307,48 @@
     aspect-ratio: 16 / 10;
   }
   .cardBody {
-    padding: 24px;
+    padding: clamp(20px, 5vw, 24px) clamp(16px, 4vw, 20px);
   }
-  /* Content is no longer reduced/clamped per latest request */
-  .card:first-child .desc {
+  .title {
+    font-size: clamp(18px, 5vw, 22px);
+  }
+  .card:first-child .title {
+    font-size: clamp(20px, 6vw, 26px);
+  }
+  .hasShort {
+    display: none;
+  }
+  .shortDesc {
+    display: block;
+    margin: 0;
+    color: var(--text-muted);
+    font-family: var(--font-body);
     font-size: 14px;
+    line-height: 1.6;
+    font-weight: 500;
+    flex: 1;
   }
   .srmCard {
     display: none;
   }
+}
+
+@media (max-width: 380px) {
+  .cardBody {
+    padding: 16px;
+  }
+  .ctaBtn {
+    padding: 0 12px;
+    font-size: 11px;
+    height: 34px;
+  }
+}
+
+@media (min-width: 2000px) {
+  .wrapper { max-width: 1680px; }
+  .grid { gap: 32px; }
+  .title { font-size: 26px; }
+  .card:first-child .title { font-size: 36px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

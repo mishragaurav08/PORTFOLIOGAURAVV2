@@ -15,21 +15,35 @@
     rgba(255, 255, 255, 0.05) 0%,
     rgba(255, 255, 255, 0.02) 100%
   );
-  border-radius: 44px;
+  border-radius: var(--radius-card);
   padding: clamp(32px, 6vw, 80px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  -webkit-backdrop-filter: blur(60px) saturate(220%);
-  backdrop-filter: blur(60px) saturate(220%);
-  box-shadow: 
-    0 24px 80px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
   position: relative;
   z-index: 1;
   overflow: hidden;
   will-change: backdrop-filter;
+  
+  /* Glass Core */
+  -webkit-backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
+  backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
+  
+  /* Hide default border */
+  border: none;
 }
 
+/* Liquid Border & Shadow Overlay */
 .card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 10;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+}
+
+/* Premium Top Highlight */
+.card::before {
   content: "";
   position: absolute;
   top: 0;
@@ -43,8 +57,9 @@
     rgba(255, 255, 255, 0.3) 80%,
     transparent 100%
   );
-  z-index: 2;
+  z-index: 11;
   opacity: 0.8;
+  pointer-events: none;
 }
 
 .header {
@@ -88,28 +103,44 @@
 @media (max-width: 1024px) {
   .card {
     padding: clamp(32px, 5vw, 48px);
-    border-radius: 32px;
+    border-radius: var(--radius-card-mobile);
   }
 }
 
 @media (max-width: 768px) {
   .card {
-    padding: 32px 24px;
-    border-radius: 24px;
+    padding: clamp(24px, 5vw, 32px) clamp(20px, 4vw, 24px);
+    border-radius: var(--radius-card-mobile);
   }
 
   .header {
-    font-size: clamp(34px, 8vw, 48px);
+    font-size: clamp(34px, 10vw, 56px);
+    margin-bottom: 32px;
   }
 
   .paragraph {
-    font-size: clamp(16px, 4vw, 19px);
-    line-height: 1.55;
+    font-size: clamp(15px, 4.5vw, 18px);
+    line-height: 1.6;
   }
   
   .copy {
-    gap: 24px;
+    gap: 20px;
   }
+}
+
+@media (max-width: 380px) {
+  .card {
+    padding: 20px 16px;
+  }
+  .header {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 2000px) {
+  .wrapper { max-width: 1600px; }
+  .header { font-size: 96px; }
+  .paragraph { font-size: 28px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

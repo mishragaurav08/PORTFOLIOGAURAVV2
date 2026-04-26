@@ -84,7 +84,8 @@ export default function Projects() {
                   )}
                 </div>
               </div>
-              <p className={styles.desc}>{p.desc}</p>
+              <p className={`${styles.desc} ${p.shortDesc ? styles.hasShort : ''}`}>{p.desc}</p>
+              {p.shortDesc && <p className={styles.shortDesc}>{p.shortDesc}</p>}
             </div>
           </motion.article>
           ))}

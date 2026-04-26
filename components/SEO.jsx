@@ -29,7 +29,7 @@ export default function SEO({
       <meta name="googlebot" content={robots} />
       <meta name="application-name" content="Gaurav Mishra Portfolio" />
       <meta name="apple-mobile-web-app-title" content="Gaurav Portfolio" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="English" />
       {siteVerification ? <meta name="google-site-verification" content={siteVerification} /> : null}
