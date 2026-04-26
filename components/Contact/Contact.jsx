@@ -35,7 +35,7 @@ export default function Contact() {
   };
 
   const handleSocialClick = (platform) => {
-    analytics.trackOutboundLink(`Social - ${platform}`, platform);
+    analytics.trackOutboundLink(platform, `Social - ${platform}`);
   };
 
   return (
@@ -44,12 +44,10 @@ export default function Contact() {
         <div className={styles.left}>
           <div className={styles.headingWrapper}>
             <h2 className={styles.heading}>Let&apos;s Talk</h2>
-            <span className={styles.availabilityBadge}>Open to Opportunities</span>
           </div>
           <p className={styles.desc}>
             If you are building a product and need end-to-end UI execution, I can help with UX thinking, frontend delivery, and iOS implementation.
           </p>
-          <p className={styles.responseTime}>I usually reply within 24 hours.</p>
         </div>
         <div className={styles.right}>
           <div className={styles.socialLabel}>Elsewhere</div>
@@ -99,13 +97,6 @@ export default function Contact() {
             {copied ? 'Email copied!' : copyError}
           </div>
           {copyError && <p className={styles.copyError}>{copyError}</p>}
-          <a
-            href="mailto:gaurav84294372@gmail.com?subject=Project%20Inquiry%20from%20Portfolio"
-            className={styles.mailFallback}
-            aria-hidden="true"
-            tabIndex={-1}
-          >
-          </a>
         </div>
       </div>
     </section>

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import Head from 'next/head'
 
 export default function SEO({
@@ -56,8 +55,8 @@ export default function SEO({
       <meta property="twitter:image" content={fullImageUrl} />
       
       {/* Additional Meta Tags */}
-      <meta name="theme-color" content="#000000" />
-      <meta name="msapplication-TileColor" content="#000000" />
+      <meta name="theme-color" content="#0b1020" />
+      <meta name="msapplication-TileColor" content="#0b1020" />
       
       {/* Structured Data - JSON-LD */}
       <script

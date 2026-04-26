@@ -1,13 +1,13 @@
 
 .footer {
   width: 100%;
-  padding: clamp(24px, 4vh, 48px) 0;
+  padding: clamp(32px, 5vh, 64px) 0;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   background: var(--bg);
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--glass-border-soft);
   margin-top: var(--section-vertical);
   min-width: 0;
 }
@@ -21,7 +21,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(20px, 3vh, 32px);
+  gap: clamp(20px, 3vh, 40px);
   min-width: 0;
 }
 
@@ -61,245 +61,52 @@
   max-width: 640px;
   word-break: break-word;
   overflow-wrap: anywhere;
+  letter-spacing: -0.03em;
 }
 
 .primary {
   color: var(--accent);
   font-weight: 800;
-
 }
 
 .secondary {
-  color: var(--muted2);
+  color: var(--text-muted);
   font-weight: 800;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
-.quickLinks {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  margin-top: clamp(16px, 2vh, 24px);
-  font-family: var(--font-body);
-  min-width: 0;
-}
-
-.quickLink {
-  color: var(--muted2);
-  font-size: clamp(15px, 1.6vw, 17px);
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 200ms ease, opacity 200ms ease;
-  opacity: 0.85;
-}
-
-.quickLink:hover {
-  color: var(--accent);
-  opacity: 1;
-}
-
-.linkDivider {
-  color: var(--muted2);
-  opacity: 0.4;
-  font-weight: 300;
-}
-
-.copyright {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  color: var(--muted2);
-  font-family: var(--font-body);
-  font-size: clamp(14px, 1.6vw, 16px);
-  font-weight: 400;
-  line-height: 1.4;
-  min-width: 0;
-}
-
-.copyrightText {
-  opacity: 0.8;
-  transition: opacity 200ms ease;
-}
-
-.copyrightText:hover {
-  opacity: 1;
-}
-
-.copyrightDivider {
-  opacity: 0.5;
-  font-weight: 300;
-}
-
+/* Responsive */
 @media (max-width: 880px) {
   .footer {
-    padding: clamp(20px, 3vh, 32px) 0;
-    margin-top: clamp(40px, 6vh, 64px);
-    min-width: 0;
+    padding: clamp(24px, 4vh, 40px) 0;
   }
-  
   .wrapper {
     padding: 0 clamp(20px, 2.5vw, 32px);
-    gap: clamp(16px, 2.5vh, 24px);
     flex-direction: column;
     align-items: center;
-    min-width: 0;
   }
-
   .leftVisual {
     width: clamp(100px, 22vw, 150px);
     justify-content: center;
   }
-  
   .quote {
-    font-size: clamp(22px, 4vw, 32px);
+    font-size: clamp(24px, 5vw, 36px);
     text-align: center;
-    word-break: break-word;
-    overflow-wrap: anywhere;
   }
-
-  .mascotContainer {
-    margin-right: 0;
-    margin-top: 16px;
-    align-self: center;
-  }
-
   .content {
     align-items: center;
-  }
-
-  .quickLinks {
-    justify-content: center;
-    margin-top: 20px;
-  }
-
-  .copyright {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 640px) {
-  .footer {
-    padding: 24px 0;
-    margin-top: 48px;
-    min-width: 0;
-  }
-  
-  .wrapper {
-    padding: 0 20px;
-    gap: 20px;
-    min-width: 0;
-  }
-  
-  .quote {
-    font-size: clamp(28px, 7vw, 36px);
-    line-height: 1.2;
-    word-break: break-word;
-    overflow-wrap: anywhere;
-  }
-  
-  .quickLinks {
-    margin-top: 16px;
-  }
-  
-  .quickLink {
-    font-size: 15px;
-  }
-  
-  .copyright {
-    flex-direction: column;
-    gap: 8px;
-    text-align: center;
-  }
-  
-  .copyrightDivider {
-    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .footer {
-    padding: 20px 0;
-    margin-top: 40px;
-    min-width: 0;
+    padding: 24px 0;
   }
-  
   .wrapper {
-    padding: 0 16px;
-    min-width: 0;
+    padding: 0 20px;
+    gap: 24px;
   }
-  
   .quote {
-    font-size: clamp(18px, 6vw, 22px);
-    word-break: break-word;
-    overflow-wrap: anywhere;
-  }
-  
-  .quickLinks {
-    gap: 10px;
-    font-size: 14px;
-  }
-  
-  .quickLink {
-    font-size: 14px;
-  }
-  
-  .copyright {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 360px) {
-  .footer {
-    padding: 16px 0;
-    min-width: 0;
-  }
-  
-  .quote {
-    font-size: 17px;
-    word-break: break-word;
-    overflow-wrap: anywhere;
-  }
-  
-  .quickLinks {
-    gap: 8px;
-  }
-  
-  .quickLink {
-    font-size: 13px;
-  }
-  
-  .copyright {
-    font-size: 13px;
-  }
-}
-
-@media (min-width: 1600px) {
-  .footer {
-    margin-top: 96px;
-  }
-  
-  .wrapper {
-    max-width: 1500px;
-  }
-  
-  .quote {
-    font-size: 44px;
-    max-width: 900px;
-  }
-  
-  .quickLinks {
-    margin-top: 28px;
-  }
-  
-  .quickLink {
-    font-size: 19px;
-  }
-  
-  .copyright {
-    font-size: 18px;
+    font-size: clamp(22px, 7vw, 28px);
   }
 }

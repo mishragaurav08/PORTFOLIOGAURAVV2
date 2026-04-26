@@ -2,37 +2,30 @@ import React from 'react'
 import styles from './Hero.module.css'
 import { motion } from 'framer-motion'
 export default function Hero() {
-  const heroNameChars = [
-    { key: 'g', char: 'G' },
-    { key: 'a1', char: 'A' },
-    { key: 'u', char: 'U' },
-    { key: 'r', char: 'R' },
-    { key: 'a2', char: 'A' },
-    { key: 'v', char: 'V' },
-  ]
   const minimalFade = {
-    hidden: { opacity: 0, y: 16 },
+    hidden: { opacity: 0, y: 12 },
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] }
+      transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] }
     }
   }
 
-  const nameSpring = {
-    hidden: { scale: 0.92, opacity: 0 },
-    show: {
-      scale: 1,
-      opacity: 1,
-      transition: { type: 'spring', stiffness: 120, damping: 12, delay: 0.2 },
-    },
-  }
   const floatText = {
-    hidden: { opacity: 0, y: 24 },
+    hidden: { opacity: 0, y: 12 },
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.9, ease: [0.4, 0, 0.2, 1], delay: 0.4 },
+      transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.2 },
+    },
+  }
+
+  const nameFade = {
+    hidden: { opacity: 0, y: 12 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1], delay: 0.1 },
     },
   }
 
@@ -52,26 +45,16 @@ export default function Hero() {
             initial="hidden"
             whileInView="show"
           >
-            This is
+            Hey there, I’m
           </motion.p>
           <motion.h1
             className={styles.huge}
-            variants={nameSpring}
+            variants={nameFade}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
           >
-            {heroNameChars.map((item, i) => (
-              <motion.span
-                key={item.key}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + i * 0.07, type: 'spring', stiffness: 180, damping: 14 }}
-                style={{ display: 'inline-block' }}
-              >
-                {item.char}
-              </motion.span>
-            ))}
+            GAURAV
           </motion.h1>
           <motion.p
             className={styles.subtitle}
@@ -79,8 +62,8 @@ export default function Hero() {
             initial="hidden"
             whileInView="show"
           >
-            I am currently building <span style={{ color: 'var(--accent)', fontWeight: 600 }}>Interact</span>.
-            <br />Explore selected work, case notes, and outcomes.
+            I am currently building <span className={styles.accentWord}>Interact</span>.
+            <span className={styles.lineBreak}>Explore selected work, case notes, and outcomes.</span>
           </motion.p>
         </motion.section>
       </div>

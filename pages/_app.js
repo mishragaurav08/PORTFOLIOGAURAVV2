@@ -1,14 +1,13 @@
-/* eslint-disable react/prop-types */
 import '../styles/global.css'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
 import * as analytics from '../lib/analytics'
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from '@vercel/analytics/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import ScrollProgress from '../components/ScrollProgress/ScrollProgress'
 import ResumeModal from '../components/ResumeModal/ResumeModal'
 import BackToTop from '../components/BackToTop/BackToTop'
+import { getScrollMetrics } from '../lib/scroll'
 
 function scrollToPageTop() {
   if (typeof window === 'undefined') return;
@@ -95,18 +94,10 @@ export default function App({ Component, pageProps }) {
   }, [router.events])
 
   useEffect(() => {
-    const container =
-      document.getElementById('__next') ||
-      document.scrollingElement ||
-      document.documentElement
-
-    if (!container) return undefined
-
     const trackedDepths = new Set()
     const onScroll = () => {
-      const maxScroll = container.scrollHeight - container.clientHeight
-      if (maxScroll <= 0) return
-      const depth = (container.scrollTop / maxScroll) * 100
+      const { ratio } = getScrollMetrics()
+      const depth = ratio * 100
       if (depth >= 25 && !trackedDepths.has(25)) {
         trackedDepths.add(25)
         analytics.trackScrollDepth('25%')
@@ -125,19 +116,25 @@ export default function App({ Component, pageProps }) {
       }
     }
 
-    container.addEventListener('scroll', onScroll, { passive: true })
-    return () => container.removeEventListener('scroll', onScroll)
+    const { element } = getScrollMetrics()
+    if (element) {
+      element.addEventListener('scroll', onScroll, { passive: true })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    onScroll()
+
+    return () => {
+      if (element) {
+        element.removeEventListener('scroll', onScroll)
+      }
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
   }, [router.asPath])
 
   return (
     <>
-      <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-        {/* Font Awesome for icons (CDN) - no SRI here to avoid broken integrity value */}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-      </Head>
       <a href="#main-content" className="skip-link">Skip to content</a>
       <ScrollProgress />
       <BackToTop />
@@ -154,7 +151,7 @@ export default function App({ Component, pageProps }) {
           </main>
         </motion.div>
       </AnimatePresence>
-      <ResumeModal isOpen={isResumeOpen} onClose={closeResumeModal} />
+      {isResumeOpen ? <ResumeModal isOpen={isResumeOpen} onClose={closeResumeModal} /> : null}
       <Analytics />
     </>
   )

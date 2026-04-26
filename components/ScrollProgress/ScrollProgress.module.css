@@ -23,7 +23,7 @@
   transform-origin: left center;
   transform: scaleX(0);
 
-  background: var(--gradient-main);
+  background: rgba(var(--accent-rgb), 0.9);
 
   transition: transform 0.12s cubic-bezier(0.1, 0.7, 0.1, 1);
 

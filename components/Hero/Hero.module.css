@@ -1,16 +1,8 @@
-.wrapper {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto var(--section-vertical) auto;
-  padding: var(--section-vertical) var(--section-horizontal);
-  box-sizing: border-box;
-}
-
 .container {
   min-height: 100dvh;
   min-height: 100vh;
   background: var(--bg);
-  color: var(--accent);
+  color: var(--white);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,16 +12,27 @@
   padding: max(env(safe-area-inset-top, 24px), 24px) 0 max(env(safe-area-inset-bottom, 24px), 24px);
 }
 
+.wrapper {
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+  min-height: calc(100dvh - 100px);
+  padding: clamp(32px, 6vh, 72px) var(--section-horizontal) clamp(92px, 14vh, 156px);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
 .center {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100%;
   width: 100%;
-  gap: min(3.5vw, 48px);
-  padding: 0 20px;
+  gap: clamp(32px, 5vh, 64px);
 }
 
 .topText {
@@ -37,269 +40,121 @@
   font-family: var(--font-body);
   font-weight: 700;
   margin: 0;
-  font-size: clamp(20px, 2.5vw, 28px);
-  will-change: opacity, transform;
+  font-size: clamp(16px, 1.3vw, 24px);
+  opacity: 0.9;
+  letter-spacing: -0.01em;
 }
 
 .huge {
   margin: 0;
-  color: var(--accent);
   font-family: var(--font-display);
   font-weight: 900;
-  line-height: 0.85;
-  font-size: clamp(72px, 22vw, 280px);
+  line-height: 1.0;
+  font-size: clamp(80px, 22vw, 360px);
   width: 100%;
   text-align: center;
   white-space: nowrap;
-  overflow: visible;
-  will-change: transform, opacity;
-  padding: 0 4px;
-  max-width: 100%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  
+  /* Liquid Glass Frost Text Effect */
+  color: transparent;
+  background: linear-gradient(
+    to bottom, 
+    rgba(255, 255, 255, 0.98) 0%, 
+    rgba(255, 255, 255, 0.7) 40%, 
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
+  /* filter removed per request */
   letter-spacing: -0.02em;
 }
 
 .subtitle {
-  color: var(--muted2);
+  color: var(--text-muted);
   font-family: var(--font-body);
-  font-weight: 700;
+  font-weight: 500;
   margin: 0;
-  font-size: clamp(18px, 1.8vw, 26px);
-  line-height: 1.4;
-  will-change: opacity, transform;
-  max-width: 800px;
-  padding: 0 20px;
+  font-size: clamp(16px, 1.6vw, 28px);
+  line-height: 1.5;
+  max-width: min(900px, 86vw);
+}
+
+.accentWord {
+  color: var(--accent);
+  font-weight: 800;
 }
 
 .lineBreak {
-  display: inline;
-}
-
-@media (max-width: 640px) {
-  .lineBreak {
-    display: block;
-  }
+  display: block;
+  font-weight: 400;
+  margin-top: 12px;
+  font-size: 0.85em;
+  color: var(--text-subtle);
 }
 
 .scrollWrapper {
   position: absolute;
-  bottom: max(40px, 5vh);
+  bottom: max(24px, 4vh);
   left: 50%;
   transform: translateX(-50%);
-  text-align: center;
-  color: var(--muted2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
   z-index: 10;
+  opacity: 0.7;
 }
 
 .scrollIndicator {
-  width: 3px;
-  height: 36px;
-  background: var(--muted);
-  margin: 0 auto 12px auto;
+  width: 2px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
-  will-change: transform, opacity;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  padding: 0;
-  cursor: pointer;
 }
 
 .indicatorFill {
   position: absolute;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 40%;
-  top: 0%;
+  height: 30%;
   background: var(--accent);
-  will-change: transform;
-  animation: indicatorSlide 1.6s ease-in-out infinite;
+  animation: indicatorSlide 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 
 @keyframes indicatorSlide {
-  0% { transform: translateY(0%); opacity: 0.9; }
-  50% { transform: translateY(150%); opacity: 1; }
-  100% { transform: translateY(0%); opacity: 0.9; }
-}
-
-.scrollIndicator:focus {
-  outline: none;
-
-}
-
-.scrollIndicator:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 6px;
+  0% { transform: translateY(-100%); }
+  50% { transform: translateY(150%); }
+  100% { transform: translateY(400%); }
 }
 
 .scrollText {
-  color: var(--muted2);
+  color: var(--text-subtle);
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: clamp(14px, 1.2vw, 18px);
+  font-size: 12px;
   text-transform: uppercase;
+  letter-spacing: 0.3em;
 }
 
 @media (max-width: 1024px) {
-  .wrapper {
-    padding: 0 24px;
-  }
-  
-  .center {
-    gap: min(4vw, 40px);
-    padding: 0 16px;
-  }
-  
-  .huge {
-    font-size: clamp(64px, 20vw, 240px);
-    line-height: 0.82;
-  }
-  
-  .subtitle {
-    font-size: clamp(17px, 2vw, 22px);
-    max-width: 90%;
-  }
+  .huge { font-size: clamp(70px, 20vw, 280px); }
 }
 
 @media (max-width: 768px) {
-  .wrapper {
-    padding: 0 20px;
-  }
-  
-  .center {
-    gap: min(5vw, 32px);
-    padding: 0 12px;
-  }
-  
-  .huge {
-    font-size: clamp(56px, 18vw, 200px);
-    line-height: 0.8;
-    padding: 0;
-  }
-  
-  .topText {
-    font-size: clamp(18px, 3vw, 22px);
-  }
-  
-  .subtitle {
-    font-size: clamp(16px, 2.5vw, 20px);
-    max-width: 95%;
-    line-height: 1.5;
-  }
-  
-  .scrollWrapper {
-    bottom: max(32px, 4vh);
-  }
-  
-  .scrollIndicator {
-    height: 36px;
-  }
+  .huge { font-size: clamp(60px, 18vw, 200px); }
+  .center { gap: 32px; }
 }
 
-/* Mobile Portrait - Show line break here */
 @media (max-width: 480px) {
-  .wrapper {
-    padding: 0 16px;
-  }
-  
-  .center {
-    gap: min(6vw, 28px);
-    padding: 0 8px;
-  }
-  
-  .huge {
-    font-size: clamp(48px, 22vw, 160px);
-    line-height: 0.78;
-    white-space: nowrap;
-    overflow: visible;
-    padding: 0;
-  }
-  
-  .topText {
-    font-size: clamp(16px, 4vw, 20px);
-  }
-  
-  .subtitle {
-    font-size: clamp(14px, 3.5vw, 18px);
-    max-width: 100%;
-    line-height: 1.6;
-  }
-  
-  .lineBreak {
-    display: block;
-  }
-  
-  .scrollWrapper {
-    bottom: max(64px, 10vh);
-  }
-  
-  .scrollIndicator {
-    height: 36px;
-    width: 2.5px;
-  }
-  
-  .scrollText {
-    font-size: clamp(12px, 2.8vw, 14px);
-  }
-}
-
-@media (max-width: 360px) {
-  .huge {
-    white-space: normal;
-  }
-
-  .subtitle {
-    padding: 0 8px;
-  }
-}
-
-@media (min-width: 1920px) {
-  .wrapper {
-    max-width: 1600px;
-    padding: 0 48px;
-  }
-  
-  .center {
-    gap: 56px;
-  }
-  
-  .huge {
-    font-size: min(24vw, 320px);
-  }
-  
-  .subtitle {
-    font-size: 28px;
-  }
-}
-
-@media (max-height: 600px) and (max-width: 480px) {
-  .center {
-    gap: min(4vw, 20px);
-    justify-content: flex-start;
-    padding-top: 20vh;
-  }
-  
-  .huge {
-    font-size: clamp(40px, 20vw, 120px);
-  }
-  
-  .scrollWrapper {
-    position: relative;
-    bottom: auto;
-    margin-top: auto;
-    padding-bottom: 20px;
-  }
+  .huge { font-size: clamp(50px, 17vw, 140px); }
+  .center { gap: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scrollIndicator,
-  .scrollIndicator * {
-    animation: none !important;
-    transition: none !important;
-  }
-  
-  .indicatorFill {
-    transform: translateY(0%) !important;
-  }
+  .indicatorFill { animation: none !important; }
 }

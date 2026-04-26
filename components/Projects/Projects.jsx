@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from './Projects.module.css';
 import projectsData from './projects.json';
@@ -11,28 +12,48 @@ export default function Projects() {
     <section className={styles.wrapper} id="projects">
       <motion.div
         className={styles.headerRow}
-        initial={{ opacity: 0, y: 18 }}
+        initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.5 }}
       >
         <h2 className={styles.header}>Selected Projects</h2>
-        <p className={styles.intro}>Shipped work across product design, frontend systems, and iOS execution.</p>
       </motion.div>
 
       {projects.length === 0 ? (
         <div className={styles.emptyState}>Projects are being updated. Check back shortly.</div>
       ) : (
-        <div className={styles.grid}>
+        <motion.div 
+          className={styles.grid}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.05 }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.1
+              }
+            }
+          }}
+        >
           {projects.map((p) => (
-          <article
+          <motion.article
             key={p.id}
-            className={styles.card}
+            className={`${styles.card} ${p.title === 'SRMConnect' ? styles.srmCard : ''}`}
+            variants={{
+              hidden: { opacity: 0, y: 12 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } }
+            }}
           >
             <div className={styles.media} aria-label={`${p.title} project preview`}>
-              <img
+              <Image
                 src={p.image}
                 alt={`${p.title} project interface`}
+                fill
+                sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
                 loading="lazy"
               />
             </div>
@@ -65,9 +86,9 @@ export default function Projects() {
               </div>
               <p className={styles.desc}>{p.desc}</p>
             </div>
-          </article>
+          </motion.article>
           ))}
-        </div>
+        </motion.div>
       )}
     </section>
   );

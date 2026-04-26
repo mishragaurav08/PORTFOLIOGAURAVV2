@@ -1,74 +1,112 @@
 import React from 'react';
 import styles from './Experience.module.css';
-
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const experiences = [
   {
     title: 'Samsung PRISM',
     org: 'Samsung R&D Institute India',
     date: 'Internship',
-    desc: `At Samsung PRISM, I explored how network traffic behaves at scale. I built machine learning pipelines to analyze packet data and tested models to classify traffic patterns in production-like scenarios. This experience taught me to think beyond code - about systems, data, and real-world impact.`
+    logo: 'samsung',
+    desc: `I worked on network traffic and ML pipelines at Samsung PRISM, trying to understand how data behaves at scale.`
   },
   {
     title: 'iOS Developer Intern',
     org: 'Infosys',
     date: 'Internship',
-    desc: `During my internship at Infosys, I worked on a fleet management iOS app with real-time vehicle tracking. I built key onboarding flows, from authentication to profile verification, and developed modular SwiftUI components with a Supabase backend. It was my first experience shipping something that had to feel production-ready from day one.`
+    logo: 'infosys',
+    desc: `At Infosys, I built parts of a fleet management iOS app, focusing on onboarding flows and reusable SwiftUI components.`
   },
   {
     title: 'iOS Developer Program',
     org: 'Apple x Infosys',
     date: 'Participant',
-    desc: `This program is where I sharpened how I build for mobile. Working with SwiftUI, I focused on clean and performant interfaces while learning how real products are designed, iterated, and shipped. It was less about adding features and more about building them right.`
-  },
-  {
-    title: 'UX/UI Designer',
-    org: 'Independent Work',
-    date: 'Freelance',
-    desc: `Alongside development, I worked on design projects for apps and early-stage products. From interfaces to brand systems and Play Store assets, I helped shape how products look, feel, and communicate. That is where I learned that good design is not decoration, it is clarity.`
+    logo: 'apple',
+    desc: `The Apple x Infosys program helped me get comfortable with mobile development and think more about building things cleanly rather than just adding features.`
   }
 ];
 
 export default function Experience() {
   const displayExperiences = experiences;
   
-  const content = (
-    <>
+  const renderLogo = (logo, shouldFill) => {
+    let src = '';
+    let alt = '';
+
+    if (logo === 'infosys') {
+      src = '/assets/infosysintern.png';
+      alt = 'Infosys';
+    } else if (logo === 'apple') {
+      src = '/assets/apple.png';
+      alt = 'Apple';
+    } else if (logo === 'samsung') {
+      src = '/assets/Samsungprism.png';
+      alt = 'Samsung';
+    }
+
+    if (src) {
+      return (
+        <div className={styles.logoWrap}>
+          <Image 
+            src={src} 
+            alt={alt} 
+            fill 
+            className={shouldFill ? styles.logoImgFill : styles.logoImgContain} 
+          />
+        </div>
+      );
+    }
+    return null;
+  };
+
+  return (
+    <section className={styles.wrapper} id="experience">
       <motion.div
         className={styles.headerRow}
-        initial={{ opacity: 0, y: 18 }}
+        initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.5 }}
       >
         <h2 className={styles.header}>Where I Learned</h2>
       </motion.div>
-      <div className={styles.list}>
+      <motion.div 
+        className={styles.timeline}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
+        variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.12,
+              delayChildren: 0.1
+            }
+          }
+        }}
+      >
         {displayExperiences.map((exp) => (
-          <article
+          <motion.article
             className={styles.item}
             key={`${exp.title}-${exp.org}`}
+            variants={{
+              hidden: { opacity: 0, y: 12 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } }
+            }}
           >
-            <div className={styles.itemHeader}>
-              <div className={styles.titleRow}>
+            <div className={styles.card}>
+              {renderLogo(exp.logo, exp.logo === 'apple')}
+              <div className={styles.itemHeader}>
                 <h3 className={styles.itemTitle}>{exp.title}</h3>
-                <div className={styles.itemDate}>{exp.date}</div>
-              </div>
-              <div className={styles.metaRow}>
                 <div className={styles.itemOrg}>{exp.org}</div>
               </div>
+              <p className={styles.itemDesc}>{exp.desc}</p>
             </div>
-            <p className={styles.itemDesc}>{exp.desc}</p>
-          </article>
+          </motion.article>
         ))}
-      </div>
-    </>
-  );
-
-  return (
-    <section className={styles.wrapper} id="experience">
-      {content}
+      </motion.div>
     </section>
   );
 }

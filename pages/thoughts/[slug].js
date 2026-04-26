@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../components/Thoughts/Thoughts.module.css';
@@ -36,6 +36,7 @@ export default function ThoughtPage({ thought }) {
   const router = useRouter();
   const { slug } = thought;
   const articleUrl = `https://gauravmishra.dev/thoughts/${slug}`;
+  const publishedDateIso = toIsoDate(thought.date);
 
   useIsomorphicLayoutEffect(() => {
     scrollToPageTop();
@@ -73,11 +74,16 @@ export default function ThoughtPage({ thought }) {
   }, [thought.content]);
 
   const handleBack = () => {
-    if (globalThis.window !== undefined && globalThis.window.history.length > 1) {
+    if (
+      typeof window !== 'undefined' &&
+      window.history.length > 1 &&
+      typeof document !== 'undefined' &&
+      document.referrer.startsWith(window.location.origin)
+    ) {
       router.back();
       return;
     }
-    router.push('/');
+    router.push('/#thoughts');
   };
 
   return (
@@ -92,7 +98,7 @@ export default function ThoughtPage({ thought }) {
       <SeoArticleSchema
         title={thought.title}
         description={thought.excerpt || thought.title}
-        datePublished={thought.date}
+        datePublished={publishedDateIso}
         url={articleUrl}
       />
       
@@ -191,13 +197,13 @@ export default function ThoughtPage({ thought }) {
                             key={img + '-' + i}
                             aria-hidden={isClone ? 'true' : undefined}
                           >
-                            <img
+                            <Image
                               src={img}
                               alt={isClone ? '' : `${thought.title} visual`}
                               className={styles.carouselImg}
-                              draggable={false}
+                              fill
+                              sizes="(max-width: 480px) 86vw, (max-width: 768px) 82vw, 520px"
                               loading="lazy"
-                              decoding="async"
                             />
                           </div>
                         )})}
@@ -235,7 +241,6 @@ export default function ThoughtPage({ thought }) {
                     ) : (
                       <Link
                         href={`/thoughts/${o.slug}`}
-                        scroll
                         className={styles.readMore}
                         aria-label={`Read ${o.title}`}
                         onClick={() => analytics.trackCtaClick(`Read Thought - ${o.title}`)}
@@ -289,6 +294,14 @@ function SeoArticleSchema({ title, description, datePublished, url }) {
       }}
     />
   );
+}
+
+function toIsoDate(value) {
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    return new Date().toISOString();
+  }
+  return parsed.toISOString();
 }
 
 export async function getStaticPaths() {

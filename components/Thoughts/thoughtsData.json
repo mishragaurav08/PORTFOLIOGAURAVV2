@@ -3,7 +3,7 @@
     "id": 1,
     "slug": "samsung-prism",
     "title": "Samsung PRISM",
-    "date": "Sep 2025",
+    "date": "2025-09-01",
     "excerpt": "Everything about the selection process, what working in PRISM actually feels like, and whether you should apply.",
     "content": [
       {
@@ -152,7 +152,7 @@
     "id": 2,
     "slug": "ios-developer-program",
     "title": "iOS Developer Program",
-    "date": "Feb 2026",
+    "date": "2026-02-01",
     "excerpt": "Complete breakdown of the selection process, bootcamp rounds, and what the year-long program actually involves.",
     "comingSoon": false,
     "content": [
@@ -318,6 +318,7 @@
           "/assets/breakoutroom.png",
           "/assets/infosys.png",
           "/assets/ios.png",
+          "/assets/appfair.png",
           "/assets/classroom.png"
         ]
       }

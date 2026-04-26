@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import styles from './Footer.module.css';
 import { motion } from 'framer-motion';
 
@@ -15,12 +16,14 @@ export default function Footer() {
         viewport={{ once: true, amount: 0.2 }}
       >
         <div className={styles.leftVisual}>
-          <img
+          <Image
             src="/assets/footer.png"
-            alt="Footer visual"
+            alt=""
+            aria-hidden="true"
+            width={800}
+            height={600}
             className={styles.leftImage}
             loading="lazy"
-            decoding="async"
           />
         </div>
         <div className={styles.content}>

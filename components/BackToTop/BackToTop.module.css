@@ -1,69 +1,139 @@
-.button {
+.resumeButton {
   position: fixed;
-  right: var(--space-3);
-  bottom: var(--space-3);
+  right: clamp(24px, 4vw, 40px);
+  bottom: clamp(24px, 4vw, 40px);
   z-index: 930;
-  border: 1px solid rgba(212, 175, 55, 0.28);
-  border-radius: 999px;
-  background: rgba(10, 10, 10, 0.62);
-  color: var(--accent);
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1;
-  width: 44px;
-  height: 44px;
   display: inline-flex;
   align-items: center;
+  text-decoration: none;
+  line-height: 1;
+  outline: none;
+  width: auto;
+  min-width: 148px;
+  height: 52px;
+  padding: 0 18px;
+  gap: 10px;
+  background: linear-gradient(
+    135deg,
+    rgba(17, 18, 22, 0.98) 0%,
+    rgba(17, 18, 22, 0.94) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 12px 32px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
   justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(12px) scale(0.98);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.36);
-  transition: opacity 220ms ease, transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1), background 180ms ease, border-color 180ms ease;
-  --p: 0;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
 }
 
-.button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-.ring {
+.resumeButton::after {
+  content: "";
   position: absolute;
-  inset: -1px;
-  border-radius: 999px;
-  background: conic-gradient(from -90deg, rgba(212, 175, 55, 0.92) calc(var(--p) * 360deg), rgba(255, 255, 255, 0.06) 0deg);
-  -webkit-mask: radial-gradient(circle at center, transparent 62%, #000 64%);
-  mask: radial-gradient(circle at center, transparent 62%, #000 64%);
-  opacity: 0.95;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  z-index: 2;
 }
 
-.icon {
-  position: relative;
-  z-index: 1;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+.resumeIconWrap {
+  flex-shrink: 0;
+  width: auto;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 500ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.visible {
+.resumeIconImage {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+  transition: transform 300ms ease;
+}
+
+.resumeButton:hover {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transform: none;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+.resumeButton:hover .resumeLabel {
+  color: #1a1c21;
+}
+
+.resumeButton:hover .resumeIconImage {
+  transform: none;
+}
+
+.resumeButton:active {
+  transform: translateY(-2px) scale(0.96);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.resumeButton:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.resumeLabel {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 800;
+  padding-right: 0;
   opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0) scale(1);
+  transform: translateX(0);
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition:
+    opacity 300ms ease 120ms,
+    transform 500ms cubic-bezier(0.19, 1, 0.22, 1) 80ms;
+}
+
+.resumeButton:hover .resumeLabel {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 @media (max-width: 768px) {
-  .button {
-    right: var(--space-2);
-    bottom: var(--space-2);
-    width: 42px;
-    height: 42px;
+  .resumeButton {
+    right: 20px;
+    bottom: 20px;
+    width: 56px;
+    height: 56px;
+    min-width: unset;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .resumeIconWrap {
+    width: 56px;
+    height: 56px;
+  }
+
+  .resumeButton:hover {
+    width: 56px;
+    transform: none;
+  }
+
+  .resumeLabel {
+    display: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .button {
+  .resumeButton,
+  .resumeIconWrap,
+  .resumeLabel {
     transition: none !important;
   }
 }
