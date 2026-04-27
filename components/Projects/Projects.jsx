@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from './Projects.module.css';
-import projectsData from './projects.json';
+import projectsData from '../../data/projects.json';
 import CTAButton from './CTAButton';
 
 export default function Projects() {

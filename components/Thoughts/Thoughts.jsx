@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-import thoughtsData from './thoughtsData.json';
+import thoughtsData from '../../data/thoughtsData.json';
 import * as analytics from '../../lib/analytics';
 
 export default function Thoughts() {

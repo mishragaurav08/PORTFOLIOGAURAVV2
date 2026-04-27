@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../components/Thoughts/Thoughts.module.css';
-import thoughtsData from '../../components/Thoughts/thoughtsData.json';
+import thoughtsData from '../../data/thoughtsData.json';
 import Footer from '../../components/Footer/Footer';
 import Seo from '../../components/SEO';
 import * as analytics from '../../lib/analytics';
@@ -115,7 +115,6 @@ export default function ThoughtPage({ thought }) {
             onClick={handleBack}
             className={styles.backIconBtn}
             aria-label="Go back"
-            whileHover="hover"
             whileTap="tap"
             initial="rest"
             animate="rest"
@@ -126,7 +125,6 @@ export default function ThoughtPage({ thought }) {
               initial={{ x: 0 }}
               variants={{
                 rest: { x: 0 },
-                hover: { x: -3, transition: { type: 'spring', stiffness: 300, damping: 18 } },
                 tap: { x: -1 }
               }}
               style={{ display: 'inline-flex', transform: 'scaleX(-1)' }}

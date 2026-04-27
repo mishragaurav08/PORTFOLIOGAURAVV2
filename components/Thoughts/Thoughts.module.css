@@ -342,7 +342,6 @@
 }
 
 .backIconBtn:hover {
-  transform: translateX(-6px);
 }
 
 .backIconBtn:focus-visible {

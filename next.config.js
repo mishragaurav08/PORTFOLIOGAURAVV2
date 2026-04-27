@@ -1,4 +1,4 @@
-const thoughtsData = require('./components/Thoughts/thoughtsData.json')
+const thoughtsData = require('./data/thoughtsData.json')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

@@ -12,7 +12,7 @@ function generateSiteMap() {
   const domain = 'https://gauravmishra.dev'
   
   // Read all thought posts
-  const thoughtsDirectory = path.join(process.cwd(), 'components/Thoughts')
+  const thoughtsDirectory = path.join(process.cwd(), 'data')
   let thoughtPosts = []
   
   try {

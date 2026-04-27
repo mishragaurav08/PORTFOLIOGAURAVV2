@@ -315,11 +315,12 @@
       {
         "type": "images",
         "images": [
-          "/assets/breakoutroom.png",
-          "/assets/infosys.png",
           "/assets/ios.png",
-          "/assets/appfair.png",
-          "/assets/classroom.png"
+          "/assets/breakoutroom.png",
+          "/assets/AyuthaPooja.jpg",
+          "/assets/intern.png",
+          "/assets/infosys.png",
+          "/assets/appfair.png"
         ]
       }
     ]
