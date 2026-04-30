@@ -3,18 +3,10 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 5px;
+  height: 3px;
   z-index: 900;
   pointer-events: none;
   background: transparent;
-  overflow: hidden;
-}
-
-.container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(var(--accent-rgb), 0.14);
 }
 
 .bar {
@@ -22,22 +14,11 @@
   height: 100%;
   transform-origin: left center;
   transform: scaleX(0);
-
-  background: rgba(var(--accent-rgb), 0.9);
-
+  background: var(--accent);
   transition: transform 0.12s cubic-bezier(0.1, 0.7, 0.1, 1);
-
   will-change: transform;
 }
 
-/* Mobile: thinner bar */
-@media (max-width: 768px) {
-  .container {
-    height: 3px;
-  }
-}
-
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .bar {
     transition: none;

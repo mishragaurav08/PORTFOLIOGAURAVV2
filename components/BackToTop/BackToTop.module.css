@@ -13,32 +13,18 @@
   height: 52px;
   padding: 0 18px;
   gap: 10px;
-  background: linear-gradient(
-    135deg,
-    rgba(17, 18, 22, 0.98) 0%,
-    rgba(17, 18, 22, 0.94) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
-    0 12px 32px rgba(0, 0, 0, 0.4),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  background: var(--bg);
+  border: 1px solid rgba(var(--accent-rgb), 0.55);
+  box-shadow: var(--shadow-fab);
   border-radius: 100px;
   justify-content: center;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
 }
 
-.resumeButton::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-  z-index: 2;
+.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .resumeIconWrap {
@@ -57,21 +43,6 @@
   object-fit: contain;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
   transition: transform 300ms ease;
-}
-
-.resumeButton:hover {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  transform: none;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-}
-
-.resumeButton:hover .resumeLabel {
-  color: #1a1c21;
-}
-
-.resumeButton:hover .resumeIconImage {
-  transform: none;
 }
 
 .resumeButton:active {
@@ -99,11 +70,6 @@
     transform 500ms cubic-bezier(0.19, 1, 0.22, 1) 80ms;
 }
 
-.resumeButton:hover .resumeLabel {
-  opacity: 1;
-  transform: translateX(0);
-}
-
 @media (max-width: 768px) {
   .resumeButton {
     right: 20px;
@@ -118,11 +84,6 @@
   .resumeIconWrap {
     width: 56px;
     height: 56px;
-  }
-
-  .resumeButton:hover {
-    width: 56px;
-    transform: none;
   }
 
   .resumeLabel {

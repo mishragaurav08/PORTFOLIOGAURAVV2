@@ -62,8 +62,8 @@ export default function Projects() {
                 <div className={styles.titleWrapper}>
                   <h3 className={styles.title}>{p.title}</h3>
                   <div className={styles.tag}>{p.tag}</div>
-                </div>
-                <div className={styles.buttonWrapper}>
+              </div>
+              <div className={styles.buttonWrapper}>
                   {p.type === 'inprogress' && (
                     <CTAButton type="inprogress" projectTitle={p.title}>Building</CTAButton>
                   )}
@@ -84,8 +84,10 @@ export default function Projects() {
                   )}
                 </div>
               </div>
-              <p className={`${styles.desc} ${p.shortDesc ? styles.hasShort : ''}`}>{p.desc}</p>
-              {p.shortDesc && <p className={styles.shortDesc}>{p.shortDesc}</p>}
+              <div className={styles.descGroup}>
+                <p className={`${styles.desc} ${styles.descDesktop}`}>{p.desc}</p>
+                <p className={`${styles.desc} ${styles.descMobile}`}>{p.mobileDesc || p.desc}</p>
+              </div>
             </div>
           </motion.article>
           ))}

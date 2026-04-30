@@ -74,15 +74,6 @@ export default function ThoughtPage({ thought }) {
   }, [thought.content]);
 
   const handleBack = () => {
-    if (
-      typeof window !== 'undefined' &&
-      window.history.length > 1 &&
-      typeof document !== 'undefined' &&
-      document.referrer.startsWith(window.location.origin)
-    ) {
-      router.back();
-      return;
-    }
     router.push('/#thoughts');
   };
 
@@ -104,12 +95,11 @@ export default function ThoughtPage({ thought }) {
       
       <section className={styles.wrapper} id="thought-detail">
         <motion.div
-          className={styles.headerRow}
+          className={styles.detailHeaderRow}
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
           viewport={{ once: true, amount: 0.5 }}
-          style={{ marginBottom: 'clamp(40px, 7vw, 72px)' }}
         >
           <motion.button
             onClick={handleBack}
@@ -224,7 +214,6 @@ export default function ThoughtPage({ thought }) {
           if (!others || others.length === 0) return null;
           return (
             <section className={styles.moreWrapper} aria-label="More thoughts">
-              <h3 className={styles.moreHeading}>More from Thoughts</h3>
               <div className={styles.grid}>
                 {others.map((o) => (
                   <article key={o.id} className={styles.card}>

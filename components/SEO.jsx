@@ -27,8 +27,6 @@ export default function SEO({
       <meta name="author" content={author} />
       <meta name="robots" content={robots} />
       <meta name="googlebot" content={robots} />
-      <meta name="application-name" content="Gaurav Mishra Portfolio" />
-      <meta name="apple-mobile-web-app-title" content="Gaurav Portfolio" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="English" />
@@ -53,10 +51,6 @@ export default function SEO({
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={fullImageUrl} />
-      
-      {/* Additional Meta Tags */}
-      <meta name="theme-color" content="#0b1020" />
-      <meta name="msapplication-TileColor" content="#0b1020" />
       
       {/* Structured Data - JSON-LD */}
       <script

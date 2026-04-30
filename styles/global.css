@@ -17,7 +17,7 @@ body,
 
 * {
   box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(var(--accent-rgb), 0.2);
+  -webkit-tap-highlight-color: rgba(var(--accent-rgb), 0.15);
 }
 
 *::before,
@@ -33,10 +33,10 @@ body {
   --font-display: 'Big Shoulders Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-body: 'Manrope', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-  /* Liquid Glass: neutral blackish dark (no blue cast) */
+  /* System background — matches Apple dark mode */
   --bg: #0a0a0c;
 
-  /* Premium gold accent (mustard-gold reference) */
+  /* Accent — used only for interactive elements and labels, never decoration */
   --accent: #d4b240;
   --accent-alt: #e6cb71;
   --accent-tertiary: #d4b240;
@@ -46,72 +46,89 @@ body {
   --accent-alt-rgb: 230, 203, 113;
   --accent-tertiary-rgb: 212, 178, 64;
 
-  /* Glass surfaces (top-notch Apple-style frost) */
-  --glass: rgba(255, 255, 255, 0.03);
-  --glass-2: rgba(255, 255, 255, 0.06);
-  --glass-3: rgba(255, 255, 255, 0.09);
-  --glass-noise: none;
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-soft: rgba(255, 255, 255, 0.04);
+  /* ── Apple Liquid UI Material System ───────────────────────────────────────
+     Material depth comes entirely from backdrop-filter + a barely-there tint.
+     Apple's actual values: blur ~20-30px, saturate ~180%, fill ~0.05-0.08.
+     No shimmer lines. No glow. No decorative borders. Just material.
+  ─────────────────────────────────────────────────────────────────────────── */
 
-  /* Overlay/backdrop */
-  --backdrop: rgba(0, 0, 0, 0.75);
+  /* Surface fills */
+  --glass:   rgba(255, 255, 255, 0.04);
+  --glass-2: rgba(255, 255, 255, 0.07);
+  --glass-3: rgba(255, 255, 255, 0.10);
 
-  /* Blur & Saturation (Premium liquid material) */
-  --blur-glass: 80px;
-  --blur-glass-soft: 40px;
-  --blur-backdrop: 24px;
-  --saturate-glass: 250%;
+  /* Card surface — flat, uniform tint */
+  --glass-card:       rgba(255, 255, 255, 0.05);
+  --glass-card-hover: rgba(255, 255, 255, 0.08);
+
+  /* Borders — hairline only, ~0.09 max */
+  --glass-border:       rgba(255, 255, 255, 0.09);
+  --glass-border-soft:  rgba(255, 255, 255, 0.05);
+  --glass-border-hover: rgba(255, 255, 255, 0.15);
+
+  /* Blur & saturation — Apple material values */
+  --blur-glass:      24px;
+  --blur-glass-soft: 12px;
+  --blur-backdrop:   20px;
+  --saturate-glass:  180%;
+
+  /* Shadows — single clean elevation shadow, nothing more */
+  --shadow-glass:       0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+                        0 16px 48px -12px rgba(0, 0, 0, 0.50);
+  --shadow-glass-hover: 0 1px 0 0 rgba(255, 255, 255, 0.09) inset,
+                        0 20px 56px -12px rgba(0, 0, 0, 0.60);
+  --shadow-fab:         0 8px 24px -4px rgba(0, 0, 0, 0.40);
+  --shadow-modal:       0 40px 80px -20px rgba(0, 0, 0, 0.70);
+
+  /* Backdrop overlay */
+  --backdrop: rgba(0, 0, 0, 0.70);
 
   /* Surface scale */
-  --bg-alt: rgba(255, 255, 255, 0.05);
-  --surface-2: rgba(255, 255, 255, 0.07);
+  --bg-alt:    rgba(255, 255, 255, 0.04);
+  --surface-2: rgba(255, 255, 255, 0.06);
   --surface-3: rgba(255, 255, 255, 0.09);
-  --muted: rgba(255, 255, 255, 0.02);
-  --muted2: rgba(245, 245, 247, 0.72);
+  --muted:     rgba(255, 255, 255, 0.02);
+  --muted2:    rgba(245, 245, 247, 0.70);
 
-  /* Text scale (no pure white everywhere) */
-  --white: #f5f5f7;
-  --black: #050506;
-  --text-main: rgba(245, 245, 247, 0.92);
-  --text-muted: rgba(245, 245, 247, 0.72);
-  --text-subtle: rgba(245, 245, 247, 0.56);
+  /* Text — Apple label hierarchy */
+  --white:        #f5f5f7;
+  --black:        #050506;
+  --text-main:    rgba(245, 245, 247, 0.90);
+  --text-muted:   rgba(245, 245, 247, 0.60);
+  --text-subtle:  rgba(245, 245, 247, 0.38);
   --text-inverse: #0a0a0c;
-  --text-heading: rgba(245, 245, 247, 0.96);
+  --text-heading: rgba(245, 245, 247, 0.95);
 
-  /* Interactive states */
-  --accent-hover: #e6cb71;
-  --accent-active: #b89222;
-  --accent-dark: #b89222;
-  --accent-alt-hover: #f0dc9a;
+  /* Interactive */
+  --accent-hover:      #e6cb71;
+  --accent-active:     #b89222;
+  --accent-dark:       #b89222;
+  --accent-alt-hover:  #f0dc9a;
   --accent-alt-active: #cea43a;
-  --disabled-bg: rgba(255, 255, 255, 0.08);
-  --disabled-text: rgba(242, 244, 255, 0.38);
+  --disabled-bg:       rgba(255, 255, 255, 0.06);
+  --disabled-text:     rgba(242, 244, 255, 0.30);
 
-  /* Borders (subtle, glass-like) */
-  --border: var(--glass-border-soft);
-  --border-light: var(--glass-border);
-  --border-accent: rgba(var(--accent-rgb), 0.42);
-  --border-soft: rgba(255, 255, 255, 0.06);
+  /* Borders */
+  --border:        var(--glass-border-soft);
+  --border-light:  var(--glass-border);
+  --border-accent: rgba(var(--accent-rgb), 0.35);
+  --border-soft:   rgba(255, 255, 255, 0.05);
 
-  /* Elevation (consistent depth across liquid surfaces) */
-  --shadow-glass: 0 32px 64px -16px rgba(0, 0, 0, 0.6), inset 0 0 0 1.5px rgba(255, 255, 255, 0.08), inset 0 1px 2px 0 rgba(255, 255, 255, 0.12);
-  --shadow-fab: 0 16px 40px -8px rgba(0, 0, 0, 0.4);
-  --shadow-modal: 0 48px 96px -24px rgba(0, 0, 0, 0.7);
-
-  /* Semantics (only when needed) */
+  /* Semantics */
   --success: #34c759;
   --warning: #ff9f0a;
-  --error: #ff453a;
-  --info: var(--accent);
+  --error:   #ff453a;
+  --info:    var(--accent);
 
-  /* Keep gradients minimal (prefer solid); reserved for rare highlights */
   --gradient-main: var(--accent);
-  --gradient-bg: var(--bg);
+  --gradient-bg:   var(--bg);
 
-  --section-vertical: clamp(32px, 7vh, 84px);
-  --section-horizontal: clamp(16px, 5vw, 48px);
-  --section-gap: clamp(20px, 4vh, 48px);
+  --section-vertical:    clamp(32px, 7vh, 84px);
+  --section-horizontal:  clamp(16px, 5vw, 48px);
+  --section-gap:         clamp(20px, 4vh, 48px);
+  --section-gap-tight:   clamp(16px, 3vh, 28px);
+  --card-padding:        clamp(24px, 4vw, 48px);
+  --card-padding-lg:     clamp(32px, 5vw, 64px);
 
   --space-1: 8px;
   --space-2: 16px;
@@ -120,20 +137,22 @@ body {
   --space-5: 40px;
   --space-6: 48px;
 
-  --radius-sm: 12px;
-  --radius-md: 14px;
-  --radius-lg: 16px;
-  --radius-xl: 16px;
-  --radius-card: 40px;
-  --radius-card-mobile: 24px;
-  --radius-pill: 999px;
+  --radius-sm:          12px;
+  --radius-md:          14px;
+  --radius-lg:          16px;
+  --radius-xl:          20px;
+  --radius-card:        24px;
+  --radius-card-mobile: 18px;
+  --radius-pill:        999px;
 
-  --type-section-title: clamp(28px, 4.4vw, 48px);
-  --type-card-title: clamp(18px, 2.3vw, 24px);
-  --type-body-lg: clamp(15px, 1.55vw, 18px);
-  --type-body: clamp(14px, 1.25vw, 16px);
-  --type-meta: clamp(12px, 1.05vw, 13px);
-  --type-btn: clamp(14px, 1.15vw, 15px);
+  --type-hero:          clamp(56px, 16vw, 200px);
+  --type-hero-sub:      clamp(15px, 2.1vw, 22px);
+  --type-section-title: clamp(26px, 3.8vw, 44px);
+  --type-card-title:    clamp(18px, 2.2vw, 22px);
+  --type-body-lg:       clamp(15px, 1.5vw, 18px);
+  --type-body:          clamp(14px, 1.2vw, 16px);
+  --type-meta:          clamp(12px, 1vw, 13px);
+  --type-btn:           clamp(13px, 1.05vw, 14px);
 }
 
 a {
@@ -147,24 +166,6 @@ textarea:focus-visible,
 select:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-}
-
-.skip-link {
-  position: fixed;
-  top: -48px;
-  left: var(--space-2);
-  z-index: 10000;
-  padding: 10px 14px;
-  background: rgba(var(--accent-rgb), 0.92);
-  color: var(--black);
-  border-radius: var(--radius-md);
-  font-family: var(--font-body);
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.skip-link:focus-visible {
-  top: var(--space-2);
 }
 
 img,

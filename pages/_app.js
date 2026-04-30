@@ -135,7 +135,6 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <a href="#main-content" className="skip-link">Skip to content</a>
       <ScrollProgress />
       <BackToTop />
       <AnimatePresence mode="wait" initial={false}>

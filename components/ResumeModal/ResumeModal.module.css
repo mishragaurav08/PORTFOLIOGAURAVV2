@@ -27,37 +27,13 @@
   height: 90vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 44px;
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
   overflow: hidden;
-  box-shadow: 
-    0 32px 100px rgba(0, 0, 0, 0.6),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  -webkit-backdrop-filter: blur(60px) saturate(220%);
-  backdrop-filter: blur(60px) saturate(220%);
-}
-
-.modal::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.3) 20%,
-    rgba(255, 255, 255, 0.3) 80%,
-    transparent 100%
-  );
-  z-index: 5;
-  opacity: 0.8;
+  box-shadow: var(--shadow-modal);
+  -webkit-backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
+  backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
 }
 
 .headerRow {

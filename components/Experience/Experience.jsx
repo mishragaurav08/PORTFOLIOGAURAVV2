@@ -9,21 +9,24 @@ const experiences = [
     org: 'Samsung R&D Institute India',
     date: 'Internship',
     logo: 'samsung',
-    desc: `I worked on network traffic and ML pipelines at Samsung PRISM, trying to understand how data behaves at scale.`
+    desc: `Worked on network traffic analysis and ML pipelines at Samsung PRISM, with a focus on scale, behavior, and system reliability.`,
+    mobileDesc: `Worked on network traffic and ML pipelines at Samsung PRISM with a focus on reliability.`
   },
   {
     title: 'iOS Developer Intern',
     org: 'Infosys',
     date: 'Internship',
     logo: 'infosys',
-    desc: `At Infosys, I built parts of a fleet management iOS app, focusing on onboarding flows and reusable SwiftUI components.`
+    desc: `Built parts of a fleet management iOS app at Infosys, focusing on onboarding flows and reusable SwiftUI components.`,
+    mobileDesc: `Built parts of a fleet management iOS app with SwiftUI and onboarding flows.`
   },
   {
     title: 'iOS Developer Program',
     org: 'Apple x Infosys',
     date: 'Participant',
     logo: 'apple',
-    desc: `The Apple x Infosys program helped me get comfortable with mobile development and think more about building things cleanly rather than just adding features.`
+    desc: `The Apple x Infosys program pushed me toward cleaner mobile implementation, stronger polish, and better product thinking.`,
+    mobileDesc: `A program that strengthened my mobile product thinking and implementation quality.`
   }
 ];
 
@@ -102,7 +105,10 @@ export default function Experience() {
                 <h3 className={styles.itemTitle}>{exp.title}</h3>
                 <div className={styles.itemOrg}>{exp.org}</div>
               </div>
-              <p className={styles.itemDesc}>{exp.desc}</p>
+              <div className={styles.itemDescGroup}>
+                <p className={`${styles.itemDesc} ${styles.itemDescDesktop}`}>{exp.desc}</p>
+                <p className={`${styles.itemDesc} ${styles.itemDescMobile}`}>{exp.mobileDesc || exp.desc}</p>
+              </div>
             </div>
           </motion.article>
         ))}

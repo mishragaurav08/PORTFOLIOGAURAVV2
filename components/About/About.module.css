@@ -1,93 +1,68 @@
 .wrapper {
   width: 100%;
   max-width: 1480px;
-  margin: 0 auto var(--section-vertical) auto;
-  padding: var(--section-vertical) var(--section-horizontal);
+  margin: 0 auto;
+  padding:
+    clamp(28px, 5vh, 72px)
+    var(--section-horizontal)
+    clamp(40px, 7vh, 92px);
   box-sizing: border-box;
   position: relative;
 }
 
-
+.content {
+  width: 100%;
+  max-width: 100%;
+}
 
 .card {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
+  background: var(--glass-card);
   border-radius: var(--radius-card);
-  padding: clamp(32px, 6vw, 80px);
+  border: 1px solid var(--glass-border);
+  padding: var(--card-padding-lg);
   position: relative;
   z-index: 1;
   overflow: hidden;
-  will-change: backdrop-filter;
-  
-  /* Glass Core */
   -webkit-backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
   backdrop-filter: blur(var(--blur-glass)) saturate(var(--saturate-glass));
-  
-  /* Hide default border */
-  border: none;
-}
-
-/* Liquid Border & Shadow Overlay */
-.card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 10;
-  border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-glass);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-/* Premium Top Highlight */
-.card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.3) 20%,
-    rgba(255, 255, 255, 0.3) 80%,
-    transparent 100%
-  );
-  z-index: 11;
-  opacity: 0.8;
-  pointer-events: none;
+.card:hover {
+  background: var(--glass-card-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--shadow-glass-hover);
 }
 
 .header {
-  margin: 0 0 clamp(32px, 4vw, 56px) 0;
+  margin: 0 0 clamp(22px, 3vh, 34px) 0;
   font-weight: 900;
   color: var(--white);
-  font-size: clamp(42px, 6vw, 84px);
-  line-height: 0.95;
+  font-size: var(--type-section-title);
+  line-height: 1;
   letter-spacing: -0.04em;
   font-family: var(--font-display);
 }
 
-
-
 .copy {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: clamp(18px, 2.8vh, 28px);
   width: 100%;
 }
 
 .paragraph {
   margin: 0;
   color: var(--text-muted);
-  font-size: clamp(17px, 1.6vw, 24px);
-  line-height: 1.6;
+  font-size: clamp(16px, 1.45vw, 19px);
+  line-height: 1.72;
   font-weight: 500;
   font-family: var(--font-body);
+  max-width: 100%;
 }
 
 .highlight {
@@ -101,46 +76,83 @@
 }
 
 @media (max-width: 1024px) {
+  .wrapper {
+    padding-top: clamp(24px, 4vh, 56px);
+    padding-bottom: clamp(36px, 6vh, 72px);
+  }
+
   .card {
     padding: clamp(32px, 5vw, 48px);
     border-radius: var(--radius-card-mobile);
   }
+
+  .content {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
+  .wrapper {
+    padding-top: clamp(24px, 4vh, 44px);
+    padding-bottom: clamp(32px, 5vh, 56px);
+  }
+
   .card {
-    padding: clamp(24px, 5vw, 32px) clamp(20px, 4vw, 24px);
+    padding: clamp(24px, 5vw, 32px) clamp(18px, 4.5vw, 24px);
     border-radius: var(--radius-card-mobile);
   }
 
   .header {
-    font-size: clamp(34px, 10vw, 56px);
-    margin-bottom: 32px;
+    font-size: clamp(28px, 7vw, 36px);
+    margin-bottom: clamp(18px, 3vh, 26px);
   }
 
   .paragraph {
-    font-size: clamp(15px, 4.5vw, 18px);
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.68;
   }
-  
+
   .copy {
-    gap: 20px;
+    gap: clamp(16px, 2.6vh, 20px);
   }
 }
 
 @media (max-width: 380px) {
+  .wrapper {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   .card {
     padding: 20px 16px;
   }
+
   .header {
-    font-size: 32px;
+    font-size: 30px;
+  }
+
+  .paragraph {
+    font-size: 14px;
+    line-height: 1.65;
   }
 }
 
 @media (min-width: 2000px) {
-  .wrapper { max-width: 1600px; }
-  .header { font-size: 96px; }
-  .paragraph { font-size: 28px; }
+  .wrapper {
+    max-width: 1600px;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .header {
+    font-size: 56px;
+  }
+
+  .paragraph {
+    font-size: 20px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

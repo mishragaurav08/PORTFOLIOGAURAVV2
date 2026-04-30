@@ -45,37 +45,43 @@ export default function Hero() {
             initial="hidden"
             whileInView="show"
           >
-            Hey there, I’m
+            Hey there, I&apos;m
           </motion.p>
-          <motion.h1
-            className={styles.huge}
-            variants={nameFade}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            GAURAV
-          </motion.h1>
-          <motion.p
-            className={styles.subtitle}
-            variants={floatText}
-            initial="hidden"
-            whileInView="show"
-          >
-            I am currently building <span className={styles.accentWord}>Interact</span>.
-            <span className={styles.lineBreak}>Explore selected work, case notes, and outcomes.</span>
-          </motion.p>
+
+          <div className={styles.titleBlock}>
+            <motion.h1
+              className={styles.huge}
+              variants={nameFade}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              GAURAV
+            </motion.h1>
+
+            <motion.p
+              className={styles.subtitle}
+              variants={floatText}
+              initial="hidden"
+              whileInView="show"
+            >
+              I am currently building <span className={styles.accentWord}>Interact</span>.
+              <br />
+              Explore selected work, case notes, and outcomes.
+            </motion.p>
+          </div>
         </motion.section>
-      </div>
-      <div className={styles.scrollWrapper}>
-        <a
-          href="#about"
-          className={styles.scrollIndicator}
-          aria-label="Go to about section"
-        >
-          <motion.div className={styles.indicatorFill} aria-hidden="true" />
-        </a>
-        <div className={styles.scrollText}>Step inside</div>
+
+        <div className={styles.scrollWrapper}>
+          <a
+            href="#about"
+            className={styles.scrollIndicator}
+            aria-label="Go to about section"
+          >
+            <motion.div className={styles.indicatorFill} aria-hidden="true" />
+          </a>
+          <div className={styles.scrollText}>Step inside</div>
+        </div>
       </div>
     </section>
   )

@@ -14,7 +14,6 @@ export default function Document() {
         />
         <link rel="icon" href="/icon.png" type="image/png" />
         <link rel="shortcut icon" href="/icon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/icon.png" />
         
         {gaId ? (
           <>
@@ -36,9 +35,6 @@ export default function Document() {
             />
           </>
         ) : null}
-        
-        {/* Favicon variations */}
-        <link rel="manifest" href="/manifest.json" />
       </Head>
       <body>
         <Main />
