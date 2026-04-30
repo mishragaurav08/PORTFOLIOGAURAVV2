@@ -5,6 +5,23 @@ import styles from './Projects.module.css';
 import projectsData from '../../data/projects.json';
 import CTAButton from './CTAButton';
 
+// Direct imports for reliable cache busting and Next.js optimization
+import studiqueImg from '../../public/assets/studique.png';
+import interactImg from '../../public/assets/interact.png';
+import getitdoneImg from '../../public/assets/getitdone.png';
+import herspaceImg from '../../public/assets/herspace.png';
+import srmconnectImg from '../../public/assets/srmconnect.png';
+import socialmediaImg from '../../public/assets/socialmedia.png';
+
+const IMAGE_MAP = {
+  '/assets/studique.png': studiqueImg,
+  '/assets/interact.png': interactImg,
+  '/assets/getitdone.png': getitdoneImg,
+  '/assets/herspace.png': herspaceImg,
+  '/assets/srmconnect.png': srmconnectImg,
+  '/assets/socialmedia.png': socialmediaImg,
+};
+
 export default function Projects() {
   const projects = projectsData;
 
@@ -33,7 +50,7 @@ export default function Projects() {
             show: {
               opacity: 1,
               transition: {
-                staggerChildren: 0.1,
+                staggerChildren: 0.08,
                 delayChildren: 0.1
               }
             }
@@ -50,11 +67,11 @@ export default function Projects() {
           >
             <div className={styles.media} aria-label={`${p.title} project preview`}>
               <Image
-                src={p.image}
+                src={IMAGE_MAP[p.image] || p.image}
                 alt={`${p.title} project interface`}
                 fill
                 sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
-                loading="lazy"
+                priority={p.id === 3} // Priority for top project
               />
             </div>
             <div className={styles.cardBody}>

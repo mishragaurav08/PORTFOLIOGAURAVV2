@@ -10,8 +10,7 @@ const experiences = [
     date: 'Internship',
     logo: 'samsung',
     desc: `Worked on network traffic analysis and ML pipelines at Samsung PRISM, with a focus on scale, behavior, and system reliability.`,
-    mobileDesc: `Worked on network traffic and ML pipelines at Samsung PRISM with a focus on reliability.`,
-    certificate: '#'
+    mobileDesc: `Worked on network traffic and ML pipelines at Samsung PRISM with a focus on reliability.`
   },
   {
     title: 'iOS Developer Intern',
@@ -19,8 +18,7 @@ const experiences = [
     date: 'Internship',
     logo: 'infosys',
     desc: `Built parts of a fleet management iOS app at Infosys, focusing on onboarding flows and reusable SwiftUI components.`,
-    mobileDesc: `Built parts of a fleet management iOS app with SwiftUI and onboarding flows.`,
-    certificate: '#'
+    mobileDesc: `Built parts of a fleet management iOS app with SwiftUI and onboarding flows.`
   },
   {
     title: 'iOS Developer Program',
@@ -28,8 +26,7 @@ const experiences = [
     date: 'Participant',
     logo: 'apple',
     desc: `The Apple x Infosys program pushed me toward cleaner mobile implementation, stronger polish, and better product thinking.`,
-    mobileDesc: `A program that strengthened my mobile product thinking and implementation quality.`,
-    certificate: '#'
+    mobileDesc: `A program that strengthened my mobile product thinking and implementation quality.`
   }
 ];
 
@@ -112,18 +109,7 @@ export default function Experience() {
                 <p className={`${styles.itemDesc} ${styles.itemDescDesktop}`}>{exp.desc}</p>
                 <p className={`${styles.itemDesc} ${styles.itemDescMobile}`}>{exp.mobileDesc || exp.desc}</p>
               </div>
-              {exp.certificate && (
-                <div className={styles.certWrapper}>
-                  <a 
-                    href={exp.certificate} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className={styles.certBtn}
-                  >
-                    Verify Certificate
-                  </a>
-                </div>
-              )}
+
             </div>
           </motion.article>
         ))}

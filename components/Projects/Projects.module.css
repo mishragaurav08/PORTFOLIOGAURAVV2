@@ -82,11 +82,11 @@
 .media img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Fill the placeholder edge-to-edge */
+  object-fit: cover; /* Fill the entire area, ensuring no empty space */
   object-position: center;
   display: block;
   transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-  padding: 0; /* Removed padding to fill the area */
+  padding: 0; 
 }
 
 .card:hover .media img {

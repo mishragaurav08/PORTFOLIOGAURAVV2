@@ -13,7 +13,7 @@
 
 .wrapper {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1480px;
   padding: 0 var(--section-horizontal);
   box-sizing: border-box;
   display: flex;
@@ -24,12 +24,9 @@
   min-width: 0;
 }
 
-/* Left: quote */
 .content {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: clamp(10px, 1.8vh, 18px);
+  align-items: center;
   flex: 1 1 auto;
   min-width: 0;
 }
@@ -37,12 +34,9 @@
 .quote {
   text-align: left;
   font-family: var(--font-display);
-  font-size: clamp(24px, 3.2vw, 36px);
+  font-size: clamp(28px, 2.8vw, 40px);
   font-weight: 800;
-  line-height: 1.04;
-  max-width: 640px;
-  word-break: break-word;
-  overflow-wrap: anywhere;
+  line-height: 1.1;
   letter-spacing: -0.03em;
 }
 
@@ -54,10 +48,33 @@
 .secondary {
   color: var(--text-muted);
   font-weight: 800;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
-/* Right: cat icon — desktop hidden, mobile shown above quote */
+/* Dot on desktop, line break on mobile */
+.separator {
+  color: var(--text-muted);
+  opacity: 0.25;
+  font-weight: 400;
+  margin: 0 4px;
+}
+
+.meta {
+  flex: 0 0 auto;
+  display: none; /* Hidden on desktop by default, shown in giant mode */
+  align-items: center;
+}
+
+.copyright {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  opacity: 0.4;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
 .leftVisual {
   flex: 0 0 auto;
   width: clamp(56px, 7vw, 96px);
@@ -85,7 +102,80 @@
   pointer-events: none;
 }
 
-/* Responsive */
+/* ── Desktop Giant Text Mode ── */
+@media (min-width: 881px) {
+  .footer {
+    padding: clamp(40px, 8vh, 80px) 0;
+    margin-top: 120px; /* Also moderated the margin */
+    border-top: 1px solid var(--glass-border-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    clear: both;
+    overflow: hidden;
+  }
+
+  .wrapper {
+    max-width: 100%;
+    padding: 0 var(--section-horizontal);
+    margin: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .quote {
+    width: 100%;
+    text-align: left;
+    font-size: clamp(28px, 3.8vw, 80px); /* Slightly smaller for safer fit */
+    line-height: 1.2; /* Extra vertical space */
+    letter-spacing: -0.01em; /* Almost normal spacing to prevent character overlap */
+    margin-bottom: 0;
+    white-space: nowrap;
+    cursor: default;
+    user-select: none;
+    font-weight: 900;
+  }
+
+  .primary {
+    color: var(--accent);
+    filter: brightness(1.1);
+    transition: filter 0.3s ease;
+  }
+
+  .primary:hover {
+    filter: brightness(1.3);
+  }
+
+  .secondary {
+    opacity: 0.35;
+    transition: opacity 0.3s ease;
+  }
+
+  .quote:hover .secondary {
+    opacity: 0.6;
+  }
+
+  .meta {
+    display: none;
+  }
+
+  .separator {
+    opacity: 0.15;
+    margin: 0 0.08em;
+  }
+}
+
+/* ── Responsive Mobile ── */
 @media (max-width: 880px) {
   .footer {
     padding: clamp(24px, 4vh, 44px) 0;
@@ -99,7 +189,14 @@
     gap: 16px;
   }
 
-  /* Icon appears above quote on mobile */
+  /* Dot becomes a line break on mobile */
+  .separator {
+    display: block;
+    font-size: 0;
+    height: 0;
+    margin: 0;
+  }
+
   .leftVisual {
     display: flex;
     order: 1;
@@ -109,24 +206,34 @@
 
   .content {
     order: 2;
-    align-items: center;
+    justify-content: center;
   }
 
   .quote {
-    font-size: clamp(22px, 5vw, 30px);
+    font-size: clamp(24px, 5vw, 36px);
     text-align: center;
+    line-height: 1.04;
+  }
+
+  .meta {
+    order: 3;
+    display: flex;
+  }
+
+  .copyright {
+    font-size: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .wrapper {
-    gap: 18px;
+    gap: 14px;
     padding-left: 18px;
     padding-right: 18px;
   }
 
   .quote {
-    font-size: clamp(20px, 7vw, 26px);
+    font-size: clamp(22px, 7vw, 30px);
   }
 }
 
@@ -136,3 +243,4 @@
     padding-right: 16px;
   }
 }
+

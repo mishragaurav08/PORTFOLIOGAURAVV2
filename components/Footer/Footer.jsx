@@ -13,17 +13,17 @@ export default function Footer() {
         transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.2 }}
       >
-        {/* Left: quote */}
         <div className={styles.content}>
           <div className={styles.quote}>
             <span className={styles.secondary}>Thoughtfully </span>
-            <span className={styles.primary}>designed</span><br />
+            <span className={styles.primary}>designed</span>
+            <span className={styles.separator}> · </span>
             <span className={styles.secondary}>Purposefully </span>
             <span className={styles.primary}>built</span>
           </div>
         </div>
 
-        {/* Right: cat icon */}
+        {/* Cat icon — mobile only */}
         <div className={styles.leftVisual}>
           <a
             className={styles.resumeIconLink}
