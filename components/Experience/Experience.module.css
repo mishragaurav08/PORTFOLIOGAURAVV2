@@ -139,6 +139,32 @@
   width: 100%;
 }
 
+.certWrapper {
+  margin-top: clamp(16px, 2.5vh, 20px);
+}
+
+.certBtn {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  background: var(--accent);
+  color: var(--black);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.certBtn:hover {
+  background: var(--bg);
+  color: var(--accent);
+  border: 1px solid rgba(212, 178, 64, 0.3);
+  transform: translateY(-1px);
+}
+
 .itemDescMobile {
   display: none;
 }

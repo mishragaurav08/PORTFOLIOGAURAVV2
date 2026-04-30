@@ -42,7 +42,7 @@ export default function Projects() {
           {projects.map((p) => (
           <motion.article
             key={p.id}
-            className={`${styles.card} ${p.title === 'SRMConnect' ? styles.srmCard : ''}`}
+            className={styles.card}
             variants={{
               hidden: { opacity: 0, y: 12 },
               show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } }
@@ -63,31 +63,46 @@ export default function Projects() {
                   <h3 className={styles.title}>{p.title}</h3>
                   <div className={styles.tag}>{p.tag}</div>
               </div>
-              <div className={styles.buttonWrapper}>
-                  {p.type === 'inprogress' && (
-                    <CTAButton type="inprogress" projectTitle={p.title}>Building</CTAButton>
-                  )}
-                  {p.type === 'demo' && (
-                    <CTAButton type="demo" href={p.link} projectTitle={p.title}>
-                      {p.link ? 'Live' : 'Private'}
-                    </CTAButton>
-                  )}
-                  {p.type === 'design' && (
-                    <CTAButton type="design" href={p.link} projectTitle={p.title}>
-                      {p.link ? 'Design' : 'Private'}
-                    </CTAButton>
-                  )}
-                  {p.type === 'github' && (
-                    <CTAButton type="github" href={p.link} projectTitle={p.title}>
-                      {p.link ? 'GitHub' : 'Private'}
-                    </CTAButton>
-                  )}
-                </div>
+                {p.title !== 'Brand Visuals' && p.title !== 'herSpace' && (
+                  <div className={styles.buttonWrapper}>
+                    {p.type === 'inprogress' && (
+                      <CTAButton type="inprogress" projectTitle={p.title}>Building</CTAButton>
+                    )}
+                    {p.type === 'demo' && (
+                      <CTAButton type="demo" href={p.link} projectTitle={p.title}>
+                        {p.link ? 'Live' : 'Private'}
+                      </CTAButton>
+                    )}
+                    {p.type === 'design' && (
+                      <CTAButton type="design" href={p.link} projectTitle={p.title}>
+                        {p.link ? 'Design' : 'Private'}
+                      </CTAButton>
+                    )}
+                    {p.type === 'github' && (
+                      <CTAButton type="github" href={p.link} projectTitle={p.title}>
+                        {p.link ? 'GitHub' : 'Private'}
+                      </CTAButton>
+                    )}
+                    {p.type === 'private' && (
+                      <CTAButton type="private" projectTitle={p.title}>Private</CTAButton>
+                    )}
+                  </div>
+                )}
               </div>
               <div className={styles.descGroup}>
                 <p className={`${styles.desc} ${styles.descDesktop}`}>{p.desc}</p>
                 <p className={`${styles.desc} ${styles.descMobile}`}>{p.mobileDesc || p.desc}</p>
               </div>
+
+              {p.metrics && p.metrics.length > 0 && (
+                <div className={styles.metricsGroup}>
+                  {p.metrics.map((metric, idx) => (
+                    <span key={idx} className={styles.metricPill}>
+                      {metric}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </motion.article>
           ))}

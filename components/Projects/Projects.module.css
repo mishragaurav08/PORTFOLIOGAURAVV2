@@ -146,6 +146,29 @@
   font-weight: 500;
 }
 
+.metricsGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.metricPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .descMobile {
   display: none;
 }
@@ -154,55 +177,90 @@
   flex-shrink: 0;
 }
 
-/* CTA Buttons */
+/* CTA Buttons - Base */
 .ctaBtn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  height: 40px;
-  border-radius: 12px;
-  padding: 0 15px;
+  height: 38px;
+  border-radius: 10px;
+  padding: 0 14px;
   font-family: var(--font-body);
-  font-size: var(--type-btn);
+  font-size: 13px;
   font-weight: 700;
   white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
-  background: var(--accent);
-  color: var(--black);
   border: 1px solid transparent;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.ctaBtn.demo, 
-.ctaBtn.design, 
-.ctaBtn.github { 
-  background: var(--accent); 
-  color: var(--black); 
-  border-color: transparent; 
+/* Colors by Type */
+.ctaBtn.demo {
+  background: var(--accent);
+  color: var(--black);
+}
+
+.ctaBtn.design {
+  background: #A259FF; /* Figma Purple */
+  color: #fff;
+}
+
+.ctaBtn.github {
+  background: #24292e; /* GitHub Dark */
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.ctaBtn.inprogress {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: not-allowed;
+}
+
+.ctaBtn.private {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important; /* Ensure it's not hidden */
+}
+
+.ctaBtn.private .icon {
+  color: #FF3B30 !important; /* Lock stays Red */
+}
+
+/* Ensure private text color NEVER changes on hover */
+.ctaBtn.private:hover {
+  color: rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  transform: none !important;
 }
 
 /* Inversion Hover */
-.ctaBtn:not(:disabled):not([disabled]):hover { 
-  background: #fff; 
-  color: var(--black); 
+.ctaBtn:not(:disabled):not([disabled]):not(.private):not(.inprogress):hover {
+  background: var(--bg) !important;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
 }
 
-.ctaBtn:not(:disabled):not([disabled]):not(.inprogress):hover {
-  box-shadow: none;
-}
+.ctaBtn.demo:not(.private):hover { color: var(--accent) !important; }
+.ctaBtn.design:not(.private):hover { color: #A259FF !important; }
+.ctaBtn.github:not(.private):hover { color: #24292e !important; }
+.ctaBtn.inprogress:not(.private):hover { color: #007AFF !important; }
 
 /* Disabled / Private */
 .ctaBtn:disabled,
-.ctaBtn[disabled],
-.ctaBtn.ctaBtn.inprogress {
+.ctaBtn[disabled] {
   background: rgba(255, 255, 255, 0.05) !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
   color: rgba(255, 255, 255, 0.25) !important;
   cursor: not-allowed !important;
   transform: none !important;
-  box-shadow: none !important;
 }
+
+
 
 .icon {
   display: inline-flex;
@@ -293,9 +351,7 @@
     display: block;
   }
 
-  .srmCard {
-    display: none;
-  }
+
 }
 
 @media (max-width: 380px) {

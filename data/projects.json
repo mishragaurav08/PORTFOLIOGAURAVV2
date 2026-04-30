@@ -8,7 +8,8 @@
     "pill": "demo",
     "link": "https://studique.in",
     "type": "demo",
-    "image": "/assets/studique.png"
+    "image": "/assets/studique.png",
+    "metrics": ["15k+ MAU", "1.2k DAU"]
   },
   {
     "id": 1,
@@ -19,7 +20,20 @@
     "pill": "demo",
     "link": "https://interactapp.tech/",
     "type": "demo",
-    "image": "/assets/interact.png"
+    "image": "/assets/interact.png",
+    "metrics": ["App Store", "30+ Users"]
+  },
+  {
+    "id": 13,
+    "title": "GetItDone",
+    "tag": "Full Stack",
+    "desc": "A freelance marketplace connecting clients and freelancers with a secure escrow system, project tracking, and dispute resolution.",
+    "mobileDesc": "A freelance marketplace with secure escrow payments and project tracking.",
+    "pill": "inprogress",
+    "link": "",
+    "type": "inprogress",
+    "image": "/assets/getitdone.png",
+    "metrics": ["Escrow", "Marketplace"]
   },
   {
     "id": 5,
@@ -27,10 +41,11 @@
     "tag": "iOS App",
     "desc": "A private offline-first cycle tracking app built to keep personal data on-device with a calm and simple experience.",
     "mobileDesc": "A private offline-first cycle tracker built around simplicity and on-device privacy.",
-    "pill": "demo",
+    "pill": "private",
     "link": "",
-    "type": "demo",
-    "image": "/assets/herspace.png"
+    "type": "private",
+    "image": "/assets/herspace.png",
+    "metrics": ["Offline-first", "Private"]
   },
   {
     "id": 7,
@@ -41,7 +56,8 @@
     "pill": "github",
     "link": "https://github.com/mishragaurav08/SRMConnect",
     "type": "github",
-    "image": "/assets/srmconnect.png"
+    "image": "/assets/srmconnect.png",
+    "metrics": ["Communities", "Event Ops"]
   },
   {
     "id": 11,
@@ -52,6 +68,7 @@
     "pill": "design",
     "link": "",
     "type": "design",
-    "image": "/assets/socialmedia.png"
+    "image": "/assets/socialmedia.png",
+    "metrics": ["500+ Assets", "Figma"]
   }
 ]
