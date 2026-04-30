@@ -22,10 +22,7 @@
   overflow: hidden;
 }
 
-.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
+
 
 .resumeIconWrap {
   flex-shrink: 0;

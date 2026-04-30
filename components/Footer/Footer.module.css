@@ -11,7 +11,6 @@
   min-width: 0;
 }
 
-/* Main footer row: quote left, cat + message right */
 .wrapper {
   width: 100%;
   max-width: 1400px;
@@ -21,93 +20,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(20px, 4vw, 48px);
+  gap: clamp(20px, 3vw, 36px);
   min-width: 0;
 }
 
-/* ── Left column: cat + inline message ── */
-.leftCol {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: clamp(16px, 2.4vw, 28px);
-  flex: 0 0 auto;
-  min-width: 0;
-}
-
-/* Mascot button */
-.mascotBtn {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  cursor: default;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  line-height: 0;
-  transition: filter 0.4s ease;
-  /* fixed size so layout doesn't shift */
-  width: clamp(56px, 7vw, 80px);
-  height: clamp(56px, 7vw, 80px);
-}
-
-.mascotActive {
-  cursor: pointer;
-  filter: drop-shadow(0 0 8px rgba(var(--accent-rgb), 0.22));
-}
-
-.mascotActive:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 6px;
-  border-radius: 50%;
-}
-
-.mascotImg {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  user-select: none;
-  pointer-events: none;
-}
-
-/* ── Inline mascot message ── */
-.mascotMsg {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  /* Fixed size prevents layout shift when messages cycle */
-  min-width: 200px;
-  max-width: 240px;
-  min-height: 42px;
-  text-align: left;
-}
-
-.msgLine1 {
-  font-family: var(--font-display);
-  font-size: clamp(15px, 1.4vw, 18px);
-  font-weight: 800;
-  color: var(--accent);
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-  display: block;
-  text-align: left;
-}
-
-.msgLine2 {
-  font-family: var(--font-body);
-  font-size: clamp(12px, 1vw, 14px);
-  font-weight: 500;
-  color: var(--text-muted);
-  line-height: 1.4;
-  display: block;
-  text-align: left;
-}
-
-/* ── Left: quote ── */
+/* Left: quote */
 .content {
   display: flex;
   flex-direction: column;
@@ -140,7 +57,35 @@
   opacity: 0.6;
 }
 
-/* ── Responsive ── */
+/* Right: cat icon — desktop hidden, mobile shown above quote */
+.leftVisual {
+  flex: 0 0 auto;
+  width: clamp(56px, 7vw, 96px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.resumeIconLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  line-height: 0;
+}
+
+.leftImage {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Responsive */
 @media (max-width: 880px) {
   .footer {
     padding: clamp(24px, 4vh, 44px) 0;
@@ -150,51 +95,34 @@
   .wrapper {
     flex-direction: column;
     align-items: center;
-    gap: 28px;
+    justify-content: center;
+    gap: 16px;
   }
 
-  /* icon + message first on mobile */
-  .leftCol {
+  /* Icon appears above quote on mobile */
+  .leftVisual {
+    display: flex;
     order: 1;
-    width: 100%;
+    width: clamp(56px, 18vw, 80px);
     justify-content: center;
   }
 
-  /* quote below on mobile */
   .content {
     order: 2;
     align-items: center;
-    width: 100%;
   }
 
   .quote {
-    text-align: center;
     font-size: clamp(22px, 5vw, 30px);
-  }
-
-  .mascotMsg {
-    min-width: 200px;
-    max-width: 240px;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .msgLine1,
-  .msgLine2 {
-    text-align: left;
+    text-align: center;
   }
 }
 
 @media (max-width: 480px) {
   .wrapper {
+    gap: 18px;
     padding-left: 18px;
     padding-right: 18px;
-    gap: 20px;
-  }
-
-  .mascotBtn {
-    width: 52px;
-    height: 52px;
   }
 
   .quote {
@@ -206,13 +134,5 @@
   .wrapper {
     padding-left: 16px;
     padding-right: 16px;
-  }
-
-  .msgLine1 {
-    font-size: 14px;
-  }
-
-  .msgLine2 {
-    font-size: 12px;
   }
 }
