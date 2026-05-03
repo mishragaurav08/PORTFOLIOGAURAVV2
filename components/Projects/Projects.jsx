@@ -67,50 +67,21 @@ export default function Projects() {
               show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } }
             }}
           >
-            {p.slug ? (
-              <Link
-                href={`/projects/${p.slug}`}
-                className={styles.cardLink}
-                aria-label={`View ${p.title} project details`}
-                onClick={() => analytics.trackProjectView(p.title)}
-              >
-                <div className={styles.media} aria-label={`${p.title} project preview`}>
-                  <Image
-                    src={IMAGE_MAP[p.image] || p.image}
-                    alt={`${p.title} project interface`}
-                    fill
-                    sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
-                    priority={p.id === 3}
-                  />
-                </div>
-              </Link>
-            ) : (
-              <div className={styles.media} aria-label={`${p.title} project preview`}>
-                <Image
-                  src={IMAGE_MAP[p.image] || p.image}
-                  alt={`${p.title} project interface`}
-                  fill
-                  sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
-                  priority={p.id === 3}
-                />
-              </div>
-            )}
+            <div className={styles.media} aria-label={`${p.title} project preview`}>
+              <Image
+                src={IMAGE_MAP[p.image] || p.image}
+                alt={`${p.title} project interface`}
+                fill
+                sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                priority={p.id === 3}
+              />
+            </div>
             <div className={styles.cardBody}>
               <div className={styles.cardHead}>
                 <div className={styles.titleWrapper}>
-                  {p.slug ? (
-                    <Link
-                      href={`/projects/${p.slug}`}
-                      className={styles.titleLink}
-                      onClick={() => analytics.trackProjectView(p.title)}
-                    >
-                      <h3 className={styles.title}>{p.title}</h3>
-                    </Link>
-                  ) : (
-                    <h3 className={styles.title}>{p.title}</h3>
-                  )}
+                  <h3 className={styles.title}>{p.title}</h3>
                   <div className={styles.tag}>{p.tag}</div>
-              </div>
+                </div>
                 {p.title !== 'Brand Visuals' && (
                   <div className={styles.buttonWrapper}>
                     {p.type === 'inprogress' && (

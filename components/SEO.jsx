@@ -2,8 +2,8 @@ import Head from 'next/head'
 
 export default function SEO({
   title = 'Gaurav Mishra | UX/UI Designer, Frontend & iOS Developer',
-  description = 'Portfolio of Gaurav Mishra - UX/UI designer, frontend and iOS developer from SRMIST. Builder of Studique (15,000+ users), Interact, herSpace, and projects across React, Next.js, SwiftUI, and product design.',
-  keywords = 'Gaurav Mishra, Gaurav Mishra portfolio, UX UI designer, frontend developer, iOS developer, SwiftUI developer, React developer, Next.js developer, product designer, full stack developer, Studique founder, SRMIST developer, Samsung PRISM, Apple Infosys iOS Developer Program, Infosys internship, Supabase, mobile app developer, web developer, IRCTC redesign, SRMConnect, herSpace iOS, Interact app',
+  description = 'Portfolio of Gaurav Mishra - UX/UI designer, frontend and iOS developer from SRMIST. Builder of Studique (15k+ MAU), Interact, herSpace, and projects across React, Next.js, SwiftUI, and product design.',
+  keywords = 'Gaurav Mishra, Gaurav Mishra portfolio, UX UI designer, frontend developer, iOS developer, SwiftUI developer, React developer, Next.js developer, product designer, full stack developer, Studique founder, SRMIST developer, Samsung PRISM, Apple Infosys iOS Developer Program, Infosys internship, mobile app developer, web developer, SRMConnect, herSpace iOS, Interact app',
   ogImage = '/icon.png',
   ogType = 'website',
   twitterCard = 'summary_large_image',
