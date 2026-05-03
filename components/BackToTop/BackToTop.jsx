@@ -11,7 +11,7 @@ export default function BackToTop() {
   return (
     <a
       className={styles.resumeButton}
-      href="/Gaurav.pdf"
+      href="/assets/Gaurav.pdf"
       target="_blank"
       rel="noopener noreferrer"
       data-open-resume

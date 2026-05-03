@@ -13,7 +13,7 @@ export default function About() {
         viewport={{ once: true, amount: 0.1 }}
       >
         <div className={styles.content}>
-          <h2 className={styles.header}>A Bit About Me</h2>
+          <h2 className={styles.header}>A Little About Me</h2>
 
           <div className={styles.copy}>
             <p className={styles.paragraph}>

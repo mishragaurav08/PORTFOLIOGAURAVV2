@@ -93,6 +93,23 @@
   transform: none;
 }
 
+/* Clickable card link */
+.cardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.titleLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.titleLink:hover .title {
+  color: var(--accent);
+  transition: color 0.25s ease;
+}
+
 /* Card body */
 .cardBody {
   display: flex;
@@ -207,8 +224,8 @@
 }
 
 .ctaBtn.github {
-  background: #24292e; /* GitHub Dark */
-  color: #fff;
+  background: var(--white);
+  color: var(--black);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -238,17 +255,17 @@
   transform: none !important;
 }
 
-/* Inversion Hover */
+/* Modern Hover: Slight brightness increase and scale, no color inversion */
 .ctaBtn:not(:disabled):not([disabled]):not(.private):not(.inprogress):hover {
-  background: var(--bg) !important;
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.ctaBtn.demo:not(.private):hover { color: var(--accent) !important; }
-.ctaBtn.design:not(.private):hover { color: #A259FF !important; }
-.ctaBtn.github:not(.private):hover { color: #24292e !important; }
-.ctaBtn.inprogress:not(.private):hover { color: #007AFF !important; }
+.ctaBtn.demo:not(.private):hover { background: var(--accent); color: var(--black); }
+.ctaBtn.design:not(.private):hover { background: #A259FF; color: #fff; }
+.ctaBtn.github:not(.private):hover { background: var(--white); color: var(--black); }
+.ctaBtn.inprogress:not(.private):hover { background: transparent; color: rgba(255, 255, 255, 0.5); }
 
 /* Disabled / Private */
 .ctaBtn:disabled,

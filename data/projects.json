@@ -1,6 +1,7 @@
 [
   {
     "id": 3,
+    "slug": "studique",
     "title": "Studique",
     "tag": "Full Stack",
     "desc": "A campus platform for SRMIST students that brings attendance, marks, and resources into one clear and reliable system.",
@@ -9,10 +10,96 @@
     "link": "https://studique.in",
     "type": "demo",
     "image": "/assets/studique.png",
-    "metrics": ["15k+ MAU", "1.2k DAU"]
+    "metrics": [
+      "15k+ MAU",
+      "1200+ DAU",
+      "1M+ Page Views"
+    ],
+    "impact": "While other platforms charge or crash, Studique has stayed free and reliable. We've spent hundreds of nights refining it based on real feedback, and the community response has been incredible.",
+    "overview": "I built Studique because university portals were slow and confusing. At SRMIST, we had to jump through multiple sites just for basics like attendance. We wanted something made for students-fast, reliable, and all in one place.",
+    "problem": "University systems were failing0,000+ students. Daily friction from server crashes and bad UX meant missing critical updates. We saw a gap that needed a smooth, student-first solution.",
+    "solution": "We built a companion with a smart caching layer that stays fast even when official servers fail. It's been free and stable since day one, focusing purely on what actually helps students.",
+    "features": [
+      "Trackr: Real-time attendance and marks tracking with historical trends",
+      "Schedule: Daily schedule and semester calendar with room info",
+      "UnitWise: 180+ subjects with notes, PPTs, PYQs, and YouTube playlists",
+      "CalcGPA: Grade prediction and CGPA impact estimation",
+      "MealMap: Daily mess menus for all university hostels",
+      "Finder: Faculty search by name or ID with staff room details",
+      "Join Community: Resource sharing and WhatsApp-integrated hub for 2500+ students"
+    ],
+    "techStackDetailed": {
+      "frontend": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "Radix UI",
+        "Framer Motion",
+        "Recharts"
+      ],
+      "backend": [
+        "Node.js",
+        "Axios"
+      ],
+      "deployment": [
+        "Netlify",
+        "AWS Amplify",
+        "AWS CloudFront"
+      ],
+      "other": [
+        "TypeScript",
+        "pdf-lib",
+        "Embla Carousel"
+      ]
+    },
+    "screenshots": [
+      "/assets/studique1.png",
+      "/assets/studique2.png",
+      "/assets/studique3.png"
+    ],
+    "howItWorks": "Students sign in with their university credentials. Studique fetches and caches their academic data - attendance, marks, timetable - and presents it in a clean dashboard. A background sync keeps data fresh, while the caching layer ensures the app stays fast even when university servers are slow or down.",
+    "useCases": [
+      "Checking daily attendance before class cutoff deadlines",
+      "Finding PPTs and PYQs for exams via UnitWise",
+      "Checking hostel mess menus via MealMap",
+      "Predicting SGPA/CGPA impact with CalcGPA"
+    ],
+    "team": [
+      {
+        "name": "Gaurav Mishra",
+        "role": "Founding Team",
+        "image": "/assets/gaurav.png",
+        "linkedin": "https://www.linkedin.com/in/mishragaurav08"
+      },
+      {
+        "name": "Utkarsh Jaiswal",
+        "role": "Founding Team",
+        "image": "/assets/jaiswal.png",
+        "linkedin": "https://www.linkedin.com/in/1406utkarsh/"
+      },
+      {
+        "name": "Utakarsh Jain",
+        "role": "Founding Team",
+        "image": "/assets/jain.png",
+        "linkedin": "https://www.linkedin.com/in/utakarsh-jain/"
+      },
+      {
+        "name": "Manya Sewkani",
+        "role": "Founding Team",
+        "image": "/assets/manya.png",
+        "linkedin": "https://www.linkedin.com/in/manya-sewkani-50292a1aa/"
+      },
+      {
+        "name": "Chirag Khairnar",
+        "role": "Founding Team",
+        "image": "/assets/chirag.png",
+        "linkedin": "https://www.linkedin.com/in/chiragkhairnar/"
+      }
+    ]
   },
   {
     "id": 1,
+    "slug": "interact",
     "title": "Interact",
     "tag": "iOS Product",
     "desc": "A product for people joining hackathons without a team, focused on teammate discovery and smoother early collaboration.",
@@ -21,10 +108,50 @@
     "link": "https://interactapp.tech/",
     "type": "demo",
     "image": "/assets/interact.png",
-    "metrics": ["App Store", "30+ Users"]
+    "metrics": [
+      "App Store",
+      "30+ Users"
+    ],
+    "overview": "Interact is an iOS app designed to solve the teammate discovery problem at hackathons. Instead of scrambling on Discord or WhatsApp the night before, participants can find complementary teammates through skill-based matching and in-app coordination.",
+    "problem": "Talented people at hackathons often can't find the right teammates. Team formation happens through random Discord messages or knowing someone - not through actual skill matching. This leads to poorly balanced teams and wasted potential.",
+    "solution": "A swipe-style teammate discovery app scoped to specific hackathon events. Profiles highlight skills and project history, and built-in chat enables early collaboration before the event even starts.",
+    "features": [
+      "Skill-based teammate matching with swipe-style discovery",
+      "Real-time in-app messaging for team coordination",
+      "Event-scoped rooms so conversations stay relevant",
+      "Profile builder with project history and skill tags",
+      "Push notification system for match alerts"
+    ],
+    "techStackDetailed": {
+      "frontend": ["SwiftUI", "Combine", "iOS SDK"],
+      "backend": ["Firebase Cloud Functions", "Node.js"],
+      "database": ["Firestore", "Core Data (Local)"],
+      "other": ["MapKit", "APNs", "Combine", "TestFlight"]
+    },
+    "screenshots": [
+      "/assets/interact.png",
+      "/assets/interact.png",
+      "/assets/interact.png"
+    ],
+    "howItWorks": "Users create a profile with their skills and project experience. When a hackathon event is active, they browse other participants through a card-based interface, filtering by complementary skills. Mutual interest creates a match and opens a direct chat for team coordination.",
+    "useCases": [
+      "Finding a backend developer when you only have frontend skills",
+      "Forming balanced teams before a hackathon starts",
+      "Connecting with participants from different colleges at inter-university events",
+      "Building a network of hackathon collaborators over time"
+    ],
+    "team": [
+      {
+        "name": "Gaurav Mishra",
+        "role": "Founder · Design, iOS Development",
+        "image": "/icon.png",
+        "linkedin": "https://www.linkedin.com/in/mishragaurav08"
+      }
+    ]
   },
   {
     "id": 13,
+    "slug": "getitdone",
     "title": "GetItDone",
     "tag": "Full Stack",
     "desc": "A freelance marketplace connecting clients and freelancers with a secure escrow system, project tracking, and dispute resolution.",
@@ -33,22 +160,102 @@
     "link": "",
     "type": "inprogress",
     "image": "/assets/getitdone.png",
-    "metrics": ["Escrow", "Marketplace"]
+    "metrics": [
+      "Escrow",
+      "Marketplace"
+    ],
+    "overview": "GetItDone is a freelance marketplace built to address trust gaps in peer-to-peer service transactions. It uses a milestone-based escrow system where funds are held until deliverables are verified, giving both clients and freelancers confidence in every project.",
+    "problem": "Existing freelance platforms take massive cuts, favor established sellers, and offer limited protection for new freelancers and clients. Trust is the biggest barrier - clients fear non-delivery, freelancers fear non-payment.",
+    "solution": "A milestone-based escrow payment system where funds are held securely until each deliverable is verified. Built-in dispute resolution with evidence uploads provides a fair arbitration process when things go wrong.",
+    "features": [
+      "Milestone-based escrow payment system",
+      "Real-time project tracking with progress dashboards",
+      "Built-in dispute resolution with evidence uploads",
+      "Freelancer verification and portfolio system",
+      "Smart matching algorithm based on skills and ratings"
+    ],
+    "techStackDetailed": {
+      "frontend": ["Next.js", "React", "CSS Modules"],
+      "backend": ["Node.js", "Express", "Stripe Connect"],
+      "database": ["PostgreSQL", "Redis"],
+      "other": ["Docker", "JWT Auth", "REST API"]
+    },
+    "screenshots": [
+      "/assets/getitdone.png",
+      "/assets/getitdone.png",
+      "/assets/getitdone.png"
+    ],
+    "howItWorks": "Clients post projects with milestones and budgets. Freelancers browse and apply based on their skills. Once matched, funds are locked in escrow per milestone. Freelancers deliver, clients verify, and funds release automatically. Disputes trigger an evidence-based arbitration workflow.",
+    "useCases": [
+      "Hiring a developer for a specific feature with milestone-based payment",
+      "Getting design work done with built-in revision tracking",
+      "Resolving payment disputes through evidence-based arbitration",
+      "Building a verified freelancer profile for future opportunities"
+    ],
+    "team": [
+      {
+        "name": "Gaurav Mishra",
+        "role": "Founder · Full Stack Development & Design",
+        "image": "/icon.png",
+        "linkedin": "https://www.linkedin.com/in/mishragaurav08"
+      }
+    ]
   },
   {
     "id": 5,
+    "slug": "herspace",
     "title": "herSpace",
     "tag": "iOS App",
     "desc": "A private offline-first cycle tracking app built to keep personal data on-device with a calm and simple experience.",
     "mobileDesc": "A private offline-first cycle tracker built around simplicity and on-device privacy.",
-    "pill": "private",
-    "link": "",
-    "type": "private",
+    "pill": "github",
+    "link": "https://github.com/mishragaurav08/herspace.git",
+    "type": "github",
     "image": "/assets/herspace.png",
-    "metrics": ["Offline-first", "Private"]
+    "metrics": [
+      "Offline-first",
+      "Private"
+    ],
+    "overview": "herSpace is a fully offline-first cycle tracking app for iOS. It was designed with a single principle: your most personal health data should never leave your device. No accounts, no cloud sync, no analytics - just a calm, minimal interface that respects privacy by default.",
+    "problem": "Most cycle tracking apps send data to servers, share with third parties, or require accounts. After major privacy concerns around health data, users lost trust in cloud-based trackers. There was no simple, private-by-design alternative.",
+    "solution": "A fully offline iOS app with zero network requests. Cycle predictions run entirely on-device using lightweight statistical algorithms, and all data stays in the user's local Core Data store protected by biometric lock.",
+    "features": [
+      "Fully offline - zero network requests, no accounts needed",
+      "Cycle predictions using on-device statistical algorithms",
+      "Symptom and mood logging with customizable categories",
+      "HealthKit integration for holistic health tracking",
+      "Passcode and biometric lock for app access"
+    ],
+    "techStackDetailed": {
+      "frontend": ["SwiftUI", "Swift", "iOS SDK"],
+      "backend": ["None - Fully Offline"],
+      "database": ["Core Data"],
+      "other": ["HealthKit", "Local Notifications", "Keychain", "Biometrics (Face ID)"]
+    },
+    "screenshots": [
+      "/assets/herspace.png",
+      "/assets/herspace.png",
+      "/assets/herspace.png"
+    ],
+    "howItWorks": "Users log their cycle data locally. The app analyzes historical patterns using a lightweight on-device algorithm to predict future cycles with increasing accuracy. All data is stored in Core Data and protected by biometric authentication. Nothing ever leaves the device.",
+    "useCases": [
+      "Tracking cycles without sharing data with any server",
+      "Getting accurate predictions that improve over time",
+      "Logging symptoms and moods alongside cycle data",
+      "Syncing health metrics with Apple Health locally"
+    ],
+    "team": [
+      {
+        "name": "Gaurav Mishra",
+        "role": "Sole Developer · iOS Development & Design",
+        "image": "/icon.png",
+        "linkedin": "https://www.linkedin.com/in/mishragaurav08"
+      }
+    ]
   },
   {
     "id": 7,
+    "slug": "srmconnect",
     "title": "SRMConnect",
     "tag": "Full Stack",
     "desc": "A platform for managing college communities, members, and events in one place instead of using scattered tools and workflows.",
@@ -57,10 +264,50 @@
     "link": "https://github.com/mishragaurav08/SRMConnect",
     "type": "github",
     "image": "/assets/srmconnect.png",
-    "metrics": ["Communities", "Event Ops"]
+    "metrics": [
+      "Communities",
+      "Event Ops"
+    ],
+    "overview": "SRMConnect is a unified platform for managing college clubs and communities. It replaces the patchwork of WhatsApp groups, Google Sheets, and email chains with a single dashboard for event creation, member management, and community communication.",
+    "problem": "Running college clubs involves coordinating events, managing members, and communicating updates across scattered tools - WhatsApp, Sheets, email, Instagram. Nothing is centralized, nothing is searchable, and handoffs between leadership generations lose institutional knowledge.",
+    "solution": "A purpose-built platform giving club leaders a unified dashboard for everything - from event creation and RSVP tracking to member roles and engagement analytics. Real-time announcements replace scattered group messages.",
+    "features": [
+      "Community dashboards with member role management",
+      "Event creation with RSVP tracking and attendance",
+      "Real-time announcements via Socket.io",
+      "Analytics dashboard for engagement metrics",
+      "Exportable reports for club administrative needs"
+    ],
+    "techStackDetailed": {
+      "frontend": ["React", "CSS Modules", "Chart.js"],
+      "backend": ["Node.js", "Express", "Socket.io"],
+      "database": ["MongoDB"],
+      "other": ["JWT Auth", "REST API", "State Management"]
+    },
+    "screenshots": [
+      "/assets/srmconnect.png",
+      "/assets/srmconnect.png",
+      "/assets/srmconnect.png"
+    ],
+    "howItWorks": "Club admins create a community space, invite members, and assign roles. Events are created with details and RSVP links. Members receive real-time announcements through Socket.io. An analytics dashboard tracks engagement, attendance trends, and member activity over time.",
+    "useCases": [
+      "Managing a 200+ member technical club with sub-teams",
+      "Tracking event attendance and generating reports for college administration",
+      "Sending real-time announcements without relying on WhatsApp",
+      "Preserving institutional knowledge during leadership transitions"
+    ],
+    "team": [
+      {
+        "name": "Gaurav Mishra",
+        "role": "Founder · Full Stack Development & Design",
+        "image": "/icon.png",
+        "linkedin": "https://www.linkedin.com/in/mishragaurav08"
+      }
+    ]
   },
   {
     "id": 11,
+    "slug": "brand-visuals",
     "title": "Brand Visuals",
     "tag": "Visual Design",
     "desc": "Visual work for products and student communities focused on consistency, clarity, and stronger communication.",
@@ -69,6 +316,43 @@
     "link": "",
     "type": "design",
     "image": "/assets/socialmedia.png",
-    "metrics": ["500+ Assets", "Figma"]
+    "metrics": [
+      "500+ Assets",
+      "Figma"
+    ],
+    "overview": "Brand Visuals is a collection of design work spanning product branding, social media assets, event graphics, and visual systems for student communities. Each project focused on building visual consistency - creating design languages that communities could maintain long after the initial work was done.",
+    "problem": "Student communities produce inconsistent, ad-hoc visuals because there are no established brand systems. Every new poster or social media post is designed from scratch, leading to fragmented identity and wasted effort.",
+    "solution": "Creating complete brand identity systems with reusable templates, clear guidelines, and component libraries in Figma - empowering non-designers to maintain visual consistency independently.",
+    "features": [
+      "Complete brand identity systems with guidelines",
+      "Social media templates for consistent posting",
+      "Event promotional graphics and banner systems",
+      "Icon sets and illustration libraries",
+      "Motion graphics for digital announcements"
+    ],
+    "techStackDetailed": {
+      "design": ["Figma", "Adobe Illustrator", "Photoshop", "After Effects"],
+      "deliverables": ["Brand Identity", "Component Libraries", "Motion Graphics", "Social Templates"]
+    },
+    "screenshots": [
+      "/assets/socialmedia.png",
+      "/assets/socialmedia.png",
+      "/assets/socialmedia.png"
+    ],
+    "howItWorks": "Each project starts with understanding the community's identity and communication needs. I design a core visual system - colors, typography, spacing, logo usage - then build it into a Figma template library. Community members use these templates for day-to-day content creation without needing design skills.",
+    "useCases": [
+      "Creating consistent social media posts for a college tech club",
+      "Designing event posters that match a community's brand identity",
+      "Building a reusable template system for non-designers",
+      "Producing motion graphics for Instagram stories and reels"
+    ],
+    "team": [
+      {
+        "name": "Gaurav Mishra",
+        "role": "Lead Designer · Visual Design & Brand Strategy",
+        "image": "/icon.png",
+        "linkedin": "https://www.linkedin.com/in/mishragaurav08"
+      }
+    ]
   }
 ]

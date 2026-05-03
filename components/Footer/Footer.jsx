@@ -27,7 +27,7 @@ export default function Footer() {
         <div className={styles.leftVisual}>
           <a
             className={styles.resumeIconLink}
-            href="/Gaurav.pdf"
+            href="/assets/Gaurav.pdf"
             target="_blank"
             rel="noopener noreferrer"
             data-open-resume

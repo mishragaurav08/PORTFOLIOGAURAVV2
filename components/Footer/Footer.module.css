@@ -48,13 +48,13 @@
 .secondary {
   color: var(--text-muted);
   font-weight: 800;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 /* Dot on desktop, line break on mobile */
 .separator {
   color: var(--text-muted);
-  opacity: 0.25;
+  opacity: 0.6;
   font-weight: 400;
   margin: 0 4px;
 }
@@ -148,21 +148,10 @@
 
   .primary {
     color: var(--accent);
-    filter: brightness(1.1);
-    transition: filter 0.3s ease;
-  }
-
-  .primary:hover {
-    filter: brightness(1.3);
   }
 
   .secondary {
-    opacity: 0.35;
-    transition: opacity 0.3s ease;
-  }
-
-  .quote:hover .secondary {
-    opacity: 0.6;
+    opacity: 0.8;
   }
 
   .meta {
@@ -170,7 +159,7 @@
   }
 
   .separator {
-    opacity: 0.15;
+    opacity: 0.6;
     margin: 0 0.08em;
   }
 }

@@ -76,7 +76,7 @@ export default function App({ Component, pageProps }) {
 
     const handleRouteScroll = (url) => {
       if (url.includes('#')) return
-      if (url.startsWith('/thoughts/')) {
+      if (url.startsWith('/thoughts/') || url.startsWith('/projects/')) {
         if (rafId !== null) {
           cancelAnimationFrame(rafId)
         }

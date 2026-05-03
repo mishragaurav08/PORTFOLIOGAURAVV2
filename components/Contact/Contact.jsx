@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Contact.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin, faGithub, faInstagram, faFigma } from '@fortawesome/free-brands-svg-icons';
 import { faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
 import * as analytics from '../../lib/analytics';
 
@@ -43,7 +43,7 @@ export default function Contact() {
       <div className={styles.card}>
         <div className={styles.left}>
           <div className={styles.headingWrapper}>
-            <h2 className={styles.heading}>Let&apos;s Talk</h2>
+            <h2 className={styles.heading}>Get in Touch</h2>
           </div>
           <p className={styles.desc}>
             If you are building a product and need end-to-end UI execution, I can help with UX thinking, frontend delivery, and iOS implementation.
@@ -69,6 +69,15 @@ export default function Contact() {
               onClick={() => handleSocialClick('GitHub')}
             >
               <FontAwesomeIcon icon={faGithub} size="2x" />
+            </a>
+            <a 
+              href="https://www.figma.com/@mishragaurav08" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Figma"
+              onClick={() => handleSocialClick('Figma')}
+            >
+              <FontAwesomeIcon icon={faFigma} size="2x" />
             </a>
             <a 
               href="https://www.instagram.com/mishragaurav08/" 

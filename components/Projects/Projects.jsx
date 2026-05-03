@@ -1,9 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import styles from './Projects.module.css';
 import projectsData from '../../data/projects.json';
 import CTAButton from './CTAButton';
+import * as analytics from '../../lib/analytics';
 
 // Direct imports for reliable cache busting and Next.js optimization
 import studiqueImg from '../../public/assets/studique.png';
@@ -34,7 +36,7 @@ export default function Projects() {
         transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, amount: 0.5 }}
       >
-        <h2 className={styles.header}>Selected Projects</h2>
+        <h2 className={styles.header}>Selected Work</h2>
       </motion.div>
 
       {projects.length === 0 ? (
@@ -65,22 +67,51 @@ export default function Projects() {
               show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } }
             }}
           >
-            <div className={styles.media} aria-label={`${p.title} project preview`}>
-              <Image
-                src={IMAGE_MAP[p.image] || p.image}
-                alt={`${p.title} project interface`}
-                fill
-                sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
-                priority={p.id === 3} // Priority for top project
-              />
-            </div>
+            {p.slug ? (
+              <Link
+                href={`/projects/${p.slug}`}
+                className={styles.cardLink}
+                aria-label={`View ${p.title} project details`}
+                onClick={() => analytics.trackProjectView(p.title)}
+              >
+                <div className={styles.media} aria-label={`${p.title} project preview`}>
+                  <Image
+                    src={IMAGE_MAP[p.image] || p.image}
+                    alt={`${p.title} project interface`}
+                    fill
+                    sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                    priority={p.id === 3}
+                  />
+                </div>
+              </Link>
+            ) : (
+              <div className={styles.media} aria-label={`${p.title} project preview`}>
+                <Image
+                  src={IMAGE_MAP[p.image] || p.image}
+                  alt={`${p.title} project interface`}
+                  fill
+                  sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                  priority={p.id === 3}
+                />
+              </div>
+            )}
             <div className={styles.cardBody}>
               <div className={styles.cardHead}>
                 <div className={styles.titleWrapper}>
-                  <h3 className={styles.title}>{p.title}</h3>
+                  {p.slug ? (
+                    <Link
+                      href={`/projects/${p.slug}`}
+                      className={styles.titleLink}
+                      onClick={() => analytics.trackProjectView(p.title)}
+                    >
+                      <h3 className={styles.title}>{p.title}</h3>
+                    </Link>
+                  ) : (
+                    <h3 className={styles.title}>{p.title}</h3>
+                  )}
                   <div className={styles.tag}>{p.tag}</div>
               </div>
-                {p.title !== 'Brand Visuals' && p.title !== 'herSpace' && (
+                {p.title !== 'Brand Visuals' && (
                   <div className={styles.buttonWrapper}>
                     {p.type === 'inprogress' && (
                       <CTAButton type="inprogress" projectTitle={p.title}>Building</CTAButton>

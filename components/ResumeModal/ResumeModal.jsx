@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Download, ExternalLink, Loader2 } from 'lucide-react';
 
 export default function ResumeModal({ isOpen, onClose }) {
-  const resumeViewerSrc = '/Gaurav.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH';
+  const resumeViewerSrc = '/assets/Gaurav.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH';
   const [loading, setLoading] = useState(true);
   const [previewError, setPreviewError] = useState(false);
   const modalRef = React.useRef(null);
@@ -92,7 +92,7 @@ export default function ResumeModal({ isOpen, onClose }) {
               
               <div className={styles.actions}>
                 <a
-                  href="/Gaurav.pdf"
+                  href="/assets/Gaurav.pdf"
                   download="Gaurav_Mishra_Resume.pdf"
                   className={styles.iconBtn}
                   onClick={() => analytics.trackResumeDownload()}
@@ -136,7 +136,7 @@ export default function ResumeModal({ isOpen, onClose }) {
                   <p className={styles.fallbackText}>Your browser doesn't support inline PDF previews.</p>
                   <div className={styles.fallbackActions}>
                     <a
-                      href="/Gaurav.pdf"
+                      href="/assets/Gaurav.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={styles.primaryActionBtn}
